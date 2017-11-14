@@ -105,6 +105,7 @@
     <Compile Include="Doctor.cs">
       <DependentUpon>ClinicDataBase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MainModels\LoginModel.cs" />
     <Compile Include="Patient.cs">
       <DependentUpon>ClinicDataBase.tt</DependentUpon>
     </Compile>
@@ -328,7 +329,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Folder Include="Models\DoctorModels\" />
+    <Folder Include="Models\PatientCardModels\" />
+    <Folder Include="Models\RegisterModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClinicDataBase.Context.tt">
