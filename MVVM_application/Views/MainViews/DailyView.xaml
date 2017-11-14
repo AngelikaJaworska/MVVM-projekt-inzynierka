@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="MVVM_application.Views.DailyView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:uc="clr-namespace:MVVM_application.Views.UserControls"
+             d:DesignHeight="300"
+             d:DesignWidth="600"
+             DataContext="{Binding Main.CurrentViewModel,
+                                   Source={StaticResource Locator}}"
+             mc:Ignorable="d">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="150" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="150" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <uc:MainUserControl Grid.RowSpan="4" Grid.ColumnSpan="4" />
+        <Label Grid.Row="1"
+               Grid.Column="1"
+               Grid.ColumnSpan="2"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontSize="18">
+            Dzisiejsze wizyty
+        </Label>
+
+        <ListView x:Name="listView"
+                  Grid.Row="2"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="4"
+                  Width="600"
+                  Height="150"
+                  VerticalAlignment="Bottom"
+                  ItemsSource="{Binding TodayVisitsList}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="150" DisplayMemberBinding="{Binding Patient}">Imie i nazwisko pacjenta</GridViewColumn>
+                    <GridViewColumn Width="150" DisplayMemberBinding="{Binding Specialisation}">Wizita do specjalisty</GridViewColumn>
+                    <GridViewColumn Width="150" DisplayMemberBinding="{Binding Doctor}">Imie i nazwisko lekarza</GridViewColumn>
+                    <GridViewColumn Width="150" DisplayMemberBinding="{Binding VisitDate}">Godzina wizyty</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>

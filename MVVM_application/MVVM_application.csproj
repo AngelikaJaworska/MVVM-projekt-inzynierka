@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D62EA152-B738-4E12-AB94-17BD9FBC3D3D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MVVM_application</RootNamespace>
+    <AssemblyName>MVVM_application</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.1\lib\net45\CommonServiceLocator.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="ClinicDataBase.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClinicDataBase.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClinicDataBase.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClinicDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClinicDataBase.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClinicDataBase.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Doctor.cs">
+      <DependentUpon>ClinicDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Patient.cs">
+      <DependentUpon>ClinicDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Receptionist.cs">
+      <DependentUpon>ClinicDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Specialisation.cs">
+      <DependentUpon>ClinicDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>ClinicDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\DoctorViewModels\DoctorDailyVisitViewModel.cs" />
+    <Compile Include="ViewModels\DoctorViewModels\DoctorEditDataViewModel.cs" />
+    <Compile Include="ViewModels\DoctorViewModels\DoctorVisitView.cs" />
+    <Compile Include="ViewModels\Manager\TypesOfViews.cs" />
+    <Compile Include="ViewModels\PatientCardViewModels\PatientEditDataViewModel.cs" />
+    <Compile Include="ViewModels\PatientCardViewModels\PatientNewVisitViewModel.cs" />
+    <Compile Include="ViewModels\PatientCardViewModels\PatientVisitViewModel.cs" />
+    <Compile Include="ViewModels\UserControlsModel\ActionUCModel.cs" />
+    <Compile Include="ViewModels\RegisterViewModels\AddNewPatientViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModels\DailyViewModel.cs" />
+    <Compile Include="ViewModels\UserControlsModel\DoctorUCModel.cs" />
+    <Compile Include="ViewModels\MainViewModels\DoctorViewModel.cs" />
+    <Compile Include="ViewModels\RegisterViewModels\EditVisitViewModel.cs" />
+    <Compile Include="ViewModels\Manager\IViewManager.cs" />
+    <Compile Include="ViewModels\MainViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\UserControlsModel\PatientCardUCModel.cs" />
+    <Compile Include="ViewModels\MainViewModels\PatientCardViewModel.cs" />
+    <Compile Include="ViewModels\UserControlsModel\MainUCModel.cs" />
+    <Compile Include="ViewModels\RegisterViewModels\AddVisitViewModel.cs" />
+    <Compile Include="ViewModels\UserControlsModel\RegisterUCModel.cs" />
+    <Compile Include="ViewModels\MainViewModels\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="Views\DoctorViews\DoctorDailyVisitView.xaml.cs">
+      <DependentUpon>DoctorDailyVisitView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DoctorViews\DoctorEditDataView.xaml.cs">
+      <DependentUpon>DoctorEditDataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DoctorViews\DoctorVisitView.xaml.cs">
+      <DependentUpon>DoctorVisitView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PatientCardViews\PatientEditDataView.xaml.cs">
+      <DependentUpon>PatientEditDataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PatientCardViews\PatientNewVisitView.xaml.cs">
+      <DependentUpon>PatientNewVisitView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PatientCardViews\PatientVisitView.xaml.cs">
+      <DependentUpon>PatientVisitView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RegisterViews\AddNewPatientView.xaml.cs">
+      <DependentUpon>AddNewPatientView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainViews\DailyView.xaml.cs">
+      <DependentUpon>DailyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainViews\DoctorView.xaml.cs">
+      <DependentUpon>DoctorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RegisterViews\EditVisitView.xaml.cs">
+      <DependentUpon>EditVisitView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainViews\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainViews\PatientCardView.xaml.cs">
+      <DependentUpon>PatientCardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RegisterViews\AddVisitView.xaml.cs">
+      <DependentUpon>AddVisitView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainViews\RegisterView.xaml.cs">
+      <DependentUpon>RegisterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\ActionUserControl.xaml.cs">
+      <DependentUpon>ActionUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\DoctorUserControl.xaml.cs">
+      <DependentUpon>DoctorUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MainUserControl.xaml.cs">
+      <DependentUpon>MainUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\PatientCardUserControl.xaml.cs">
+      <DependentUpon>PatientCardUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\RegisterUserControl.xaml.cs">
+      <DependentUpon>RegisterUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Visits.cs">
+      <DependentUpon>ClinicDataBase.tt</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Views\DoctorViews\DoctorDailyVisitView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DoctorViews\DoctorEditDataView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DoctorViews\DoctorVisitView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PatientCardViews\PatientEditDataView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PatientCardViews\PatientNewVisitView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PatientCardViews\PatientVisitView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RegisterViews\AddNewPatientView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainViews\DailyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainViews\DoctorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RegisterViews\EditVisitView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainViews\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainViews\PatientCardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RegisterViews\AddVisitView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainViews\RegisterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\ActionUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\DoctorUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\MainUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\PatientCardUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\RegisterUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EntityDeploy Include="ClinicDataBase.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ClinicDataBase.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ClinicDataBase.edmx.diagram">
+      <DependentUpon>ClinicDataBase.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClinicDataBase.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ClinicDataBase.edmx</DependentUpon>
+      <LastGenOutput>ClinicDataBase.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ClinicDataBase.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ClinicDataBase.edmx</DependentUpon>
+      <LastGenOutput>ClinicDataBase.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
