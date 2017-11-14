@@ -104,6 +104,8 @@ namespace MVVM_application.ViewModels
         #endregion
         #endregion
 
+        Clinic _database;
+
         public MainViewModel()
         {
             InitialiseDatabase();
@@ -114,7 +116,7 @@ namespace MVVM_application.ViewModels
 
         public void InitialiseDatabase()
         {
-            var database = new Clinic();
+            _database = new Clinic();
         }
 
         public void InitialiseAllViewModels()
@@ -198,6 +200,11 @@ namespace MVVM_application.ViewModels
                 default:
                     return null;
             }
+        }
+
+        public Clinic GetDatabase()
+        {
+            return _database;
         }
     }
 }
