@@ -4,21 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
+using MVVM_application.ViewModels.Manager;
 
 namespace MVVM_application.Models.MainModels
 {
-    class LoginModel
+    public class LoginModel
     {
         private Clinic _database;
+        private IViewManager _viewManager;
 
         private bool _validator { get; set; }
         private string _hashPassword { get; set; }
 
         private Receptionist reception;
 
-        public LoginModel()
+        public LoginModel(IViewManager viewManager)
         {
-            //_database = database;
+            _viewManager = viewManager;
+            _database = _viewManager.GetDatabase();
         }
 
         public List<Receptionist> FillReceptionsList()
@@ -49,8 +52,8 @@ namespace MVVM_application.Models.MainModels
                     return reception;
                 }
             }
-            return null;
 
+            return null;
         }
         private bool CalculateMD5Hash(string password)
         {
