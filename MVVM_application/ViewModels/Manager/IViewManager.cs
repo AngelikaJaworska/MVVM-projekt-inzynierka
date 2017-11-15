@@ -12,5 +12,7 @@ namespace MVVM_application.ViewModels.Manager
         void ChangeView(TypesOfViews view);
         
         ViewModelBase GetView(TypesOfViews view);
+
+        Clinic GetDatabase();
     }
 }

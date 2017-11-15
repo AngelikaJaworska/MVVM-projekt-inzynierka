@@ -11,10 +11,14 @@ using MVVM_application.ViewModels.PatientCardViewModels;
 using MVVM_application.ViewModels.DoctorViewModels;
 using MVVM_application.ViewModels.UserControlsModel;
 
+using MVVM_application.Models.MainModels;
+
 namespace MVVM_application.ViewModels
 {
     public class MainViewModel : ViewModelBase, IViewManager
     {
+        Clinic _database;
+
         #region ViewModel
 
         private ViewModelBase _currentViewModel;
@@ -104,9 +108,14 @@ namespace MVVM_application.ViewModels
         #endregion
         #endregion
 
+        #region Model
+        LoginModel _loginModel;
+        #endregion
+
         public MainViewModel()
         {
             InitialiseDatabase();
+            InitialiseAllModels();
             InitialiseAllViewModels();
 
             ChangeView(TypesOfViews.LoginViewModel);
@@ -114,12 +123,12 @@ namespace MVVM_application.ViewModels
 
         public void InitialiseDatabase()
         {
-            var database = new Clinic();
+            _database = new Clinic();
         }
 
         public void InitialiseAllViewModels()
         {
-            _loginViewModel = new LoginViewModel(this);
+            _loginViewModel = new LoginViewModel(this, _loginModel);
             _dailyViewModel = new DailyViewModel(this);
             _registerViewModel = new RegisterViewModel(this);
             _patientCardViewModel = new PatientCardViewModel(this);
@@ -142,6 +151,11 @@ namespace MVVM_application.ViewModels
             _patientCardUCModel = new PatientCardUCModel(this);
             _doctorUCModel = new DoctorUCModel(this);
             _actionUCModel = new ActionUCModel(this);
+        }
+
+        public void InitialiseAllModels()
+        {
+            _loginModel = new LoginModel(this);
         }
 
         public void ChangeView(TypesOfViews view)
@@ -198,6 +212,11 @@ namespace MVVM_application.ViewModels
                 default:
                     return null;
             }
+        }
+
+        public Clinic GetDatabase()
+        {
+            return _database;
         }
     }
 }
