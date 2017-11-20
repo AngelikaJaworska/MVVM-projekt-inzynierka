@@ -42,6 +42,7 @@ namespace MVVM_application.ViewModels.UserControlsModel
         public void ExecuteDailyCommand()
         {
             _viewManager.ChangeView(TypesOfViews.DailyViewModel);
+            
         }
 
         public void ExecuteRegisterCommand()

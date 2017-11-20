@@ -105,7 +105,9 @@
     <Compile Include="Doctor.cs">
       <DependentUpon>ClinicDataBase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MainModels\DailyModel.cs" />
     <Compile Include="Models\MainModels\LoginModel.cs" />
+    <Compile Include="Models\Manager\VisitManager.cs" />
     <Compile Include="Patient.cs">
       <DependentUpon>ClinicDataBase.tt</DependentUpon>
     </Compile>
@@ -323,7 +325,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

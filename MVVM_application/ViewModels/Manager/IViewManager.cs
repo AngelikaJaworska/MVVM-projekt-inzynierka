@@ -14,5 +14,11 @@ namespace MVVM_application.ViewModels.Manager
         ViewModelBase GetView(TypesOfViews view);
 
         Clinic GetDatabase();
+
+        Receptionist GetReceptionist();
+
+        void SetReceptionist(Receptionist reception);
+
+        void RefreshViewModel(TypesOfViews view);
     }
 }
