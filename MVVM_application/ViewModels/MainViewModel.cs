@@ -18,7 +18,8 @@ namespace MVVM_application.ViewModels
     public class MainViewModel : ViewModelBase, IViewManager
     {
         Clinic _database;
-
+        Receptionist _reception;
+        
         #region ViewModel
 
         private ViewModelBase _currentViewModel;
@@ -48,7 +49,7 @@ namespace MVVM_application.ViewModels
 
         public ViewModelBase CurrentViewModel
         {
-            get { return _currentViewModel; }
+            get { return _currentViewModel;}
             private set
             {
                 if (_currentViewModel == value)
@@ -110,6 +111,7 @@ namespace MVVM_application.ViewModels
 
         #region Model
         LoginModel _loginModel;
+        DailyModel _dailyModel;
         #endregion
 
         public MainViewModel()
@@ -124,12 +126,13 @@ namespace MVVM_application.ViewModels
         public void InitialiseDatabase()
         {
             _database = new Clinic();
+            _reception = new Receptionist();
         }
 
         public void InitialiseAllViewModels()
         {
             _loginViewModel = new LoginViewModel(this, _loginModel);
-            _dailyViewModel = new DailyViewModel(this);
+            _dailyViewModel = new DailyViewModel(this, _dailyModel);
             _registerViewModel = new RegisterViewModel(this);
             _patientCardViewModel = new PatientCardViewModel(this);
             _doctorViewModel = new DoctorViewModel(this);
@@ -156,6 +159,7 @@ namespace MVVM_application.ViewModels
         public void InitialiseAllModels()
         {
             _loginModel = new LoginModel(this);
+            _dailyModel = new DailyModel(this);
         }
 
         public void ChangeView(TypesOfViews view)
@@ -218,5 +222,23 @@ namespace MVVM_application.ViewModels
         {
             return _database;
         }
+
+        public void SetReceptionist(Receptionist reception)
+        {
+            _reception = reception;
+        }
+        public Receptionist GetReceptionist()
+        {
+            return _reception;
+        }
+        public void RefreshViewModel(TypesOfViews view)
+        {
+            if(_reception.IDReceptionist != 0)
+            {
+                InitialiseAllViewModels();
+                ChangeView(view);
+            }
+        }
+
     }
 }

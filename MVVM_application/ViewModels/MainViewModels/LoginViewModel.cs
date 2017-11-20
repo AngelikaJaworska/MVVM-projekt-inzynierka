@@ -60,7 +60,8 @@ namespace MVVM_application.ViewModels.MainViewModels
             var reception = _loginModel.Login(_login, _password);
             if (reception != null)
             {
-                _viewManager.ChangeView(TypesOfViews.DailyViewModel);
+                _viewManager.SetReceptionist(reception);
+                _viewManager.RefreshViewModel(TypesOfViews.DailyViewModel);
             }
             else
             {
