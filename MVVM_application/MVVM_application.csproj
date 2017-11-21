@@ -105,12 +105,23 @@
     <Compile Include="Doctor.cs">
       <DependentUpon>ClinicDataBase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DoctorModels\DoctorDailyVisitModel.cs" />
+    <Compile Include="Models\DoctorModels\DoctorEditDataModel.cs" />
+    <Compile Include="Models\DoctorModels\DoctorVisitModel.cs" />
+    <Compile Include="Models\DoctorModels\SearchDoctorViewModel.cs" />
     <Compile Include="Models\MainModels\DailyModel.cs" />
     <Compile Include="Models\MainModels\DoctorModel.cs" />
     <Compile Include="Models\MainModels\LoginModel.cs" />
     <Compile Include="Models\MainModels\PatientCardModel.cs" />
     <Compile Include="Models\MainModels\RegisterModel.cs" />
     <Compile Include="Models\Manager\VisitManager.cs" />
+    <Compile Include="Models\PatientCardModels\PatientEditDataModel.cs" />
+    <Compile Include="Models\PatientCardModels\PatientNewVisitModel.cs" />
+    <Compile Include="Models\PatientCardModels\PatientVisitModel.cs" />
+    <Compile Include="Models\PatientCardModels\SearchPatientModel.cs" />
+    <Compile Include="Models\RegisterModels\AddNewPatientModel.cs" />
+    <Compile Include="Models\RegisterModels\AddVisitModel.cs" />
+    <Compile Include="Models\RegisterModels\EditVisitModel.cs" />
     <Compile Include="Patient.cs">
       <DependentUpon>ClinicDataBase.tt</DependentUpon>
     </Compile>
@@ -351,11 +362,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\DoctorModels\" />
-    <Folder Include="Models\PatientCardModels\" />
-    <Folder Include="Models\RegisterModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="ClinicDataBase.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
