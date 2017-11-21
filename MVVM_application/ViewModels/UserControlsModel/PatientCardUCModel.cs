@@ -36,7 +36,7 @@ namespace MVVM_application.ViewModels.UserControlsModel
 
         public void ExecuteSearchPatientCommand()
         {
-            MessageBox.Show("search for patient patient view");
+            _viewManager.ChangeView(TypesOfViews.SearchPatientViewModel);
         }
 
         public void ExecutePatientNewVisitCommand()

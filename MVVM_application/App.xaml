@@ -55,6 +55,9 @@
         <DataTemplate DataType="{x:Type registerViewModels:AddNewPatientViewModel}">
             <views:AddNewPatientView />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type patientCardViewModels:SearchPatientViewModel}">
+            <views:SearchPatientView/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type patientCardViewModels:PatientVisitViewModel}">
             <views:PatientVisitView />
         </DataTemplate>
@@ -63,6 +66,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type patientCardViewModels:PatientEditDataViewModel}">
             <views:PatientEditDataView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type doctorViewModels:SearchDoctorViewModel}">
+            <views:SearchDoctorView />
         </DataTemplate>
         <DataTemplate DataType="{x:Type doctorViewModels:DoctorDailyVisitViewModel}">
             <views:DoctorDailyVisitView />
