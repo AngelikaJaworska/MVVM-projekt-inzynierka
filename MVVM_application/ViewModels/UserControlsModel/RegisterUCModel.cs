@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Windows;
+using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
@@ -12,6 +13,7 @@ namespace MVVM_application.ViewModels.UserControlsModel
 
         #region ICommand
 
+        public ICommand SearchPatientRegisterCommand { get; private set; }
         public ICommand AddVisitCommand { get; private set; }
         public ICommand EditVisitCommand { get; private set; }
         public ICommand AddNewPatientCommand { get; private set; }
@@ -27,9 +29,15 @@ namespace MVVM_application.ViewModels.UserControlsModel
 
         public void InitialiseCommand()
         {
+            SearchPatientRegisterCommand = new RelayCommand(ExecuteSearchPatientRegisterCommand);
             AddVisitCommand = new RelayCommand(ExecuteAddVisitCommand);
             EditVisitCommand = new RelayCommand(ExecuteEditVisitCommand);
             AddNewPatientCommand = new RelayCommand(ExecuteAddNewPatientCommand);
+        }
+
+        public void ExecuteSearchPatientRegisterCommand()
+        {
+            MessageBox.Show("search for patient register view");
         }
 
         public void ExecuteAddVisitCommand()

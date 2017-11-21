@@ -13,6 +13,7 @@ namespace MVVM_application.ViewModels.UserControlsModel
 
         #region ICommand
 
+        public ICommand SearchPatientCommand { get; private set; }
         public ICommand PatientNewVisitCommand { get; private set; }
         public ICommand PatientVisitCommand { get; private set; }
         public ICommand PatientEditDataCommand { get; private set; }
@@ -27,9 +28,15 @@ namespace MVVM_application.ViewModels.UserControlsModel
 
         public void InitialiseCommand()
         {
+            SearchPatientCommand = new RelayCommand(ExecuteSearchPatientCommand);
             PatientNewVisitCommand = new RelayCommand(ExecutePatientNewVisitCommand);
             PatientVisitCommand = new RelayCommand(ExecutePatientVisitCommand);
             PatientEditDataCommand = new RelayCommand(ExecutePatientEditDataCommand);
+        }
+
+        public void ExecuteSearchPatientCommand()
+        {
+            MessageBox.Show("search for patient patient view");
         }
 
         public void ExecutePatientNewVisitCommand()

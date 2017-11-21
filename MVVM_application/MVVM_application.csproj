@@ -106,7 +106,10 @@
       <DependentUpon>ClinicDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MainModels\DailyModel.cs" />
+    <Compile Include="Models\MainModels\DoctorModel.cs" />
     <Compile Include="Models\MainModels\LoginModel.cs" />
+    <Compile Include="Models\MainModels\PatientCardModel.cs" />
+    <Compile Include="Models\MainModels\RegisterModel.cs" />
     <Compile Include="Models\Manager\VisitManager.cs" />
     <Compile Include="Patient.cs">
       <DependentUpon>ClinicDataBase.tt</DependentUpon>

@@ -37,17 +37,14 @@
                 <TextBlock Text="Rejestracja pacjenta" />
             </WrapPanel>
         </Button>
-        <Label Grid.Row="1"
-               Grid.Column="0"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Top"
-               FontSize="14">
-            Wyszukaj pacjenta:
-        </Label>
 
-        <ComboBox Grid.Row="1"
+
+        <Button Grid.Row="1"
                   Grid.Column="0"
-                  VerticalAlignment="Bottom" />
-    </Grid>
+                Command="{Binding SearchPatientRegisterCommand}">
+            Wyszukaj pacjenta:
+        </Button>
+            
+        </Grid>
 </UserControl>
 
