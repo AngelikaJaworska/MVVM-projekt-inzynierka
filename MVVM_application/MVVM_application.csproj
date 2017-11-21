@@ -126,10 +126,12 @@
     <Compile Include="ViewModels\DoctorViewModels\DoctorDailyVisitViewModel.cs" />
     <Compile Include="ViewModels\DoctorViewModels\DoctorEditDataViewModel.cs" />
     <Compile Include="ViewModels\DoctorViewModels\DoctorVisitView.cs" />
+    <Compile Include="ViewModels\DoctorViewModels\SearchDoctorViewModel.cs" />
     <Compile Include="ViewModels\Manager\TypesOfViews.cs" />
     <Compile Include="ViewModels\PatientCardViewModels\PatientEditDataViewModel.cs" />
     <Compile Include="ViewModels\PatientCardViewModels\PatientNewVisitViewModel.cs" />
     <Compile Include="ViewModels\PatientCardViewModels\PatientVisitViewModel.cs" />
+    <Compile Include="ViewModels\PatientCardViewModels\SearchPatientViewModel.cs" />
     <Compile Include="ViewModels\UserControlsModel\ActionUCModel.cs" />
     <Compile Include="ViewModels\RegisterViewModels\AddNewPatientViewModel.cs" />
     <Compile Include="ViewModels\MainViewModels\DailyViewModel.cs" />
@@ -155,6 +157,9 @@
     <Compile Include="Views\DoctorViews\DoctorVisitView.xaml.cs">
       <DependentUpon>DoctorVisitView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\DoctorViews\SearchDoctorView.xaml.cs">
+      <DependentUpon>SearchDoctorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PatientCardViews\PatientEditDataView.xaml.cs">
       <DependentUpon>PatientEditDataView.xaml</DependentUpon>
     </Compile>
@@ -163,6 +168,9 @@
     </Compile>
     <Compile Include="Views\PatientCardViews\PatientVisitView.xaml.cs">
       <DependentUpon>PatientVisitView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PatientCardViews\SearchPatientView.xaml.cs">
+      <DependentUpon>SearchPatientView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RegisterViews\AddNewPatientView.xaml.cs">
       <DependentUpon>AddNewPatientView.xaml</DependentUpon>
@@ -230,6 +238,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\DoctorViews\SearchDoctorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\PatientCardViews\PatientEditDataView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -239,6 +251,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PatientCardViews\PatientVisitView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PatientCardViews\SearchPatientView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

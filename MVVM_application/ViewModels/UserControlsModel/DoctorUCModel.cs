@@ -36,8 +36,7 @@ namespace MVVM_application.ViewModels.UserControlsModel
 
         public void ExecuteSearchDoctorCommand()
         {
-            // _viewManager.ChangeView(TypesOfViews.DoctorDailyVisitViewModel);
-            MessageBox.Show("search for doctor doctor view");
+            _viewManager.ChangeView(TypesOfViews.SearchDoctorViewModel);
         }
 
         public void ExecuteDoctorDailyVisitCommand()

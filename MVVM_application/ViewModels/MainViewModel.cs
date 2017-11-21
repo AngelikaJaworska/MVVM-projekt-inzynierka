@@ -29,12 +29,17 @@ namespace MVVM_application.ViewModels
         private RegisterViewModel _registerViewModel;
         private PatientCardViewModel _patientCardViewModel;
         private DoctorViewModel _doctorViewModel;
+
         private AddNewPatientViewModel _addNewPatientViewModel;
         private AddVisitViewModel _addVisitViewModel;
         private EditVisitViewModel _editVisitViewModel;
+
+        private SearchPatientViewModel _searchPatientViewModel;
         private PatientVisitViewModel _patientVisitViewModel;
         private PatientNewVisitViewModel _patientNewVisitViewModel;
         private PatientEditDataViewModel _patientEditDataViewModel;
+
+        private SearchDoctorViewModel _searchDoctorViewModel;
         private DoctorDailyVisitViewModel _doctorDailyVisitViewModel;
         private DoctorEditDataViewModel _doctorEditDataViewModel;
         private DoctorVisitView _doctorVisitView;
@@ -141,10 +146,13 @@ namespace MVVM_application.ViewModels
             _addVisitViewModel = new AddVisitViewModel(this);
             _editVisitViewModel = new EditVisitViewModel(this);
 
+
+            _searchPatientViewModel = new SearchPatientViewModel(this);
             _patientVisitViewModel = new PatientVisitViewModel(this);
             _patientNewVisitViewModel = new PatientNewVisitViewModel(this);
             _patientEditDataViewModel = new PatientEditDataViewModel(this);
 
+            _searchDoctorViewModel = new SearchDoctorViewModel(this);
             _doctorDailyVisitViewModel = new DoctorDailyVisitViewModel(this);
             _doctorEditDataViewModel = new DoctorEditDataViewModel(this);
             _doctorVisitView = new DoctorVisitView(this);
@@ -189,6 +197,8 @@ namespace MVVM_application.ViewModels
                 case TypesOfViews.EditVisitViewModel:
                     return _editVisitViewModel;
 
+                case TypesOfViews.SearchPatientViewModel:
+                    return _searchPatientViewModel;
                 case TypesOfViews.PatientNewVisitViewModel:
                     return _patientNewVisitViewModel;
                 case TypesOfViews.PatientVisitViewModel:
@@ -196,12 +206,15 @@ namespace MVVM_application.ViewModels
                 case TypesOfViews.PatientEditDataViewModel:
                     return _patientEditDataViewModel;
 
+                case TypesOfViews.SearchDoctorViewModel:
+                    return _searchDoctorViewModel;
                 case TypesOfViews.DoctorDailyVisitViewModel:
                     return _doctorDailyVisitViewModel;
                 case TypesOfViews.DoctorEditDataViewModel:
                     return _doctorEditDataViewModel;
                 case TypesOfViews.DoctorVisitView:
                     return _doctorVisitView;
+
 
                 //case TypesOfViews.MainUCModel:
                 //    return _mainUcModel;
