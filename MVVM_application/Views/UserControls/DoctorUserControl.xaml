@@ -20,18 +20,12 @@
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0"
-               Grid.Column="0"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Top"
-               FontSize="14">
-            Wyszukaj lekarza:
-        </Label>
-
-        <ComboBox Grid.Row="0"
+        <Button Grid.Row="0"
                   Grid.Column="0"
-                  VerticalAlignment="Bottom" />
-
+                Command="{Binding SearchDoctorCommand}">
+            Wyszukaj lekarza
+        </Button>
+                
         <Button Grid.Row="0"
                 Grid.Column="1"
                 Command="{Binding DoctorDailyVisitCommand}">
