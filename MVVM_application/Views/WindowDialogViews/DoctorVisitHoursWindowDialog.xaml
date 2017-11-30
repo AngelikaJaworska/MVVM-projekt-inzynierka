@@ -1,0 +1,50 @@
+﻿<Window x:Class="MVVM_application.Views.DoctorVisitHoursWindowDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVVM_application.Views"
+        mc:Ignorable="d"
+        x:Name="windowDoctorVisitHours"
+        Title="DoctorVisitHoursWindowDialog" Height="200" Width="300" 
+             DataContext="{Binding Main.CurrentViewModel,
+                                   Source={StaticResource Locator}}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="125" />
+            <ColumnDefinition Width="175" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0"
+               Grid.Row="0">
+            Godzina rozpoczęcia:
+        </Label>
+        <TextBox Grid.Column="1"
+                 Grid.Row="0"
+                 IsEnabled="False"
+                 Text="{Binding StartDate}">
+            
+        </TextBox>
+
+        <Label Grid.Column="0"
+               Grid.Row="1">
+            Godzina zakonczenia:
+        </Label>
+        <TextBox Grid.Column="1"
+                 Grid.Row="1"
+                 IsEnabled="False"
+                 Text="{Binding EndHour}">
+        </TextBox>
+        <Button Grid.Row="3"
+                Grid.Column="1"
+                Content="Zamknij"
+                Command="{Binding Close}"
+                CommandParameter="{Binding ElementName=windowDoctorVisitHours, Mode=OneWay}">            
+        </Button>
+    </Grid>
+</Window>

@@ -14,6 +14,7 @@ using MVVM_application.ViewModels.UserControlsModel;
 
 using MVVM_application.Models.MainModels;
 using MVVM_application.Models;
+using MVVM_application.Models.DoctorModels;
 
 namespace MVVM_application.ViewModels
 {
@@ -124,14 +125,18 @@ namespace MVVM_application.ViewModels
         #region Model
         LoginModel _loginModel;
         DailyModel _dailyModel;
+        SearchDoctorModel _searchDoctorModel;
         #endregion
+
+        //sprawdza czy zmienil sie widok czy nie
+        bool _unchangedView;
 
         public MainViewModel()
         {
             InitialiseDatabase();
             InitialiseAllModels();
             InitialiseAllViewModels();
-
+            _unchangedView = true;
             ChangeView(TypesOfViews.LoginViewModel);
         }
 
@@ -159,7 +164,7 @@ namespace MVVM_application.ViewModels
             _patientNewVisitViewModel = new PatientNewVisitViewModel(this);
             _patientEditDataViewModel = new PatientEditDataViewModel(this);
 
-            _searchDoctorViewModel = new SearchDoctorViewModel(this);
+            _searchDoctorViewModel = new SearchDoctorViewModel(this, _searchDoctorModel);
             _doctorDailyVisitViewModel = new DoctorDailyVisitViewModel(this);
             _doctorEditDataViewModel = new DoctorEditDataViewModel(this);
             _doctorVisitView = new DoctorVisitView(this);
@@ -175,10 +180,13 @@ namespace MVVM_application.ViewModels
         {
             _loginModel = new LoginModel(this);
             _dailyModel = new DailyModel(this);
+
+            _searchDoctorModel = new SearchDoctorModel(this);
         }
 
         public void ChangeView(TypesOfViews view)
         {
+            _unchangedView = false;
             CurrentViewModel = GetView(view);
         }
 
@@ -245,6 +253,26 @@ namespace MVVM_application.ViewModels
                 InitialiseAllViewModels();
                 ChangeView(view);
             }
+        }
+
+        public void RefreshAll(TypesOfViews view)
+        {
+            if (_reception.IDReceptionist != 0)
+            {
+                InitialiseAllModels();
+                InitialiseAllViewModels();
+                ChangeView(view);
+            }
+        }
+
+        public void SetUnchangedView(bool unchangedView)
+        {
+            _unchangedView = unchangedView;
+        }
+
+        public bool GetUnchangedView()
+        {
+            return _unchangedView;
         }
 
         public Clinic GetDatabase()

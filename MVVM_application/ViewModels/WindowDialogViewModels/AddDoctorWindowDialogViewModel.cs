@@ -49,7 +49,8 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
         public ObservableCollection<string> DoctorList { get; set; }
 
         public RelayCommand<AddDoctorWindowDialog> SearchDoctorCommand { get; private set; }
-
+        public RelayCommand<AddDoctorWindowDialog> SkipDoctorCommand { get; private set; }
+        public RelayCommand<AddDoctorWindowDialog> CancelDoctorCommand { get; private set; }
         public RelayCommand<string> RefreshDoctorCommand { get; private set; }
 
         public AddDoctorWindowDialogViewModel(IViewManager viewManager, AddDoctorWindowDialogModel addDoctorWindowDialogModel)
@@ -61,7 +62,37 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
             this.DoctorList = new ObservableCollection<string>();
 
             SearchDoctorCommand = new RelayCommand<AddDoctorWindowDialog>(ExecuteSearchDoctorCommand);
+            SkipDoctorCommand = new RelayCommand<AddDoctorWindowDialog>(ExecuteSkipDoctorCommand);
+            CancelDoctorCommand = new RelayCommand<AddDoctorWindowDialog>(ExecuteCancelDoctorCommand);
             RefreshDoctorCommand = new RelayCommand<string>(RefreshDoctorsInfo);
+        }
+
+        private void ExecuteSearchDoctorCommand(AddDoctorWindowDialog windowSearchdoctor)
+        {
+            var doctor = _addDoctorWindowDialogModel.SearchDoctor(_specialisation, _doctor);
+            if (doctor != null)
+            {
+                _viewManager.SetDoctor(doctor);
+                windowSearchdoctor.DialogResult = true;
+                _viewManager.SetUnchangedView(false);
+            }
+            else
+            {
+                MessageBox.Show("Prosze, wybrać odpowiednie dane");
+            }
+
+        }
+
+        private void ExecuteCancelDoctorCommand(AddDoctorWindowDialog windowSearchdoctor)
+        {
+            windowSearchdoctor.Close();
+            _viewManager.SetUnchangedView(true);
+        }
+
+        private void ExecuteSkipDoctorCommand(AddDoctorWindowDialog windowSearchdoctor)
+        {
+            windowSearchdoctor.Close();
+            _viewManager.SetUnchangedView(false);
         }
 
         private void RefreshDoctorsInfo(string specialisation)
@@ -76,21 +107,6 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
                     this.DoctorList.Add(_doctorNameList[i]);
                 }
             }
-        }
-
-        private void ExecuteSearchDoctorCommand(AddDoctorWindowDialog windowSearchdoctor)
-        {
-            var doctor = _addDoctorWindowDialogModel.SearchDoctor(_specialisation, _doctor);
-            if(doctor != null)
-            {
-                _viewManager.SetDoctor(doctor);
-                windowSearchdoctor.DialogResult = true;
-            }
-            else
-            {
-                MessageBox.Show("Prosze, wybrać odpowiednie dane");
-            }
-
         }
     }
 }

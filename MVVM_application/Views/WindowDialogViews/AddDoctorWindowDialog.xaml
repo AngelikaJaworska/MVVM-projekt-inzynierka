@@ -4,9 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVVM_application.Views"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" x:Name="windowSearchdoctor" x:Class="MVVM_application.Views.AddDoctorWindowDialog"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+        x:Name="windowSearchdoctor" 
+        x:Class="MVVM_application.Views.AddDoctorWindowDialog"
         mc:Ignorable="d"
-        Title="AddDoctorWindowDialog" Height="200" Width="300" DataContext="{DynamicResource Locator}">
+        Title="AddDoctorWindowDialog" Height="185" Width="300" DataContext="{DynamicResource Locator}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100" />
@@ -16,11 +18,18 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
             <RowDefinition Height="50" />
-            <RowDefinition Height="25" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
-        <ComboBox x:Name="comboBox" Grid.ColumnSpan="4" Grid.Row ="0" 
+        <Label Grid.Column="0"
+               Grid.Row="0" 
+               HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center">
+            Specjalizacja
+        </Label>
+        <ComboBox x:Name="comboBox" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row ="0" 
+                   HorizontalContentAlignment="Center"
+                   VerticalContentAlignment="Center"
                   ItemsSource="{Binding Main.DoctorUCModel.AddDoctorWDModel.SpecialisationtList}"
                   SelectedItem="{Binding Main.DoctorUCModel.AddDoctorWDModel.Specialisation}"
                   SelectedValuePath="Specialisation" >
@@ -31,13 +40,32 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </ComboBox>
-        <ComboBox Grid.ColumnSpan="4" Grid.Row ="1" 
+
+        <Label Grid.Column="0"
+               Grid.Row="1" 
+               HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center">
+            Lekarz
+        </Label>
+        <ComboBox  Grid.ColumnSpan="2" Grid.Column="1" Grid.Row ="1" 
+                   HorizontalContentAlignment="Center"
+                   VerticalContentAlignment="Center"
                   ItemsSource="{Binding Main.DoctorUCModel.AddDoctorWDModel.DoctorList}"
                   SelectedItem="{Binding Main.DoctorUCModel.AddDoctorWDModel.Doctor}"
                   SelectedValuePath="Doctor"/>
-        <Button Grid.ColumnSpan="4" Grid.Row ="3" x:Name="bOk" Content="OK" 
+
+        <Button Grid.Column="0" Grid.Row ="2" Content="Pomin" 
+                Command="{Binding Main.DoctorUCModel.AddDoctorWDModel.SkipDoctorCommand}" 
+                CommandParameter="{Binding ElementName=windowSearchdoctor, Mode=OneWay}"/>
+
+        <Button Grid.Column="1" Grid.Row ="2" Content="Wyszukaj" 
                 Command="{Binding Main.DoctorUCModel.AddDoctorWDModel.SearchDoctorCommand}" 
                 CommandParameter="{Binding ElementName=windowSearchdoctor, Mode=OneWay}"/>
+
+        <Button Grid.Column="2" Grid.Row ="2" Content="Anuluj" 
+                Command="{Binding Main.DoctorUCModel.AddDoctorWDModel.CancelDoctorCommand}" 
+                CommandParameter="{Binding ElementName=windowSearchdoctor, Mode=OneWay}"/>
+
 
     </Grid>
 </Window>

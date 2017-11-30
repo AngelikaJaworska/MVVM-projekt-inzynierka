@@ -55,20 +55,24 @@ namespace MVVM_application.Models.WindowDialogModels
 
         public Doctor SearchDoctor(string specialisation, string doctorName)
         {
-            var _doctorName = doctorName.Split(' ');
-            var _doctorFirstName = _doctorName[0];
-            var _doctorLastName = _doctorName[1];
+            if(specialisation != null && doctorName != null)
+            {
+                var _doctorName = doctorName.Split(' ');
+                var _doctorFirstName = _doctorName[0];
+                var _doctorLastName = _doctorName[1];
 
-            var _doctor = _database.Doctor
-                .Where(d => 
-            (d.First_Name.Equals(_doctorFirstName)) 
-            && (d.Last_Name
-            .Equals(_doctorLastName) 
-            && (d.Specialisation.Name
-            .Equals(specialisation))))
-            .Single();
+                var _doctor = _database.Doctor
+                    .Where(d =>
+                (d.First_Name.Equals(_doctorFirstName))
+                && (d.Last_Name
+                .Equals(_doctorLastName)
+                && (d.Specialisation.Name
+                .Equals(specialisation))))
+                .Single();
+                return _doctor;
+            }
+            return null;
 
-            return _doctor;
         }
 
     }

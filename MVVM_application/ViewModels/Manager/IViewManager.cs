@@ -24,5 +24,9 @@ namespace MVVM_application.ViewModels.Manager
         void SetDoctor(Doctor doctor);
 
         void RefreshViewModel(TypesOfViews view);
+        void RefreshAll(TypesOfViews view);
+
+        void SetUnchangedView(bool unchangedView);
+        bool GetUnchangedView();
     }
 }

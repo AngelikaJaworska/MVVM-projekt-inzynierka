@@ -164,6 +164,7 @@
     <Compile Include="ViewModels\MainViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="ViewModels\WindowDialogViewModels\AddDoctorWindowDialogViewModel.cs" />
+    <Compile Include="ViewModels\WindowDialogViewModels\DoctorVisitHoursWindowDialogViewModel.cs" />
     <Compile Include="Views\DoctorViews\DoctorDailyVisitView.xaml.cs">
       <DependentUpon>DoctorDailyVisitView.xaml</DependentUpon>
     </Compile>
@@ -229,6 +230,9 @@
     </Compile>
     <Compile Include="Views\WindowDialogViews\AddDoctorWindowDialog.xaml.cs">
       <DependentUpon>AddDoctorWindowDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WindowDialogViews\DoctorVisitHoursWindowDialog.xaml.cs">
+      <DependentUpon>DoctorVisitHoursWindowDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Visits.cs">
       <DependentUpon>ClinicDataBase.tt</DependentUpon>
@@ -330,6 +334,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\WindowDialogViews\AddDoctorWindowDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WindowDialogViews\DoctorVisitHoursWindowDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

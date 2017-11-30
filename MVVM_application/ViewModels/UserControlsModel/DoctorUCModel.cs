@@ -46,8 +46,10 @@ namespace MVVM_application.ViewModels.UserControlsModel
         {
             AddDoctorWindowDialog addDoctorWindowDialog = new AddDoctorWindowDialog();
             addDoctorWindowDialog.ShowDialog();
-                        
-           _viewManager.ChangeView(TypesOfViews.SearchDoctorViewModel);
+            if (_viewManager.GetUnchangedView() == false)
+            {//ChangeView
+                _viewManager.RefreshAll(TypesOfViews.SearchDoctorViewModel);
+            }
         }
 
         public void ExecuteDoctorDailyVisitCommand()
