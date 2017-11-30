@@ -8,7 +8,7 @@ using MVVM_application.ViewModels.Manager;
 
 namespace MVVM_application.Models.MainModels
 {
-    public class DailyModel
+    public class DailyModel //: ModelBase
     {
         private IViewManager _viewManager;
         private Clinic _database;

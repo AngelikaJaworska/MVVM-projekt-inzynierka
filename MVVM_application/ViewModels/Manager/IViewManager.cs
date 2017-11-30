@@ -19,6 +19,10 @@ namespace MVVM_application.ViewModels.Manager
 
         void SetReceptionist(Receptionist reception);
 
+        Doctor GetDoctor();
+
+        void SetDoctor(Doctor doctor);
+
         void RefreshViewModel(TypesOfViews view);
     }
 }

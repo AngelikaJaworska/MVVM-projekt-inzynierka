@@ -4,25 +4,33 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
 using MVVM_application.ViewModels.Manager;
+using MVVM_application.ViewModels.WindowDialogViewModels;
+using MVVM_application.Views;
+using MVVM_application.Models.WindowDialogModels;
 
 namespace MVVM_application.ViewModels.UserControlsModel
 {
     public class DoctorUCModel : ViewModelBase
     {
         private readonly IViewManager _viewManager;
+        private readonly AddDoctorWindowDialogModel _addDoctorWindowDialogModel;
 
         #region Command
 
-        public ICommand SearchDoctorCommand { get; private set; }
+        public RelayCommand SearchDoctorCommand { get; private set; }
         public ICommand DoctorDailyVisitCommand { get; private set; }
         public ICommand DoctorVisitCommand { get; private set; }
         public ICommand DoctorEditDataCommand { get; private set; }
         
         #endregion 
-        
+
+        public AddDoctorWindowDialogViewModel AddDoctorWDModel {get;set;}
+
         public DoctorUCModel(IViewManager viewManager)
         {
             _viewManager = viewManager;
+            _addDoctorWindowDialogModel = new AddDoctorWindowDialogModel(_viewManager);
+            AddDoctorWDModel = new AddDoctorWindowDialogViewModel(_viewManager, _addDoctorWindowDialogModel);
 
             InitialiseCommand();
         }
@@ -34,9 +42,12 @@ namespace MVVM_application.ViewModels.UserControlsModel
             DoctorEditDataCommand = new RelayCommand(ExecuteDoctorEditDataCommand);
         }
 
-        public void ExecuteSearchDoctorCommand()
+        private void ExecuteSearchDoctorCommand()
         {
-            _viewManager.ChangeView(TypesOfViews.SearchDoctorViewModel);
+            AddDoctorWindowDialog addDoctorWindowDialog = new AddDoctorWindowDialog();
+            addDoctorWindowDialog.ShowDialog();
+                        
+           _viewManager.ChangeView(TypesOfViews.SearchDoctorViewModel);
         }
 
         public void ExecuteDoctorDailyVisitCommand()
@@ -46,7 +57,7 @@ namespace MVVM_application.ViewModels.UserControlsModel
 
         public void ExecuteDoctorVisitCommand()
         {
-            _viewManager.ChangeView(TypesOfViews.DoctorVisitView);
+            _viewManager.ChangeView(TypesOfViews.DoctorVisitViewModel);
         }
 
         public void ExecuteDoctorEditDataCommand()

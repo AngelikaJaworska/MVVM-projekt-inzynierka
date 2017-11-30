@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MVVM_application.Models.DoctorModels
 {
-    class SearchDoctorViewModel
+    class SearchDoctorModel
     {
     }
 }

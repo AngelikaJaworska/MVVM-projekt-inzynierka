@@ -11,6 +11,7 @@ using System.Collections.ObjectModel;
 using MVVM_application.Models;
 using System.ComponentModel;
 using MVVM_application.ViewModels.Manager;
+using MVVM_application.Models.Manager;
 using MVVM_application.Models.MainModels;
 
 namespace MVVM_application.ViewModels.MainViewModels
@@ -19,6 +20,9 @@ namespace MVVM_application.ViewModels.MainViewModels
     {
         private IViewManager _viewManager;
         private readonly LoginModel _loginModel;
+
+        //private IModelManager _modelManager;
+        //private readonly ModelBase _loginModel;
 
         private string _login;
         private string _password;
@@ -45,10 +49,12 @@ namespace MVVM_application.ViewModels.MainViewModels
 
         public ICommand LoginCommand { get; private set; }
 
-          public LoginViewModel(IViewManager viewManager, LoginModel loginModel)
+          public LoginViewModel(IViewManager viewManager, LoginModel loginModel)// IModelManager modelManager)
         {
             _viewManager = viewManager;
             _loginModel = loginModel;
+            //_modelManager = modelManager;
+            //_loginModel = _modelManager.GetModel(TypesOfModels.LoginModel);
 
             this.ReceptionistList = new ObservableCollection<Receptionist>(_loginModel.FillReceptionsList());
 

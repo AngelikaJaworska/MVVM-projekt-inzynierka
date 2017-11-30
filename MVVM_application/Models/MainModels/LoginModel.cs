@@ -8,7 +8,7 @@ using MVVM_application.ViewModels.Manager;
 
 namespace MVVM_application.Models.MainModels
 {
-    public class LoginModel
+    public class LoginModel //: ModelBase 
     {
         private Clinic _database;
         private IViewManager _viewManager;
@@ -16,7 +16,7 @@ namespace MVVM_application.Models.MainModels
         private bool _validator { get; set; }
         private string _hashPassword { get; set; }
 
-        private Receptionist reception;
+        private Receptionist _reception;
 
         public LoginModel(IViewManager viewManager)
         {
@@ -37,19 +37,19 @@ namespace MVVM_application.Models.MainModels
             _validator = false;
             if (CalculateMD5Hash(_password))
             {
-                reception = _database.Receptionist
+                _reception = _database.Receptionist
                .Select(r => r)
                .Where(l => l.Login.Equals(_login))
                .Single();
 
-                if (_hashPassword.Equals(reception.Password))
+                if (_hashPassword.Equals(_reception.Password))
                 {
                     _validator = true;
                 }
 
                 if (_validator)
                 {
-                    return reception;
+                    return _reception;
                 }
             }
 

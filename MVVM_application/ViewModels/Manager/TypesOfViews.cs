@@ -17,7 +17,7 @@
         SearchDoctorViewModel,
         DoctorDailyVisitViewModel,
         DoctorEditDataViewModel,
-        DoctorVisitView,
+        DoctorVisitViewModel,
 
         //MainUCModel,
         //RegisterUCModel,

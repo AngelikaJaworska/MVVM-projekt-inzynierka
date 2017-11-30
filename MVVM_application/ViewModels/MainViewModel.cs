@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
 using MVVM_application.ViewModels.Manager;
+using MVVM_application.Models.Manager;
 
 using MVVM_application.ViewModels.MainViewModels;
 using MVVM_application.ViewModels.RegisterViewModels;
@@ -12,14 +13,20 @@ using MVVM_application.ViewModels.DoctorViewModels;
 using MVVM_application.ViewModels.UserControlsModel;
 
 using MVVM_application.Models.MainModels;
+using MVVM_application.Models;
 
 namespace MVVM_application.ViewModels
 {
-    public class MainViewModel : ViewModelBase, IViewManager
+    public class MainViewModel : ViewModelBase, IViewManager//, IModelManager
     {
+        #region Model
+
         Clinic _database;
         Receptionist _reception;
-        
+        Doctor _doctor;
+
+        #endregion
+
         #region ViewModel
 
         private ViewModelBase _currentViewModel;
@@ -212,7 +219,7 @@ namespace MVVM_application.ViewModels
                     return _doctorDailyVisitViewModel;
                 case TypesOfViews.DoctorEditDataViewModel:
                     return _doctorEditDataViewModel;
-                case TypesOfViews.DoctorVisitView:
+                case TypesOfViews.DoctorVisitViewModel:
                     return _doctorVisitView;
 
 
@@ -231,6 +238,15 @@ namespace MVVM_application.ViewModels
             }
         }
 
+        public void RefreshViewModel(TypesOfViews view)
+        {
+            if (_reception.IDReceptionist != 0)
+            {
+                InitialiseAllViewModels();
+                ChangeView(view);
+            }
+        }
+
         public Clinic GetDatabase()
         {
             return _database;
@@ -240,18 +256,65 @@ namespace MVVM_application.ViewModels
         {
             _reception = reception;
         }
+
         public Receptionist GetReceptionist()
         {
             return _reception;
         }
-        public void RefreshViewModel(TypesOfViews view)
+
+        public Doctor GetDoctor()
         {
-            if(_reception.IDReceptionist != 0)
-            {
-                InitialiseAllViewModels();
-                ChangeView(view);
-            }
+            return _doctor;
         }
 
+        public void SetDoctor(Doctor doctor)
+        {
+            _doctor = doctor;
+        }
+
+        //public ModelBase GetModel(TypesOfModels model)
+        //{
+        //    switch (model)
+        //    {
+        //        case TypesOfModels.LoginModel:
+        //            return _loginModel;
+        //        case TypesOfModels.DailyModel:
+        //            return _dailyModel;
+        //        //    case TypesOfModels.RegisterModel:
+        //        //        return _registerModel;
+        //        //    case TypesOfModels.PatientCardModel:
+        //        //        return _patientCardModel;
+        //        //    case TypesOfModels.DoctorModel:
+        //        //        return _doctorModel;
+
+        //        //    case TypesOfModels.AddNewPatientModel:
+        //        //        return _addNewPatientModel;
+        //        //    case TypesOfModels.AddVisitModel:
+        //        //        return _addVisitModel;
+        //        //    case TypesOfModels.EditVisitModel:
+        //        //        return _editVisitModel;
+
+        //        //    case TypesOfModels.SearchPatientModel:
+        //        //        return _searchPatientModel;
+        //        //    case TypesOfModels.PatientNewVisitModel:
+        //        //        return _patientNewVisitModel;
+        //        //    case TypesOfModels.PatientVisitModel:
+        //        //        return _patientVisitModel;
+        //        //    case TypesOfModels.PatientEditDataModel:
+        //        //        return _patientEditDataModel;
+
+        //        //    case TypesOfModels.SearchDoctorModel:
+        //        //        return _searchDoctorModel;
+        //        //    case TypesOfModels.DoctorDailyVisitModel:
+        //        //        return _doctorDailyVisitModel;
+        //        //    case TypesOfModels.DoctorEditDataModel:
+        //        //        return _doctorEditDataModel;
+        //        //    case TypesOfModels.DoctorVisitModel:
+        //        //        return _doctorVisit;
+
+        //        default:
+        //            return null;
+        //    }
+        //}
     }
 }

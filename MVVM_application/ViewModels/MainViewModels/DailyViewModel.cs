@@ -1,9 +1,10 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System.Collections.ObjectModel;
+
+using GalaSoft.MvvmLight;
 
 using MVVM_application.ViewModels.Manager;
 using MVVM_application.Models.MainModels;
 using MVVM_application.Models.Manager;
-using System.Collections.ObjectModel;
 
 namespace MVVM_application.ViewModels.MainViewModels
 {

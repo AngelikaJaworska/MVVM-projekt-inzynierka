@@ -22,7 +22,7 @@
 
         <Button Grid.Row="0"
                   Grid.Column="0"
-                Command="{Binding SearchDoctorCommand}">
+                Command="{Binding SearchDoctorCommand, Mode=OneWay}" >
             Wyszukaj lekarza
         </Button>
                 
