@@ -87,5 +87,12 @@ namespace MVVM_application.Models.Manager
             _visitDate = visitDate;
             _comments = comments;
         }
+
+        public VisitManager(string patient, string visitDate)//, long comments)
+        {
+            _patient = patient;
+            _visitDate = visitDate;
+         //   _comments = comments;
+        }
     }
 }

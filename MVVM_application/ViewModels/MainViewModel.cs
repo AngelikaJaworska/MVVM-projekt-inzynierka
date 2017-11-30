@@ -20,13 +20,12 @@ namespace MVVM_application.ViewModels
 {
     public class MainViewModel : ViewModelBase, IViewManager//, IModelManager
     {
-        #region Model
 
         Clinic _database;
         Receptionist _reception;
         Doctor _doctor;
-
-        #endregion
+        //sprawdza czy zmienil sie widok czy nie
+        bool _unchangedView;
 
         #region ViewModel
 
@@ -50,7 +49,7 @@ namespace MVVM_application.ViewModels
         private SearchDoctorViewModel _searchDoctorViewModel;
         private DoctorDailyVisitViewModel _doctorDailyVisitViewModel;
         private DoctorEditDataViewModel _doctorEditDataViewModel;
-        private DoctorVisitView _doctorVisitView;
+        private DoctorVisitViewModel _doctorVisitViewModel;
 
         private MainUCModel _mainUcModel;
         private RegisterUCModel _registerUCModel;
@@ -125,12 +124,11 @@ namespace MVVM_application.ViewModels
         #region Model
         LoginModel _loginModel;
         DailyModel _dailyModel;
+        DoctorDailyVisitModel _doctorDailyVisitModel;
+        DoctorVisitModel _doctorVisitModel;
         SearchDoctorModel _searchDoctorModel;
         #endregion
-
-        //sprawdza czy zmienil sie widok czy nie
-        bool _unchangedView;
-
+        
         public MainViewModel()
         {
             InitialiseDatabase();
@@ -165,9 +163,9 @@ namespace MVVM_application.ViewModels
             _patientEditDataViewModel = new PatientEditDataViewModel(this);
 
             _searchDoctorViewModel = new SearchDoctorViewModel(this, _searchDoctorModel);
-            _doctorDailyVisitViewModel = new DoctorDailyVisitViewModel(this);
+            _doctorDailyVisitViewModel = new DoctorDailyVisitViewModel(this, _doctorDailyVisitModel);
             _doctorEditDataViewModel = new DoctorEditDataViewModel(this);
-            _doctorVisitView = new DoctorVisitView(this);
+            _doctorVisitViewModel = new DoctorVisitViewModel(this, _doctorVisitModel);
 
             _mainUcModel = new MainUCModel(this);
             _registerUCModel = new RegisterUCModel(this);
@@ -180,7 +178,8 @@ namespace MVVM_application.ViewModels
         {
             _loginModel = new LoginModel(this);
             _dailyModel = new DailyModel(this);
-
+            _doctorDailyVisitModel = new DoctorDailyVisitModel(this);
+            _doctorVisitModel = new DoctorVisitModel(this);
             _searchDoctorModel = new SearchDoctorModel(this);
         }
 
@@ -228,7 +227,7 @@ namespace MVVM_application.ViewModels
                 case TypesOfViews.DoctorEditDataViewModel:
                     return _doctorEditDataViewModel;
                 case TypesOfViews.DoctorVisitViewModel:
-                    return _doctorVisitView;
+                    return _doctorVisitViewModel;
 
 
                 //case TypesOfViews.MainUCModel:

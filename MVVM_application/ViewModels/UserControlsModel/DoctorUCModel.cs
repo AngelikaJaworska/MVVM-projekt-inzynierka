@@ -64,7 +64,10 @@ namespace MVVM_application.ViewModels.UserControlsModel
 
         public void ExecuteDoctorEditDataCommand()
         {
-            _viewManager.ChangeView(TypesOfViews.DoctorEditDataViewModel);
+            if(_viewManager.GetDoctor() != null)
+            {
+                _viewManager.ChangeView(TypesOfViews.DoctorEditDataViewModel);
+            }
         }
     }
 }

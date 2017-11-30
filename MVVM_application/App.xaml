@@ -76,7 +76,7 @@
         <DataTemplate DataType="{x:Type doctorViewModels:DoctorEditDataViewModel}">
             <views:DoctorEditDataView />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type doctorViewModels:DoctorVisitView}">
+        <DataTemplate DataType="{x:Type doctorViewModels:DoctorVisitViewModel}">
             <views:DoctorVisitView />
         </DataTemplate>
     </Application.Resources>

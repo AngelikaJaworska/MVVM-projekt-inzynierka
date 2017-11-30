@@ -33,11 +33,11 @@
                   Width="600"
                   Height="150"
                   VerticalAlignment="Bottom"
-                  ItemsSource="{Binding TodayVisitsList}">
+                  ItemsSource="{Binding DoctorVisitsList}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="200" DisplayMemberBinding="{Binding Patient}">Imie i nazwisko pacjenta</GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding VisitDate}">Godzina wizyty</GridViewColumn>
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding VisitDate}">Data i godzina wizyty</GridViewColumn>
                     <GridViewColumn Width="200" DisplayMemberBinding="{Binding Comment}">Uwagi</GridViewColumn>
                 </GridView>
             </ListView.View>

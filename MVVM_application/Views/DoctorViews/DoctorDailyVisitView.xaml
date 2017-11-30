@@ -33,7 +33,7 @@
                   Width="600"
                   Height="150"
                   VerticalAlignment="Bottom"
-                  ItemsSource="{Binding TodayVisitsList}">
+                  ItemsSource="{Binding DoctorDailyVisitsList}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="200" DisplayMemberBinding="{Binding Patient}">Imie i nazwisko pacjenta</GridViewColumn>

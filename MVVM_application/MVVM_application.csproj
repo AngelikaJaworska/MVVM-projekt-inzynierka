@@ -140,7 +140,7 @@
     </Compile>
     <Compile Include="ViewModels\DoctorViewModels\DoctorDailyVisitViewModel.cs" />
     <Compile Include="ViewModels\DoctorViewModels\DoctorEditDataViewModel.cs" />
-    <Compile Include="ViewModels\DoctorViewModels\DoctorVisitView.cs" />
+    <Compile Include="ViewModels\DoctorViewModels\DoctorVisitViewModel.cs" />
     <Compile Include="ViewModels\DoctorViewModels\SearchDoctorViewModel.cs" />
     <Compile Include="ViewModels\Manager\TypesOfViews.cs" />
     <Compile Include="ViewModels\PatientCardViewModels\PatientEditDataViewModel.cs" />
