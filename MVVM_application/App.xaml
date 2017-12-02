@@ -43,9 +43,6 @@
         <DataTemplate DataType="{x:Type userControlsModel:DoctorUCModel}">
             <uc:DoctorUserControl />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type registerViewModels:AddVisitViewModel}">
-            <views:AddVisitView />
-        </DataTemplate>
         <DataTemplate DataType="{x:Type registerViewModels:EditVisitViewModel}">
             <views:EditVisitView />
         </DataTemplate>

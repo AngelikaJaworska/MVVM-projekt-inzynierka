@@ -56,7 +56,7 @@ namespace MVVM_application.Models.DoctorModels
             return _phone;
         }
 
-        internal List<string> FillSpecialisationList()
+        public List<string> FillSpecialisationList()
         {
             var specialisationList = _database.Specialisation
                             .Select(s => s.Name)

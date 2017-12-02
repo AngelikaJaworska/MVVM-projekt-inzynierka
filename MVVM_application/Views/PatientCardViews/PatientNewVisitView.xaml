@@ -49,7 +49,9 @@
             <TextBox Grid.Row="0"
                      Grid.Column="0"
                      Width="200"
-                     HorizontalAlignment="Right" />
+                     HorizontalAlignment="Right" 
+                     Text="{Binding NameAndSurname}"
+                     IsEnabled="False"/>
 
             <Label Grid.Row="1"
                    Grid.Column="0"
@@ -61,7 +63,11 @@
             <ComboBox Grid.Row="1"
                       Grid.Column="0"
                       Width="200"
-                      HorizontalAlignment="Right" />
+                      HorizontalAlignment="Right" 
+                      ItemsSource="{Binding SpecialisationtList}"
+                      SelectedItem="{Binding Specialisation}"
+                      SelectedValuePath="Specialisation" />
+
             <Label Grid.Row="2"
                    Grid.Column="0"
                    HorizontalAlignment="Left"
@@ -105,7 +111,8 @@
             <TextBox Grid.Row="2"
                      Grid.Column="1"
                      Width="200"
-                     HorizontalAlignment="Right" />
+                     HorizontalAlignment="Right" 
+                     Text="{Binding Comments}"/>
         </Grid>
         <Button Grid.Row="3"
                 Grid.Column="0"

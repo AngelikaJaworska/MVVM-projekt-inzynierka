@@ -8,7 +8,6 @@
         PatientCardViewModel,
         DoctorViewModel,
         AddNewPatientViewModel,
-        AddVisitViewModel,
         EditVisitViewModel,
         SearchPatientViewModel,
         PatientEditDataViewModel,

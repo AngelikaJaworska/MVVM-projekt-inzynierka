@@ -48,7 +48,7 @@ namespace MVVM_application.ViewModels.UserControlsModel
 
         public void ExecuteAddVisitCommand()
         {
-            _manager.ChangeView(TypesOfViews.AddVisitViewModel);
+            _manager.ChangeView(TypesOfViews.PatientVisitViewModel);
         }
 
         public void ExecuteEditVisitCommand()

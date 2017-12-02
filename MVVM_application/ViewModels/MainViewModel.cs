@@ -40,7 +40,6 @@ namespace MVVM_application.ViewModels
         private DoctorViewModel _doctorViewModel;
 
         private AddNewPatientViewModel _addNewPatientViewModel;
-        private AddVisitViewModel _addVisitViewModel;
         private EditVisitViewModel _editVisitViewModel;
 
         private SearchPatientViewModel _searchPatientViewModel;
@@ -122,6 +121,7 @@ namespace MVVM_application.ViewModels
         SearchDoctorModel _searchDoctorModel;
 
         PatientEditDataModel _patientEditDataModel;
+        PatientNewVisitModel _patientNewVisitModel;
         PatientVisitModel _patientVisitModel;
         SearchPatientModel _searchPatientModel;
         #endregion
@@ -150,13 +150,12 @@ namespace MVVM_application.ViewModels
             _doctorViewModel = new DoctorViewModel(this);
 
             _addNewPatientViewModel = new AddNewPatientViewModel(this);
-            _addVisitViewModel = new AddVisitViewModel(this);
             _editVisitViewModel = new EditVisitViewModel(this);
 
 
             _searchPatientViewModel = new SearchPatientViewModel(this, _searchPatientModel);
             _patientVisitViewModel = new PatientVisitViewModel(this, _patientVisitModel);
-            _patientNewVisitViewModel = new PatientNewVisitViewModel(this);
+            _patientNewVisitViewModel = new PatientNewVisitViewModel(this, _patientNewVisitModel);
             _patientEditDataViewModel = new PatientEditDataViewModel(this, _patientEditDataModel);
 
             _searchDoctorViewModel = new SearchDoctorViewModel(this, _searchDoctorModel);
@@ -180,6 +179,7 @@ namespace MVVM_application.ViewModels
             _searchDoctorModel = new SearchDoctorModel(this);
 
             _patientEditDataModel = new PatientEditDataModel(this);
+            _patientNewVisitModel = new PatientNewVisitModel(this);
             _patientVisitModel = new PatientVisitModel(this);
             _searchPatientModel = new SearchPatientModel(this);
         }
@@ -207,8 +207,6 @@ namespace MVVM_application.ViewModels
 
                 case TypesOfViews.AddNewPatientViewModel:
                     return _addNewPatientViewModel;
-                case TypesOfViews.AddVisitViewModel:
-                    return _addVisitViewModel;
                 case TypesOfViews.EditVisitViewModel:
                     return _editVisitViewModel;
 

@@ -120,7 +120,6 @@
     <Compile Include="Models\PatientCardModels\PatientVisitModel.cs" />
     <Compile Include="Models\PatientCardModels\SearchPatientModel.cs" />
     <Compile Include="Models\RegisterModels\AddNewPatientModel.cs" />
-    <Compile Include="Models\RegisterModels\AddVisitModel.cs" />
     <Compile Include="Models\RegisterModels\EditVisitModel.cs" />
     <Compile Include="Models\WindowDialogModels\SearchDoctorWindowDialogModel.cs" />
     <Compile Include="Models\WindowDialogModels\SearchPatientWindowDialogModel.cs" />
@@ -156,7 +155,6 @@
     <Compile Include="ViewModels\UserControlsModel\PatientCardUCModel.cs" />
     <Compile Include="ViewModels\MainViewModels\PatientCardViewModel.cs" />
     <Compile Include="ViewModels\UserControlsModel\MainUCModel.cs" />
-    <Compile Include="ViewModels\RegisterViewModels\AddVisitViewModel.cs" />
     <Compile Include="ViewModels\UserControlsModel\RegisterUCModel.cs" />
     <Compile Include="ViewModels\MainViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
@@ -204,9 +202,6 @@
     </Compile>
     <Compile Include="Views\MainViews\PatientCardView.xaml.cs">
       <DependentUpon>PatientCardView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\RegisterViews\AddVisitView.xaml.cs">
-      <DependentUpon>AddVisitView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainViews\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
@@ -300,10 +295,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainViews\PatientCardView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\RegisterViews\AddVisitView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
