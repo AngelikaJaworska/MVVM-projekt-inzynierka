@@ -13,6 +13,7 @@ namespace MVVM_application.Models.Manager
         private string _doctor;
         private string _visitDate;
         private long _comments;
+        private string _timeOfDay;
 
         #region Propertis
         public string Patient
@@ -86,6 +87,13 @@ namespace MVVM_application.Models.Manager
             _doctor = doctor;
             _visitDate = visitDate;
             _comments = comments;
+        }
+
+        public VisitManager(string specialisation, string doctor, string visitDate)
+        {
+            _specialisation = specialisation;
+            _doctor = doctor;
+            _visitDate = visitDate;
         }
 
         public VisitManager(string patient, string visitDate)//, long comments)

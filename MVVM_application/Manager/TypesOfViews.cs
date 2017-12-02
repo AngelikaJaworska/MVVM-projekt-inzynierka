@@ -18,11 +18,6 @@
         DoctorDailyVisitViewModel,
         DoctorEditDataViewModel,
         DoctorVisitViewModel,
-
-        //MainUCModel,
-        //RegisterUCModel,
-        //PatientCardUCModel,
-        //DoctorUCModel,
-        //ActionUCModel
+        
     }
 }

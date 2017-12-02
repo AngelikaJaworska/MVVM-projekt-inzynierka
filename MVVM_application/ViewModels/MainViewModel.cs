@@ -15,6 +15,7 @@ using MVVM_application.ViewModels.UserControlsModel;
 using MVVM_application.Models.MainModels;
 using MVVM_application.Models;
 using MVVM_application.Models.DoctorModels;
+using MVVM_application.Models.PatientCardModels;
 
 namespace MVVM_application.ViewModels
 {
@@ -56,7 +57,6 @@ namespace MVVM_application.ViewModels
         private RegisterUCModel _registerUCModel;
         private PatientCardUCModel _patientCardUCModel;
         private DoctorUCModel _doctorUCModel;
-        private ActionUCModel _actionUCModel;
 
         #region Properties
 
@@ -110,15 +110,6 @@ namespace MVVM_application.ViewModels
                 RaisePropertyChanged("DoctorUCModel");
             }
         }
-        public ActionUCModel ActionUCModel
-        {
-            get { return _actionUCModel; }
-            set
-            {
-                _actionUCModel = value;
-                RaisePropertyChanged("ActionUCModel");
-            }
-        }
         #endregion
         #endregion
 
@@ -129,8 +120,11 @@ namespace MVVM_application.ViewModels
         DoctorEditDataModel _doctorEditDataModel;
         DoctorVisitModel _doctorVisitModel;
         SearchDoctorModel _searchDoctorModel;
+
+        PatientVisitModel _patientVisitModel;
+        SearchPatientModel _searchPatientModel;
         #endregion
-        
+
         public MainViewModel()
         {
             InitialiseDatabase();
@@ -159,8 +153,8 @@ namespace MVVM_application.ViewModels
             _editVisitViewModel = new EditVisitViewModel(this);
 
 
-            _searchPatientViewModel = new SearchPatientViewModel(this);
-            _patientVisitViewModel = new PatientVisitViewModel(this);
+            _searchPatientViewModel = new SearchPatientViewModel(this, _searchPatientModel);
+            _patientVisitViewModel = new PatientVisitViewModel(this, _patientVisitModel);
             _patientNewVisitViewModel = new PatientNewVisitViewModel(this);
             _patientEditDataViewModel = new PatientEditDataViewModel(this);
 
@@ -173,7 +167,6 @@ namespace MVVM_application.ViewModels
             _registerUCModel = new RegisterUCModel(this);
             _patientCardUCModel = new PatientCardUCModel(this);
             _doctorUCModel = new DoctorUCModel(this);
-            _actionUCModel = new ActionUCModel(this);
         }
 
         public void InitialiseAllModels()
@@ -184,6 +177,9 @@ namespace MVVM_application.ViewModels
             _doctorEditDataModel = new DoctorEditDataModel(this);
             _doctorVisitModel = new DoctorVisitModel(this);
             _searchDoctorModel = new SearchDoctorModel(this);
+
+            _patientVisitModel = new PatientVisitModel(this);
+            _searchPatientModel = new SearchPatientModel(this);
         }
 
         public void ChangeView(TypesOfViews view)

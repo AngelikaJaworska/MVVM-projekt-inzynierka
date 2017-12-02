@@ -145,7 +145,6 @@
     <Compile Include="ViewModels\PatientCardViewModels\PatientNewVisitViewModel.cs" />
     <Compile Include="ViewModels\PatientCardViewModels\PatientVisitViewModel.cs" />
     <Compile Include="ViewModels\PatientCardViewModels\SearchPatientViewModel.cs" />
-    <Compile Include="ViewModels\UserControlsModel\ActionUCModel.cs" />
     <Compile Include="ViewModels\RegisterViewModels\AddNewPatientViewModel.cs" />
     <Compile Include="ViewModels\MainViewModels\DailyViewModel.cs" />
     <Compile Include="ViewModels\UserControlsModel\DoctorUCModel.cs" />
@@ -211,9 +210,6 @@
     </Compile>
     <Compile Include="Views\MainViews\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\ActionUserControl.xaml.cs">
-      <DependentUpon>ActionUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\DoctorUserControl.xaml.cs">
       <DependentUpon>DoctorUserControl.xaml</DependentUpon>
@@ -312,10 +308,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainViews\RegisterView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserControls\ActionUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

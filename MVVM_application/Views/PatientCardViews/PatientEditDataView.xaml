@@ -45,7 +45,8 @@
             <TextBox Grid.Row="0"
                      Grid.Column="0"
                      Width="190"
-                     HorizontalAlignment="Right" />
+                     HorizontalAlignment="Right" 
+                     Text="{Binding Name}"/>
             <Label Grid.Row="0"
                    Grid.Column="1"
                    HorizontalAlignment="Left"
@@ -57,7 +58,8 @@
             <TextBox Grid.Row="0"
                      Grid.Column="1"
                      Width="190"
-                     HorizontalAlignment="Right" />
+                     HorizontalAlignment="Right" 
+                     Text="{Binding HomeNr}"/>
             <Label Grid.Row="1"
                    Grid.Column="0"
                    HorizontalAlignment="Left"
@@ -68,7 +70,8 @@
             <TextBox Grid.Row="1"
                      Grid.Column="0"
                      Width="190"
-                     HorizontalAlignment="Right" />
+                     HorizontalAlignment="Right"
+                     Text="{Binding Surname}"/>
             <Label Grid.Row="1"
                    Grid.Column="1"
                    HorizontalAlignment="Left"
@@ -79,7 +82,8 @@
             <TextBox Grid.Row="1"
                      Grid.Column="1"
                      Width="190"
-                     HorizontalAlignment="Right" />
+                     HorizontalAlignment="Right" 
+                     Text="{Binding City}"/>
             <Label Grid.Row="2"
                    Grid.Column="0"
                    HorizontalAlignment="Left"
@@ -90,7 +94,8 @@
             <TextBox Grid.Row="2"
                      Grid.Column="0"
                      Width="190"
-                     HorizontalAlignment="Right" />
+                     HorizontalAlignment="Right" 
+                     Text="{Binding DateOfBirth}"/>
             <Label Grid.Row="2"
                    Grid.Column="1"
                    HorizontalAlignment="Left"
@@ -101,7 +106,8 @@
             <TextBox Grid.Row="2"
                      Grid.Column="1"
                      Width="190"
-                     HorizontalAlignment="Right" />
+                     HorizontalAlignment="Right"
+                     Text="{Binding Phone}"/>
             <Label Grid.Row="3"
                    Grid.Column="0"
                    HorizontalAlignment="Left"
@@ -112,7 +118,8 @@
             <TextBox Grid.Row="3"
                      Grid.Column="0"
                      Width="190"
-                     HorizontalAlignment="Right" />
+                     HorizontalAlignment="Right"
+                     Text="{Binding Street}"/>
             <Label Grid.Row="3"
                    Grid.Column="1"
                    HorizontalAlignment="Left"
@@ -123,8 +130,21 @@
             <TextBox Grid.Row="3"
                      Grid.Column="1"
                      Width="190"
-                     HorizontalAlignment="Right" />
+                     HorizontalAlignment="Right" 
+                     Text="{Binding Pesel}"/>
+
+           
+
         </Grid>
-        <uc:ActionUserControl Grid.Row="4" Grid.ColumnSpan="4" />
+        <Button Grid.Row="3"
+                Grid.Column="0"
+                Command="{Binding SaveCommand}">
+            Zapisz
+        </Button>
+        <Button Grid.Row="3"
+                Grid.Column="3"
+                Command="{Binding CancelCommand}">
+            Anuluj
+        </Button>
     </Grid>
 </UserControl>

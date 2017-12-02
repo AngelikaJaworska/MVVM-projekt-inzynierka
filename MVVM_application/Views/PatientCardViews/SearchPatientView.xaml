@@ -45,7 +45,9 @@
             <TextBox Grid.Row="0"
                      Grid.Column="0"
                      Width="190"
-                     HorizontalAlignment="Right" />
+                     HorizontalAlignment="Right" 
+                     Text="{Binding Name}"
+                     IsEnabled="False"/>
             <Label Grid.Row="0"
                    Grid.Column="1"
                    HorizontalAlignment="Left"
@@ -57,7 +59,9 @@
             <TextBox Grid.Row="0"
                      Grid.Column="1"
                      Width="190"
-                     HorizontalAlignment="Right" />
+                     HorizontalAlignment="Right" 
+                     Text="{Binding HomeNr}"
+                     IsEnabled="False"/>
             <Label Grid.Row="1"
                    Grid.Column="0"
                    HorizontalAlignment="Left"
@@ -68,7 +72,9 @@
             <TextBox Grid.Row="1"
                      Grid.Column="0"
                      Width="190"
-                     HorizontalAlignment="Right" />
+                     HorizontalAlignment="Right"
+                     Text="{Binding Surname}"
+                     IsEnabled="False"/>
             <Label Grid.Row="1"
                    Grid.Column="1"
                    HorizontalAlignment="Left"
@@ -79,7 +85,9 @@
             <TextBox Grid.Row="1"
                      Grid.Column="1"
                      Width="190"
-                     HorizontalAlignment="Right" />
+                     HorizontalAlignment="Right" 
+                     Text="{Binding City}"
+                     IsEnabled="False"/>
             <Label Grid.Row="2"
                    Grid.Column="0"
                    HorizontalAlignment="Left"
@@ -90,7 +98,9 @@
             <TextBox Grid.Row="2"
                      Grid.Column="0"
                      Width="190"
-                     HorizontalAlignment="Right" />
+                     HorizontalAlignment="Right" 
+                     Text="{Binding DateOfBirth}"
+                     IsEnabled="False"/>
             <Label Grid.Row="2"
                    Grid.Column="1"
                    HorizontalAlignment="Left"
@@ -101,7 +111,9 @@
             <TextBox Grid.Row="2"
                      Grid.Column="1"
                      Width="190"
-                     HorizontalAlignment="Right" />
+                     HorizontalAlignment="Right"
+                     Text="{Binding Phone}"
+                     IsEnabled="False"/>
             <Label Grid.Row="3"
                    Grid.Column="0"
                    HorizontalAlignment="Left"
@@ -112,7 +124,9 @@
             <TextBox Grid.Row="3"
                      Grid.Column="0"
                      Width="190"
-                     HorizontalAlignment="Right" />
+                     HorizontalAlignment="Right"
+                     Text="{Binding Street}"
+                     IsEnabled="False"/>
             <Label Grid.Row="3"
                    Grid.Column="1"
                    HorizontalAlignment="Left"
@@ -123,7 +137,9 @@
             <TextBox Grid.Row="3"
                      Grid.Column="1"
                      Width="190"
-                     HorizontalAlignment="Right" />
+                     HorizontalAlignment="Right" 
+                     Text="{Binding Pesel}"
+                     IsEnabled="False"/>
         </Grid>
     </Grid>
 </UserControl>

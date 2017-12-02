@@ -124,6 +124,15 @@
                      Width="190"
                      HorizontalAlignment="Right" />
         </Grid>
-        <uc:ActionUserControl Grid.Row="4" Grid.ColumnSpan="4" />
+        <Button Grid.Row="3"
+                Grid.Column="0"
+                Command="{Binding SaveCommand}">
+            Zapisz
+        </Button>
+        <Button Grid.Row="3"
+                Grid.Column="3"
+                Command="{Binding CancelCommand}">
+            Anuluj
+        </Button>
     </Grid>
 </UserControl>

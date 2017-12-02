@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MVVM_application.Models.PatientCardModels
 {
-    class PatientEditDataModel
+    public class PatientEditDataModel
     {
     }
 }
