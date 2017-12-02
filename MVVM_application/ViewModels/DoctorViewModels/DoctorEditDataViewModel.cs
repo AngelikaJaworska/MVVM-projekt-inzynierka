@@ -85,6 +85,8 @@ namespace MVVM_application.ViewModels.DoctorViewModels
         public ObservableCollection<string> SpecialisationtList { get; set; }
 
         public ICommand EditVisitHoursCommand { get; private set; }
+        public ICommand SaveCommand { get; private set; }
+        public ICommand CancelCommand { get; private set; }
 
         public DoctorEditDataViewModel(IManager manager, DoctorEditDataModel doctorEditDataModel)
         {
@@ -93,16 +95,45 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             _doctor = _manager.GetDoctor();
             if (_doctor != null)
             {
-                _name = _doctorEditDataModel.GetDoctorName();
-                _surname = _doctorEditDataModel.GetDoctorSurame();
-                _street = _doctorEditDataModel.GetDoctorStreet();
-                _homeNr = _doctorEditDataModel.GetDoctorHomeNr();
-                _city = _doctorEditDataModel.GetDoctorCity();
-                _phone = _doctorEditDataModel.GetDoctorPhone();
+                FillData();
             }
-            this.SpecialisationtList = new ObservableCollection<string>(_doctorEditDataModel.FillSpecialisationList());
             EditVisitHoursCommand = new RelayCommand(ExecuteEditVisitHoursCommand);
+            SaveCommand = new RelayCommand(ExecuteSaveCommand);
+            CancelCommand = new RelayCommand(ExecuteCancelCommand);
+        }
 
+        private void FillData()
+        {
+            _name = _doctorEditDataModel.GetDoctorName();
+            _surname = _doctorEditDataModel.GetDoctorSurame();
+            _street = _doctorEditDataModel.GetDoctorStreet();
+            _homeNr = _doctorEditDataModel.GetDoctorHomeNr();
+            _city = _doctorEditDataModel.GetDoctorCity();
+            _phone = _doctorEditDataModel.GetDoctorPhone();
+
+            SpecialisationtList = new ObservableCollection<string>(_doctorEditDataModel.FillSpecialisationList());
+        }
+
+        private void SetData()
+        {
+            _doctorEditDataModel.SetDoctorName(_name);
+            _doctorEditDataModel.SetDoctorSurame(_surname);
+            _doctorEditDataModel.SetDoctorStreet(_street);
+            _doctorEditDataModel.SetDoctorHomeNr(_homeNr);
+            _doctorEditDataModel.SetDoctorCity(_city);
+            _doctorEditDataModel.SetDoctorPhone(_phone);
+        }
+
+        private void ExecuteCancelCommand()
+        {
+            FillData();
+            MessageBox.Show("Anulowanie");
+        }
+
+        private void ExecuteSaveCommand()
+        {
+            SetData();
+            MessageBox.Show("Dane prawidlowo zmienione");
         }
 
         private void ExecuteEditVisitHoursCommand()

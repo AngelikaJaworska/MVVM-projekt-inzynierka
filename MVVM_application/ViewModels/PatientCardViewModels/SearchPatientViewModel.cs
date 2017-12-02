@@ -107,16 +107,20 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
             _patient = _manager.GetPatient();
             if (_patient != null)
             {
-                _name = _searchPatientModel.GetPatientName();
-                _surname = _searchPatientModel.GetPatientSurame();
-                _street = _searchPatientModel.GetPatientStreet();
-                _homeNr = _searchPatientModel.GetPatientHomeNr();
-                _city = _searchPatientModel.GetPatientCity();
-                _phone = _searchPatientModel.GetPatientPhone();
-                _dateOfBirth = _searchPatientModel.GetPatientDateOfBirth();
-                _pesel = _searchPatientModel.GetPatientPesel();
-
+                FillData();
             }
+        }
+
+        private void FillData()
+        {
+            _name = _searchPatientModel.GetPatientName();
+            _surname = _searchPatientModel.GetPatientSurame();
+            _street = _searchPatientModel.GetPatientStreet();
+            _homeNr = _searchPatientModel.GetPatientHomeNr();
+            _city = _searchPatientModel.GetPatientCity();
+            _phone = _searchPatientModel.GetPatientPhone();
+            _dateOfBirth = _searchPatientModel.GetPatientDateOfBirth();
+            _pesel = _searchPatientModel.GetPatientPesel();
         }
     }
 }

@@ -64,5 +64,59 @@ namespace MVVM_application.Models.DoctorModels
 
             return specialisationList;
         }
+
+        internal void SetDoctorName(string _name)
+        {
+            if(_doctor != null && _name != null && _name != "")
+            {
+                _doctor.First_Name = _name;
+                _database.SaveChanges();
+            }
+        }
+
+        internal void SetDoctorSurame(string _surname)
+        {
+            if (_doctor != null && _surname != null && _surname != "")
+            {
+                _doctor.Last_Name = _surname;
+                _database.SaveChanges();
+            }
+        }
+
+        internal void SetDoctorStreet(string _street)
+        {
+            if (_doctor != null && _street != null && _street != "")
+            {
+                _doctor.Street = _street;
+                _database.SaveChanges();
+            }
+        }
+
+        internal void SetDoctorHomeNr(string _homeNr)
+        {
+            if (_doctor != null && _homeNr != null && _homeNr != "")
+            {
+                _doctor.HomeNr = _homeNr;
+                _database.SaveChanges();
+            }
+        }
+
+        internal void SetDoctorCity(string _city)
+        {
+            if (_doctor != null && _city != null && _city != "")
+            {
+                _doctor.City = _city;
+                _database.SaveChanges();
+            }
+        }
+
+        internal void SetDoctorPhone(string _phone)
+        {
+            if (_doctor != null && _phone != null && _phone != "")
+            {
+                _doctor.Phone = _phone;
+                _database.SaveChanges();
+            }
+        }
     }
 }
