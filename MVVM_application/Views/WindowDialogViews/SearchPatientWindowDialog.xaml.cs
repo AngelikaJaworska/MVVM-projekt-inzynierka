@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace MVVM_application.Views
 {
     /// <summary>
-    /// Interaction logic for AddDoctorWindowDialog.xaml
+    /// Interaction logic for SearchPatientWindowDialog.xaml
     /// </summary>
-    public partial class AddDoctorWindowDialog : Window
+    public partial class SearchPatientWindowDialog : Window
     {
-        public AddDoctorWindowDialog()
+        public SearchPatientWindowDialog()
         {
             InitializeComponent();
         }

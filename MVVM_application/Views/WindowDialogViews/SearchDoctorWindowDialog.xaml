@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:MVVM_application.Views"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
         x:Name="windowSearchdoctor" 
-        x:Class="MVVM_application.Views.AddDoctorWindowDialog"
+        x:Class="MVVM_application.Views.SearchDoctorWindowDialog"
         mc:Ignorable="d"
-        Title="AddDoctorWindowDialog" Height="185" Width="300" DataContext="{DynamicResource Locator}">
+        Title="SearchDoctorWindowDialog" Height="185" Width="300" DataContext="{DynamicResource Locator}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100" />
@@ -30,13 +30,13 @@
         <ComboBox x:Name="comboBox" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row ="0" 
                    HorizontalContentAlignment="Center"
                    VerticalContentAlignment="Center"
-                  ItemsSource="{Binding Main.DoctorUCModel.AddDoctorWDModel.SpecialisationtList}"
-                  SelectedItem="{Binding Main.DoctorUCModel.AddDoctorWDModel.Specialisation}"
+                  ItemsSource="{Binding Main.DoctorUCModel.SearchDoctorWDModel.SpecialisationtList}"
+                  SelectedItem="{Binding Main.DoctorUCModel.SearchDoctorWDModel.Specialisation}"
                   SelectedValuePath="Specialisation" >
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="DropDownClosed">
                     <i:InvokeCommandAction CommandParameter="{Binding SelectedItem, ElementName=comboBox}" 
-                                           Command="{Binding Main.DoctorUCModel.AddDoctorWDModel.RefreshDoctorCommand, Mode=OneWay}"/>
+                                           Command="{Binding Main.DoctorUCModel.SearchDoctorWDModel.RefreshDoctorCommand, Mode=OneWay}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </ComboBox>
@@ -50,20 +50,20 @@
         <ComboBox  Grid.ColumnSpan="2" Grid.Column="1" Grid.Row ="1" 
                    HorizontalContentAlignment="Center"
                    VerticalContentAlignment="Center"
-                  ItemsSource="{Binding Main.DoctorUCModel.AddDoctorWDModel.DoctorList}"
-                  SelectedItem="{Binding Main.DoctorUCModel.AddDoctorWDModel.Doctor}"
+                  ItemsSource="{Binding Main.DoctorUCModel.SearchDoctorWDModel.DoctorList}"
+                  SelectedItem="{Binding Main.DoctorUCModel.SearchDoctorWDModel.Doctor}"
                   SelectedValuePath="Doctor"/>
 
         <Button Grid.Column="0" Grid.Row ="2" Content="Pomin" 
-                Command="{Binding Main.DoctorUCModel.AddDoctorWDModel.SkipDoctorCommand}" 
+                Command="{Binding Main.DoctorUCModel.SearchDoctorWDModel.SkipDoctorCommand}" 
                 CommandParameter="{Binding ElementName=windowSearchdoctor, Mode=OneWay}"/>
 
         <Button Grid.Column="1" Grid.Row ="2" Content="Wyszukaj" 
-                Command="{Binding Main.DoctorUCModel.AddDoctorWDModel.SearchDoctorCommand}" 
+                Command="{Binding Main.DoctorUCModel.SearchDoctorWDModel.SearchDoctorCommand}" 
                 CommandParameter="{Binding ElementName=windowSearchdoctor, Mode=OneWay}"/>
 
         <Button Grid.Column="2" Grid.Row ="2" Content="Anuluj" 
-                Command="{Binding Main.DoctorUCModel.AddDoctorWDModel.CancelDoctorCommand}" 
+                Command="{Binding Main.DoctorUCModel.SearchDoctorWDModel.CancelDoctorCommand}" 
                 CommandParameter="{Binding ElementName=windowSearchdoctor, Mode=OneWay}"/>
 
 

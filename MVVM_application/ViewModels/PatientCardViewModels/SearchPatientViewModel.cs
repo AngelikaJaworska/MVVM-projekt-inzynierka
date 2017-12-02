@@ -5,17 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 
-using MVVM_application.ViewModels.Manager;
+using MVVM_application.Manager;
 
 namespace MVVM_application.ViewModels.PatientCardViewModels
 {
     public class SearchPatientViewModel : ViewModelBase
     {
-        private readonly IViewManager _viewManager;
+        private readonly IManager _manager;
 
-        public SearchPatientViewModel(IViewManager viewManager)
+        public SearchPatientViewModel(IManager manager)
         {
-            _viewManager = viewManager;
+            _manager = manager;
         }
     }
 }

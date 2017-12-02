@@ -1,16 +1,16 @@
 ﻿using GalaSoft.MvvmLight;
 
-using MVVM_application.ViewModels.Manager;
+using MVVM_application.Manager;
 
 namespace MVVM_application.ViewModels.RegisterViewModels
 {
     public class AddVisitViewModel: ViewModelBase
     {
-        private readonly IViewManager _viewManager;
+        private readonly IManager _manager;
 
-        public AddVisitViewModel(IViewManager viewManager)
+        public AddVisitViewModel(IManager manager)
         {
-            _viewManager = viewManager;
+            _manager = manager;
         }
     }
 }

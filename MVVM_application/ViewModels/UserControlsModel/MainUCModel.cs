@@ -3,13 +3,13 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
-using MVVM_application.ViewModels.Manager;
+using MVVM_application.Manager;
 
 namespace MVVM_application.ViewModels.UserControlsModel
 {
     public class MainUCModel: ViewModelBase
     {
-        private readonly IViewManager _viewManager;
+        private readonly IManager _manager;
 
         #region Command
 
@@ -22,9 +22,9 @@ namespace MVVM_application.ViewModels.UserControlsModel
 
         #endregion 
         
-        public MainUCModel(IViewManager viewManager)
+        public MainUCModel(IManager manager)
         {
-           _viewManager = viewManager;
+           _manager = manager;
     
             InitiliseCommand();
         }
@@ -41,28 +41,28 @@ namespace MVVM_application.ViewModels.UserControlsModel
 
         public void ExecuteDailyCommand()
         {
-            _viewManager.ChangeView(TypesOfViews.DailyViewModel);
+            _manager.ChangeView(TypesOfViews.DailyViewModel);
             
         }
 
         public void ExecuteRegisterCommand()
         {
-            _viewManager.ChangeView(TypesOfViews.RegisterViewModel);
+            _manager.ChangeView(TypesOfViews.RegisterViewModel);
         }
 
         public void ExecutePatientCardCommand()
         {
-            _viewManager.ChangeView(TypesOfViews.PatientCardViewModel);
+            _manager.ChangeView(TypesOfViews.PatientCardViewModel);
         }
 
         public void ExecuteDoctorCommand()
         {
-            _viewManager.ChangeView(TypesOfViews.DoctorViewModel);
+            _manager.ChangeView(TypesOfViews.DoctorViewModel);
         }
 
         public void ExecuteLogoutCommand()
         {
-            _viewManager.ChangeView(TypesOfViews.LoginViewModel);
+            _manager.ChangeView(TypesOfViews.LoginViewModel);
         }
 
         public void ExecuteExitCommand()

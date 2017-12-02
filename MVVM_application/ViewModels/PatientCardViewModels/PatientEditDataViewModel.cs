@@ -1,16 +1,16 @@
 ﻿using GalaSoft.MvvmLight;
 
-using MVVM_application.ViewModels.Manager;
+using MVVM_application.Manager;
 
 namespace MVVM_application.ViewModels.PatientCardViewModels
 {
     public class PatientEditDataViewModel: ViewModelBase
     {
-        private readonly IViewManager _viewManager;
+        private readonly IManager _manager;
 
-        public PatientEditDataViewModel(IViewManager viewManager)
+        public PatientEditDataViewModel(IManager manager)
         {
-            _viewManager = viewManager;
+            _manager = manager;
         }
     }
 }

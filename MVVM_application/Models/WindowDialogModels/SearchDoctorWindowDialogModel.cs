@@ -1,4 +1,4 @@
-﻿using MVVM_application.ViewModels.Manager;
+﻿using MVVM_application.Manager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,16 +8,16 @@ using System.Windows;
 
 namespace MVVM_application.Models.WindowDialogModels
 {
-    public class AddDoctorWindowDialogModel
+    public class SearchDoctorWindowDialogModel
     {
         private Clinic _database;
-        private IViewManager _viewManager;
+        private IManager _manager;
         private List<string> _doctorNameList;
 
-        public AddDoctorWindowDialogModel(IViewManager viewManager)
+        public SearchDoctorWindowDialogModel(IManager manager)
         {
-            _viewManager = viewManager;
-            _database = _viewManager.GetDatabase();
+            _manager = manager;
+            _database = _manager.GetDatabase();
             _doctorNameList = new List<string>();
         }
 

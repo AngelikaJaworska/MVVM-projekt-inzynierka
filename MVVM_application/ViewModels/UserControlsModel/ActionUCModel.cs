@@ -3,13 +3,13 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
-using MVVM_application.ViewModels.Manager;
+using MVVM_application.Manager;
 
 namespace MVVM_application.ViewModels.UserControlsModel
 {
     public class ActionUCModel: ViewModelBase
     {
-        IViewManager _viewManager;
+        IManager _manager;
 
         #region ICommand
 
@@ -18,9 +18,9 @@ namespace MVVM_application.ViewModels.UserControlsModel
 
         #endregion
 
-        public ActionUCModel(IViewManager viewManager)
+        public ActionUCModel(IManager manager)
         {
-             _viewManager = viewManager;
+             _manager = manager;
 
             InitialiseCommand();
         }

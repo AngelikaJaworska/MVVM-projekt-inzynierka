@@ -2,7 +2,7 @@
 
 using GalaSoft.MvvmLight;
 
-using MVVM_application.ViewModels.Manager;
+using MVVM_application.Manager;
 using MVVM_application.Models.MainModels;
 using MVVM_application.Models.Manager;
 
@@ -10,7 +10,7 @@ namespace MVVM_application.ViewModels.MainViewModels
 {
     public class DailyViewModel : ViewModelBase
     {
-        private readonly IViewManager _viewManager;
+        private readonly IManager _manager;
         private readonly DailyModel _dailyModel;
         
         private Receptionist _receptionist;
@@ -26,11 +26,11 @@ namespace MVVM_application.ViewModels.MainViewModels
             }
         }
 
-        public DailyViewModel(IViewManager viewManager, DailyModel dailyModel)
+        public DailyViewModel(IManager manager, DailyModel dailyModel)
         {
-            _viewManager = viewManager;
+            _manager = manager;
             _dailyModel = dailyModel;
-            _receptionist = _viewManager.GetReceptionist();
+            _receptionist = _manager.GetReceptionist();
             if (_receptionist.IDReceptionist != 0)
             {
                 TodayVisitsList = new ObservableCollection<VisitManager>(_dailyModel.GetAllVisitsWithReceptionist(_receptionist.IDReceptionist));

@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MVVM_application.ViewModels.Manager;
+using MVVM_application.Manager;
 using MVVM_application.Views;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
 {
     public class DoctorVisitHoursWindowDialogViewModel : ViewModelBase
     {
-        IViewManager _viewManager;
+        IManager _manager;
 
         public string _startHour;
         public string _endHour;
@@ -42,9 +42,9 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
 
         public RelayCommand<DoctorVisitHoursWindowDialog> Close { get; private set; }
 
-        public DoctorVisitHoursWindowDialogViewModel(IViewManager viewManager)
+        public DoctorVisitHoursWindowDialogViewModel(IManager manager)
         {
-            _viewManager = viewManager;
+            _manager = manager;
             Close = new RelayCommand<DoctorVisitHoursWindowDialog>(ExecuteClose);
         }
 

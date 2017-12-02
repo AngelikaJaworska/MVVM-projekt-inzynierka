@@ -1,4 +1,4 @@
-﻿using MVVM_application.ViewModels.Manager;
+﻿using MVVM_application.Manager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +9,15 @@ namespace MVVM_application.Models.DoctorModels
 {
     public class SearchDoctorModel
     {
-        private IViewManager _viewManager;
+        private IManager _manager;
         //private Clinic _database;
         private Doctor _doctor;
 
-        public SearchDoctorModel(IViewManager viewManager)
+        public SearchDoctorModel(IManager manager)
         {
-            _viewManager = viewManager;
+            _manager = manager;
             //_database = _viewManager.GetDatabase();
-            _doctor = _viewManager.GetDoctor();
+            _doctor = _manager.GetDoctor();
         }
 
         public string GetDoctorName()

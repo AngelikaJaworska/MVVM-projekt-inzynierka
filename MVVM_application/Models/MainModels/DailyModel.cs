@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MVVM_application.Models.Manager;
-using MVVM_application.ViewModels.Manager;
+using MVVM_application.Manager;
 
 namespace MVVM_application.Models.MainModels
 {
-    public class DailyModel //: ModelBase
+    public class DailyModel
     {
-        private IViewManager _viewManager;
+        private IManager _manager;
         private Clinic _database;
 
-        public DailyModel(IViewManager viewManager)
+        public DailyModel(IManager manager)
         {
-            _viewManager = viewManager;
-            _database = _viewManager.GetDatabase();
+            _manager = manager;
+            _database = _manager.GetDatabase();
         }
 
         public List<VisitManager> GetAllVisitsWithReceptionist(int idReceptionist)

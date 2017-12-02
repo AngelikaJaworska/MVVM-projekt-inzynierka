@@ -1,4 +1,4 @@
-﻿namespace MVVM_application.ViewModels.Manager
+﻿namespace MVVM_application.Manager
 {
     public enum TypesOfViews
     {

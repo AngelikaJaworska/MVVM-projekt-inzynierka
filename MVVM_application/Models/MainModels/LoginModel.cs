@@ -4,24 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
-using MVVM_application.ViewModels.Manager;
+using MVVM_application.Manager;
 
 namespace MVVM_application.Models.MainModels
 {
-    public class LoginModel //: ModelBase 
+    public class LoginModel 
     {
         private Clinic _database;
-        private IViewManager _viewManager;
+        private IManager _manager;
 
         private bool _validator { get; set; }
         private string _hashPassword { get; set; }
 
         private Receptionist _reception;
 
-        public LoginModel(IViewManager viewManager)
+        public LoginModel(IManager manager)
         {
-            _viewManager = viewManager;
-            _database = _viewManager.GetDatabase();
+            _manager = manager;
+            _database = _manager.GetDatabase();
         }
 
         public List<Receptionist> FillReceptionsList()

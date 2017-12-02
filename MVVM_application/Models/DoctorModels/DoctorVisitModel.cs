@@ -1,5 +1,5 @@
 ﻿using MVVM_application.Models.Manager;
-using MVVM_application.ViewModels.Manager;
+using MVVM_application.Manager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +10,13 @@ namespace MVVM_application.Models.DoctorModels
 {
     public class DoctorVisitModel
     {
-        private IViewManager _viewManager;
+        private IManager _manager;
         private Clinic _database;
 
-        public DoctorVisitModel(IViewManager viewManager)
+        public DoctorVisitModel(IManager manager)
         {
-            _viewManager = viewManager;
-            _database = _viewManager.GetDatabase();
+            _manager = manager;
+            _database = _manager.GetDatabase();
         }
 
         public List<VisitManager> GetAllVisitsWithDoctor(Doctor doctor)

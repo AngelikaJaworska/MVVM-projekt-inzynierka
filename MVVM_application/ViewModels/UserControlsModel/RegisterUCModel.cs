@@ -3,13 +3,13 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
-using MVVM_application.ViewModels.Manager;
+using MVVM_application.Manager;
 
 namespace MVVM_application.ViewModels.UserControlsModel
 {
     public class RegisterUCModel: ViewModelBase
     {
-        private readonly IViewManager _viewManager;
+        private readonly IManager _manager;
 
         #region ICommand
 
@@ -20,9 +20,9 @@ namespace MVVM_application.ViewModels.UserControlsModel
 
         #endregion ICommand
         
-        public RegisterUCModel(IViewManager viewManager)
+        public RegisterUCModel(IManager manager)
         {
-            _viewManager = viewManager;
+            _manager = manager;
 
             InitialiseCommand();
         }
@@ -37,22 +37,22 @@ namespace MVVM_application.ViewModels.UserControlsModel
 
         public void ExecuteSearchPatientRegisterCommand()
         {
-            _viewManager.ChangeView(TypesOfViews.SearchPatientViewModel);
+            _manager.ChangeView(TypesOfViews.SearchPatientViewModel);
         }
 
         public void ExecuteAddVisitCommand()
         {
-            _viewManager.ChangeView(TypesOfViews.AddVisitViewModel);
+            _manager.ChangeView(TypesOfViews.AddVisitViewModel);
         }
 
         public void ExecuteEditVisitCommand()
         {
-            _viewManager.ChangeView(TypesOfViews.EditVisitViewModel);
+            _manager.ChangeView(TypesOfViews.EditVisitViewModel);
         }
 
         public void ExecuteAddNewPatientCommand()
         {
-            _viewManager.ChangeView(TypesOfViews.AddNewPatientViewModel);
+            _manager.ChangeView(TypesOfViews.AddNewPatientViewModel);
         }
     }
 }

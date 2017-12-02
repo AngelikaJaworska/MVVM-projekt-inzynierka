@@ -10,7 +10,7 @@ using System.Windows;
 using System.Collections.ObjectModel;
 using MVVM_application.Models;
 using System.ComponentModel;
-using MVVM_application.ViewModels.Manager;
+using MVVM_application.Manager;
 using MVVM_application.Models.Manager;
 using MVVM_application.Models.MainModels;
 
@@ -18,7 +18,7 @@ namespace MVVM_application.ViewModels.MainViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        private IViewManager _viewManager;
+        private IManager _manager;
         private readonly LoginModel _loginModel;
 
         //private IModelManager _modelManager;
@@ -49,9 +49,9 @@ namespace MVVM_application.ViewModels.MainViewModels
 
         public ICommand LoginCommand { get; private set; }
 
-          public LoginViewModel(IViewManager viewManager, LoginModel loginModel)// IModelManager modelManager)
+          public LoginViewModel(IManager manager, LoginModel loginModel)// IModelManager modelManager)
         {
-            _viewManager = viewManager;
+            _manager = manager;
             _loginModel = loginModel;
             //_modelManager = modelManager;
             //_loginModel = _modelManager.GetModel(TypesOfModels.LoginModel);
@@ -66,8 +66,8 @@ namespace MVVM_application.ViewModels.MainViewModels
             var reception = _loginModel.Login(_login, _password);
             if (reception != null)
             {
-                _viewManager.SetReceptionist(reception);
-                _viewManager.RefreshViewModel(TypesOfViews.DailyViewModel);
+                _manager.SetReceptionist(reception);
+                _manager.RefreshViewModel(TypesOfViews.DailyViewModel);
             }
             else
             {

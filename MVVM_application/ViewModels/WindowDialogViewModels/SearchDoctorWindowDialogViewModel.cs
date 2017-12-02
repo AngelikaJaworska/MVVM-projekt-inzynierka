@@ -10,14 +10,14 @@ using MVVM_application.Views;
 using System.Windows;
 using System.Collections.ObjectModel;
 using MVVM_application.Models.WindowDialogModels;
-using MVVM_application.ViewModels.Manager;
+using MVVM_application.Manager;
 
 namespace MVVM_application.ViewModels.WindowDialogViewModels
 {
-    public class AddDoctorWindowDialogViewModel: ViewModelBase
+    public class SearchDoctorWindowDialogViewModel: ViewModelBase
     {
 
-        private IViewManager _viewManager;
+        private IManager _manager;
 
         private string _doctor;
         private string _specialisation;
@@ -43,38 +43,38 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
             }
         }
 
-        private AddDoctorWindowDialogModel _addDoctorWindowDialogModel;
+        private SearchDoctorWindowDialogModel _addDoctorWindowDialogModel;
 
         public ObservableCollection<string> SpecialisationtList { get; set; }
         public ObservableCollection<string> DoctorList { get; set; }
 
-        public RelayCommand<AddDoctorWindowDialog> SearchDoctorCommand { get; private set; }
-        public RelayCommand<AddDoctorWindowDialog> SkipDoctorCommand { get; private set; }
-        public RelayCommand<AddDoctorWindowDialog> CancelDoctorCommand { get; private set; }
+        public RelayCommand<SearchDoctorWindowDialog> SearchDoctorCommand { get; private set; }
+        public RelayCommand<SearchDoctorWindowDialog> SkipDoctorCommand { get; private set; }
+        public RelayCommand<SearchDoctorWindowDialog> CancelDoctorCommand { get; private set; }
         public RelayCommand<string> RefreshDoctorCommand { get; private set; }
 
-        public AddDoctorWindowDialogViewModel(IViewManager viewManager, AddDoctorWindowDialogModel addDoctorWindowDialogModel)
+        public SearchDoctorWindowDialogViewModel(IManager manager, SearchDoctorWindowDialogModel addDoctorWindowDialogModel)
         {
-            _viewManager = viewManager;
+            _manager = manager;
             _addDoctorWindowDialogModel = addDoctorWindowDialogModel;
             _doctorNameList = new List<string>();
             this.SpecialisationtList = new ObservableCollection<string>(_addDoctorWindowDialogModel.FillSpecialisationList());
             this.DoctorList = new ObservableCollection<string>();
 
-            SearchDoctorCommand = new RelayCommand<AddDoctorWindowDialog>(ExecuteSearchDoctorCommand);
-            SkipDoctorCommand = new RelayCommand<AddDoctorWindowDialog>(ExecuteSkipDoctorCommand);
-            CancelDoctorCommand = new RelayCommand<AddDoctorWindowDialog>(ExecuteCancelDoctorCommand);
+            SearchDoctorCommand = new RelayCommand<SearchDoctorWindowDialog>(ExecuteSearchDoctorCommand);
+            SkipDoctorCommand = new RelayCommand<SearchDoctorWindowDialog>(ExecuteSkipDoctorCommand);
+            CancelDoctorCommand = new RelayCommand<SearchDoctorWindowDialog>(ExecuteCancelDoctorCommand);
             RefreshDoctorCommand = new RelayCommand<string>(RefreshDoctorsInfo);
         }
 
-        private void ExecuteSearchDoctorCommand(AddDoctorWindowDialog windowSearchdoctor)
+        private void ExecuteSearchDoctorCommand(SearchDoctorWindowDialog windowSearchdoctor)
         {
             var doctor = _addDoctorWindowDialogModel.SearchDoctor(_specialisation, _doctor);
             if (doctor != null)
             {
-                _viewManager.SetDoctor(doctor);
+                _manager.SetDoctor(doctor);
                 windowSearchdoctor.DialogResult = true;
-                _viewManager.SetUnchangedView(false);
+                _manager.SetUnchangedView(false);
             }
             else
             {
@@ -83,16 +83,16 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
 
         }
 
-        private void ExecuteCancelDoctorCommand(AddDoctorWindowDialog windowSearchdoctor)
+        private void ExecuteCancelDoctorCommand(SearchDoctorWindowDialog windowSearchdoctor)
         {
             windowSearchdoctor.Close();
-            _viewManager.SetUnchangedView(true);
+            _manager.SetUnchangedView(true);
         }
 
-        private void ExecuteSkipDoctorCommand(AddDoctorWindowDialog windowSearchdoctor)
+        private void ExecuteSkipDoctorCommand(SearchDoctorWindowDialog windowSearchdoctor)
         {
             windowSearchdoctor.Close();
-            _viewManager.SetUnchangedView(false);
+            _manager.SetUnchangedView(false);
         }
 
         private void RefreshDoctorsInfo(string specialisation)

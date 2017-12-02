@@ -125,6 +125,5 @@
                      Width="190"
                      HorizontalAlignment="Right" />
         </Grid>
-        <uc:ActionUserControl Grid.Row="4" Grid.ColumnSpan="4" />
     </Grid>
 </UserControl>

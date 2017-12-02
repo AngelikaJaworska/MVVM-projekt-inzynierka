@@ -142,6 +142,5 @@
         </Grid>
         <uc:MainUserControl Grid.RowSpan="4" Grid.ColumnSpan="4" />
         <uc:DoctorUserControl Grid.RowSpan="4" Grid.ColumnSpan="4" Grid.Row="1"/>
-        <uc:ActionUserControl Grid.Row="4" Grid.ColumnSpan="4" />
     </Grid>
 </UserControl>

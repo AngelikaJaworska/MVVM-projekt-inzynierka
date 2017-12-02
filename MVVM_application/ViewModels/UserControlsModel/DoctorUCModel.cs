@@ -3,7 +3,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
-using MVVM_application.ViewModels.Manager;
+using MVVM_application.Manager;
 using MVVM_application.ViewModels.WindowDialogViewModels;
 using MVVM_application.Views;
 using MVVM_application.Models.WindowDialogModels;
@@ -12,8 +12,8 @@ namespace MVVM_application.ViewModels.UserControlsModel
 {
     public class DoctorUCModel : ViewModelBase
     {
-        private readonly IViewManager _viewManager;
-        private readonly AddDoctorWindowDialogModel _addDoctorWindowDialogModel;
+        private readonly IManager _manager;
+        private readonly SearchDoctorWindowDialogModel _searchDoctorWindowDialogModel;
 
         #region Command
 
@@ -24,13 +24,13 @@ namespace MVVM_application.ViewModels.UserControlsModel
         
         #endregion 
 
-        public AddDoctorWindowDialogViewModel AddDoctorWDModel {get;set;}
+        public SearchDoctorWindowDialogViewModel SearchDoctorWDModel {get;set;}
 
-        public DoctorUCModel(IViewManager viewManager)
+        public DoctorUCModel(IManager manager)
         {
-            _viewManager = viewManager;
-            _addDoctorWindowDialogModel = new AddDoctorWindowDialogModel(_viewManager);
-            AddDoctorWDModel = new AddDoctorWindowDialogViewModel(_viewManager, _addDoctorWindowDialogModel);
+            _manager = manager;
+            _searchDoctorWindowDialogModel = new SearchDoctorWindowDialogModel(_manager);
+            SearchDoctorWDModel = new SearchDoctorWindowDialogViewModel(_manager, _searchDoctorWindowDialogModel);
 
             InitialiseCommand();
         }
@@ -44,29 +44,33 @@ namespace MVVM_application.ViewModels.UserControlsModel
 
         private void ExecuteSearchDoctorCommand()
         {
-            AddDoctorWindowDialog addDoctorWindowDialog = new AddDoctorWindowDialog();
-            addDoctorWindowDialog.ShowDialog();
-            if (_viewManager.GetUnchangedView() == false)
+            SearchDoctorWindowDialog searchDoctorWindowDialog = new SearchDoctorWindowDialog();
+            searchDoctorWindowDialog.ShowDialog();
+            if (_manager.GetUnchangedView() == false)
             {//ChangeView
-                _viewManager.RefreshAll(TypesOfViews.SearchDoctorViewModel);
+                _manager.RefreshAll(TypesOfViews.SearchDoctorViewModel);
             }
         }
 
         public void ExecuteDoctorDailyVisitCommand()
         {
-            _viewManager.ChangeView(TypesOfViews.DoctorDailyVisitViewModel);
+            _manager.ChangeView(TypesOfViews.DoctorDailyVisitViewModel);
         }
 
         public void ExecuteDoctorVisitCommand()
         {
-            _viewManager.ChangeView(TypesOfViews.DoctorVisitViewModel);
+            _manager.ChangeView(TypesOfViews.DoctorVisitViewModel);
         }
 
         public void ExecuteDoctorEditDataCommand()
         {
-            if(_viewManager.GetDoctor() != null)
+            if(_manager.GetDoctor() != null)
             {
-                _viewManager.ChangeView(TypesOfViews.DoctorEditDataViewModel);
+                _manager.ChangeView(TypesOfViews.DoctorEditDataViewModel);
+            }
+            else
+            {
+                MessageBox.Show("Nie wybrano lekarza do edycji");
             }
         }
     }

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MVVM_application.ViewModels.Manager
+namespace MVVM_application.Manager
 {
-    public interface IViewManager
+    public interface IManager
     {
         void ChangeView(TypesOfViews view);
         
@@ -16,12 +16,13 @@ namespace MVVM_application.ViewModels.Manager
         Clinic GetDatabase();
 
         Receptionist GetReceptionist();
-
         void SetReceptionist(Receptionist reception);
 
         Doctor GetDoctor();
-
         void SetDoctor(Doctor doctor);
+
+        Patient GetPatient();
+        void SetPatient(Patient patient);
 
         void RefreshViewModel(TypesOfViews view);
         void RefreshAll(TypesOfViews view);

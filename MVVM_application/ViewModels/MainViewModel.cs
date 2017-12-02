@@ -3,7 +3,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
-using MVVM_application.ViewModels.Manager;
+using MVVM_application.Manager;
 using MVVM_application.Models.Manager;
 
 using MVVM_application.ViewModels.MainViewModels;
@@ -18,12 +18,13 @@ using MVVM_application.Models.DoctorModels;
 
 namespace MVVM_application.ViewModels
 {
-    public class MainViewModel : ViewModelBase, IViewManager//, IModelManager
+    public class MainViewModel : ViewModelBase, IManager//, IModelManager
     {
 
         Clinic _database;
         Receptionist _reception;
         Doctor _doctor;
+        Patient _patient;
         //sprawdza czy zmienil sie widok czy nie
         bool _unchangedView;
 
@@ -125,6 +126,7 @@ namespace MVVM_application.ViewModels
         LoginModel _loginModel;
         DailyModel _dailyModel;
         DoctorDailyVisitModel _doctorDailyVisitModel;
+        DoctorEditDataModel _doctorEditDataModel;
         DoctorVisitModel _doctorVisitModel;
         SearchDoctorModel _searchDoctorModel;
         #endregion
@@ -164,7 +166,7 @@ namespace MVVM_application.ViewModels
 
             _searchDoctorViewModel = new SearchDoctorViewModel(this, _searchDoctorModel);
             _doctorDailyVisitViewModel = new DoctorDailyVisitViewModel(this, _doctorDailyVisitModel);
-            _doctorEditDataViewModel = new DoctorEditDataViewModel(this);
+            _doctorEditDataViewModel = new DoctorEditDataViewModel(this, _doctorEditDataModel);
             _doctorVisitViewModel = new DoctorVisitViewModel(this, _doctorVisitModel);
 
             _mainUcModel = new MainUCModel(this);
@@ -179,6 +181,7 @@ namespace MVVM_application.ViewModels
             _loginModel = new LoginModel(this);
             _dailyModel = new DailyModel(this);
             _doctorDailyVisitModel = new DoctorDailyVisitModel(this);
+            _doctorEditDataModel = new DoctorEditDataModel(this);
             _doctorVisitModel = new DoctorVisitModel(this);
             _searchDoctorModel = new SearchDoctorModel(this);
         }
@@ -228,18 +231,6 @@ namespace MVVM_application.ViewModels
                     return _doctorEditDataViewModel;
                 case TypesOfViews.DoctorVisitViewModel:
                     return _doctorVisitViewModel;
-
-
-                //case TypesOfViews.MainUCModel:
-                //    return _mainUcModel;
-                //case TypesOfViews.RegisterUCModel:
-                //    return _registerUCModel;
-                //case TypesOfViews.PatientCardUCModel:
-                //    return _patientCardUCModel;
-                //case TypesOfViews.DoctorUCModel:
-                //    return _doctorUCModel;
-                //case TypesOfViews.ActionUCModel:
-                //    return _actionUCModel;
                 default:
                     return null;
             }
@@ -299,49 +290,14 @@ namespace MVVM_application.ViewModels
             _doctor = doctor;
         }
 
-        //public ModelBase GetModel(TypesOfModels model)
-        //{
-        //    switch (model)
-        //    {
-        //        case TypesOfModels.LoginModel:
-        //            return _loginModel;
-        //        case TypesOfModels.DailyModel:
-        //            return _dailyModel;
-        //        //    case TypesOfModels.RegisterModel:
-        //        //        return _registerModel;
-        //        //    case TypesOfModels.PatientCardModel:
-        //        //        return _patientCardModel;
-        //        //    case TypesOfModels.DoctorModel:
-        //        //        return _doctorModel;
+        public Patient GetPatient()
+        {
+            return _patient;
+        }
 
-        //        //    case TypesOfModels.AddNewPatientModel:
-        //        //        return _addNewPatientModel;
-        //        //    case TypesOfModels.AddVisitModel:
-        //        //        return _addVisitModel;
-        //        //    case TypesOfModels.EditVisitModel:
-        //        //        return _editVisitModel;
-
-        //        //    case TypesOfModels.SearchPatientModel:
-        //        //        return _searchPatientModel;
-        //        //    case TypesOfModels.PatientNewVisitModel:
-        //        //        return _patientNewVisitModel;
-        //        //    case TypesOfModels.PatientVisitModel:
-        //        //        return _patientVisitModel;
-        //        //    case TypesOfModels.PatientEditDataModel:
-        //        //        return _patientEditDataModel;
-
-        //        //    case TypesOfModels.SearchDoctorModel:
-        //        //        return _searchDoctorModel;
-        //        //    case TypesOfModels.DoctorDailyVisitModel:
-        //        //        return _doctorDailyVisitModel;
-        //        //    case TypesOfModels.DoctorEditDataModel:
-        //        //        return _doctorEditDataModel;
-        //        //    case TypesOfModels.DoctorVisitModel:
-        //        //        return _doctorVisit;
-
-        //        default:
-        //            return null;
-        //    }
-        //}
+        public void SetPatient(Patient patient)
+        {
+            _patient = patient;
+        }
     }
 }

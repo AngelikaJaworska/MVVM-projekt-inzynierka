@@ -3,13 +3,17 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
-using MVVM_application.ViewModels.Manager;
+using MVVM_application.Manager;
+using MVVM_application.Models.WindowDialogModels;
+using MVVM_application.ViewModels.WindowDialogViewModels;
+using MVVM_application.Views;
 
 namespace MVVM_application.ViewModels.UserControlsModel
 {
     public class PatientCardUCModel :ViewModelBase
     {
-        private readonly IViewManager _viewManager;
+        private readonly IManager _manager;
+        private readonly SearchPatientWindowDialogModel _searchPatientWindowDialogModel;
 
         #region ICommand
 
@@ -19,10 +23,14 @@ namespace MVVM_application.ViewModels.UserControlsModel
         public ICommand PatientEditDataCommand { get; private set; }
 
         #endregion ICommand
+
+        public SearchPatientWindowDialogViewModel SearchPatientWDViewModel { get; private set; }
         
-        public PatientCardUCModel(IViewManager viewManager)
+        public PatientCardUCModel(IManager manager)
         { 
-            _viewManager = viewManager;
+            _manager = manager;
+            _searchPatientWindowDialogModel = new SearchPatientWindowDialogModel(_manager);
+            SearchPatientWDViewModel = new SearchPatientWindowDialogViewModel(_manager, _searchPatientWindowDialogModel);
             InitialiseCommand();
         }
 
@@ -36,20 +44,41 @@ namespace MVVM_application.ViewModels.UserControlsModel
 
         public void ExecuteSearchPatientCommand()
         {
-            _viewManager.ChangeView(TypesOfViews.SearchPatientViewModel);
+            SearchPatientWindowDialog searchPatientWindowDialog = new SearchPatientWindowDialog();
+            searchPatientWindowDialog.ShowDialog();
+            if(_manager.GetUnchangedView() == false)
+            {//ChangeView
+                _manager.RefreshAll(TypesOfViews.SearchPatientViewModel);
+            }
         }
 
         public void ExecutePatientNewVisitCommand()
         {
-            _viewManager.ChangeView(TypesOfViews.PatientNewVisitViewModel);
+            if(_manager.GetPatient() != null)
+            {
+                _manager.ChangeView(TypesOfViews.PatientNewVisitViewModel);
+            }
+            else
+            {
+                MessageBox.Show("Nie wybrano pacjenta");
+            }
+
         }
         public void ExecutePatientVisitCommand()
         {
-            _viewManager.ChangeView(TypesOfViews.PatientVisitViewModel);
+            _manager.ChangeView(TypesOfViews.PatientVisitViewModel);
         }
         public void ExecutePatientEditDataCommand()
         {
-            _viewManager.ChangeView(TypesOfViews.PatientEditDataViewModel);
+            if (_manager.GetPatient() != null)
+            {
+                _manager.ChangeView(TypesOfViews.PatientEditDataViewModel);
+            }
+            else
+            {
+                MessageBox.Show("Nie wybrano pacjenta do edycji");
+            }
+
         }
     }
 }

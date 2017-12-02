@@ -45,19 +45,9 @@
             <TextBox Grid.Row="0"
                      Grid.Column="0"
                      Width="190"
-                     HorizontalAlignment="Right" />
-            <Label Grid.Row="3"
-                   Grid.Column="0"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center"
-                   FontSize="14">
-                Numer domu
-            </Label>
-
-            <TextBox Grid.Row="3"
-                     Grid.Column="0"
-                     Width="190"
-                     HorizontalAlignment="Right" />
+                     HorizontalAlignment="Right"
+                     Text="{Binding Name}" />
+          
             <Label Grid.Row="1"
                    Grid.Column="0"
                    HorizontalAlignment="Left"
@@ -68,29 +58,9 @@
             <TextBox Grid.Row="1"
                      Grid.Column="0"
                      Width="190"
-                     HorizontalAlignment="Right" />
-            <Label Grid.Row="0"
-                   Grid.Column="1"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center"
-                   FontSize="14">
-                Miejscowosc
-            </Label>
-            <TextBox Grid.Row="1"
-                     Grid.Column="1"
-                     Width="190"
-                     HorizontalAlignment="Right" />
-           <Label Grid.Row="1"
-                   Grid.Column="1"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center"
-                   FontSize="14">
-                Telefon
-            </Label>
-            <TextBox Grid.Row="0"
-                     Grid.Column="1"
-                     Width="190"
-                     HorizontalAlignment="Right" />
+                     HorizontalAlignment="Right" 
+                     Text="{Binding Surname}"/>
+
             <Label Grid.Row="2"
                    Grid.Column="0"
                    HorizontalAlignment="Left"
@@ -101,7 +71,48 @@
             <TextBox Grid.Row="2"
                      Grid.Column="0"
                      Width="190"
-                     HorizontalAlignment="Right" />
+                     HorizontalAlignment="Right" 
+                     Text="{Binding Street}"/>
+
+            <Label Grid.Row="3"
+                   Grid.Column="0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   FontSize="14">
+                Numer domu
+            </Label>
+            <TextBox Grid.Row="3"
+                     Grid.Column="0"
+                     Width="190"
+                     HorizontalAlignment="Right" 
+                     Text="{Binding HomeNr}"/>
+
+            <Label Grid.Row="0"
+                   Grid.Column="1"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   FontSize="14">
+                Miejscowosc
+            </Label>
+            <TextBox Grid.Row="0"
+                     Grid.Column="1"
+                     Width="190"
+                     HorizontalAlignment="Right" 
+                     Text="{Binding City}"/>
+
+            <Label Grid.Row="1"
+                   Grid.Column="1"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   FontSize="14">
+                Telefon
+            </Label>
+            <TextBox Grid.Row="1"
+                     Grid.Column="1"
+                     Width="190"
+                     HorizontalAlignment="Right"
+                     Text="{Binding Phone}"/>
+           
             <Label Grid.Row="2"
                    Grid.Column="1"
                    HorizontalAlignment="Left"
@@ -112,10 +123,14 @@
             <ComboBox Grid.Row="2"
                       Grid.Column="1"
                       Width="190"
-                      HorizontalAlignment="Right" />
+                      HorizontalAlignment="Right" 
+                      ItemsSource="{Binding SpecialisationtList}"
+                      SelectedItem="{Binding Specialisation}"
+                      SelectedValuePath="Specialisation" />
             <Button
                 Grid.Column="1"
-                Grid.Row="3">
+                Grid.Row="3"
+                Command="{Binding EditVisitHoursCommand}">
                 Godziny przyjec
             </Button>
         </Grid>
