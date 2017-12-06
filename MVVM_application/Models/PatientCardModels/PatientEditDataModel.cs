@@ -76,7 +76,7 @@ namespace MVVM_application.Models.PatientCardModels
             return pesel;
         }
 
-        internal void SetPatientName(string _name)
+        public void SetPatientName(string _name)
         {
             if (_patient != null && _name != null && _name != "")
             {
@@ -85,7 +85,7 @@ namespace MVVM_application.Models.PatientCardModels
             }
         }
 
-        internal void SetPatientSurame(string _surname)
+        public void SetPatientSurame(string _surname)
         {
             if (_patient != null && _surname != null && _surname != "")
             {
@@ -94,7 +94,7 @@ namespace MVVM_application.Models.PatientCardModels
             }
         }
 
-        internal void SetPatientStreet(string _street)
+        public void SetPatientStreet(string _street)
         {
             if (_patient != null && _street != null && _street != "")
             {
@@ -103,7 +103,7 @@ namespace MVVM_application.Models.PatientCardModels
             }
         }
 
-        internal void SetPatientHomeNr(string _homeNr)
+        public void SetPatientHomeNr(string _homeNr)
         {
             if (_patient != null && _homeNr != null && _homeNr != "")
             {
@@ -112,7 +112,7 @@ namespace MVVM_application.Models.PatientCardModels
             }
         }
 
-        internal void SetPatientCity(string _city)
+        public void SetPatientCity(string _city)
         {
             if (_patient != null && _city != null && _city != "")
             {
@@ -121,7 +121,7 @@ namespace MVVM_application.Models.PatientCardModels
             }
         }
 
-        internal void SetPatientPhone(string _phone)
+        public void SetPatientPhone(string _phone)
         {
             if (_patient != null && _phone != null && _phone != "")
             {
@@ -130,7 +130,7 @@ namespace MVVM_application.Models.PatientCardModels
             }
         }
 
-        internal void SetPatientDateOfBirth(string _dateOfBirth)
+        public void SetPatientDateOfBirth(string _dateOfBirth)
         {
             if (_patient != null && _dateOfBirth != null && _dateOfBirth != "")
             {
@@ -145,7 +145,7 @@ namespace MVVM_application.Models.PatientCardModels
             }
         }
 
-        internal void SetPatientPesel(string _pesel)
+        public void SetPatientPesel(string _pesel)
         {
             if (_patient != null && _pesel != null && _pesel != "")
             {

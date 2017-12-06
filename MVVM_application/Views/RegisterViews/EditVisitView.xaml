@@ -76,23 +76,11 @@
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
                    FontSize="14">
-                Data Wizyty
-            </Label>
-            <ComboBox Grid.Row="0"
-                      Grid.Column="1"
-                      Width="200"
-                      HorizontalAlignment="Right" />
-            <Label Grid.Row="1"
-                   Grid.Column="1"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center"
-                   FontSize="14">
-                Godzina Wizyty
+                Data i godzina wizyty
             </Label>
             <ComboBox Grid.Row="1"
-                      Grid.Column="1"
-                      Width="200"
-                      HorizontalAlignment="Right" />
+                      Grid.Column="1" />
+           
             <Label Grid.Row="2"
                    Grid.Column="1"
                    HorizontalAlignment="Left"

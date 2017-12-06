@@ -117,22 +117,18 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
             if (_patientNewVisitModel.CreateVisitWithData(_nameAndSurname, _specialisationName, _doctorName, _visitDate, _comments))
             {
                 MessageBox.Show("Wizyta zapisana");
-                this.SpecialisationtNameList.Clear();
-                this.DoctorNameList.Clear();
-                this.VisitDateList.Clear();
+                ClearLists();
             }
                 else
             {
                 MessageBox.Show("Prosze uzupelnic dane");
             }
         }
-
+        
         private void ExecuteCancelCommand()
         {
             MessageBox.Show("Anulowanie");
-            this.SpecialisationtNameList.Clear();
-            this.DoctorNameList.Clear();
-            this.VisitDateList.Clear();
+            ClearLists();
         }
 
         private void ExecuteRefreshDoctorCommand()
@@ -161,6 +157,13 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
                     this.VisitDateList.Add(_visitDateList[i]);
                 }
             }
-        }       
+        }
+
+        private void ClearLists()
+        {
+            this.SpecialisationtNameList.Clear();
+            this.DoctorNameList.Clear();
+            this.VisitDateList.Clear();
+        }
     }
 }

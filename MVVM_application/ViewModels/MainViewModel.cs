@@ -16,6 +16,7 @@ using MVVM_application.Models.MainModels;
 using MVVM_application.Models;
 using MVVM_application.Models.DoctorModels;
 using MVVM_application.Models.PatientCardModels;
+using MVVM_application.Models.RegisterModels;
 
 namespace MVVM_application.ViewModels
 {
@@ -115,6 +116,7 @@ namespace MVVM_application.ViewModels
         #region Model
         LoginModel _loginModel;
         DailyModel _dailyModel;
+
         DoctorDailyVisitModel _doctorDailyVisitModel;
         DoctorEditDataModel _doctorEditDataModel;
         DoctorVisitModel _doctorVisitModel;
@@ -124,6 +126,8 @@ namespace MVVM_application.ViewModels
         PatientNewVisitModel _patientNewVisitModel;
         PatientVisitModel _patientVisitModel;
         SearchPatientModel _searchPatientModel;
+
+        AddNewPatientModel _addNewPatientModel;
         #endregion
 
         public MainViewModel()
@@ -149,7 +153,7 @@ namespace MVVM_application.ViewModels
             _patientCardViewModel = new PatientCardViewModel(this);
             _doctorViewModel = new DoctorViewModel(this);
 
-            _addNewPatientViewModel = new AddNewPatientViewModel(this);
+            _addNewPatientViewModel = new AddNewPatientViewModel(this, _addNewPatientModel);
             _editVisitViewModel = new EditVisitViewModel(this);
 
 
@@ -182,6 +186,8 @@ namespace MVVM_application.ViewModels
             _patientNewVisitModel = new PatientNewVisitModel(this);
             _patientVisitModel = new PatientVisitModel(this);
             _searchPatientModel = new SearchPatientModel(this);
+
+            _addNewPatientModel = new AddNewPatientModel(this);
         }
 
         public void ChangeView(TypesOfViews view)
