@@ -18,6 +18,7 @@ namespace MVVM_application.Models
         {
             _manager = manager;
             _database = _manager.GetDatabase();
+            _doctorNameList = new List<string>();
         }
 
         public List<string> FillSpecialisationList()
@@ -36,7 +37,7 @@ namespace MVVM_application.Models
             return _patientName;
         }
 
-        internal List<string> FillDoctorList(string specialisation)
+        public List<string> FillDoctorList(string specialisation)
         {
             if (specialisation != null)
             {
@@ -59,7 +60,7 @@ namespace MVVM_application.Models
             return _doctorNameList;
         }
 
-        internal Doctor SearchDoctor(string specialisation, string doctor)
+        public Doctor SearchDoctor(string specialisation, string doctor)
         {
             if (specialisation != null && doctor != null)
             {
@@ -78,6 +79,21 @@ namespace MVVM_application.Models
                 return _doctor;
             }
             return null;
+        }
+
+        public bool CheckIfAnyVisitExist(Doctor doctor, Patient patient)
+        {
+            var visit = _database.Visits
+                    .Where(v => (v.IDDoctor == doctor.IDDoctor)
+                    && (v.IDPatient == patient.IDPatient))
+                    .ToList();
+            if (visit.Count > 0)
+            {
+                return true;
+            }
+            else return false;
+
+
         }
     }
 }

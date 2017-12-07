@@ -47,14 +47,19 @@
                  VerticalAlignment="Center"
                  Text="{Binding Password}" />
         <Button Grid.Row="2"
-                Grid.Column="1"
                 Width="100"
-                Margin="25,40"
+                Margin="97,39,103,41"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Command="{Binding LoginCommand,
-                                  Mode=OneWay}">
+                                  Mode=OneWay}" Grid.ColumnSpan="2">
             Sprawdz
         </Button>
+        <Button Grid.Row="2"
+            Width="100"
+            Margin="126,39,74,41"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Command="{Binding ExitCommand, Mode=OneWay}" Grid.ColumnSpan="2" Content="Zakoncz" Grid.Column="1"/>
     </Grid>
 </UserControl>

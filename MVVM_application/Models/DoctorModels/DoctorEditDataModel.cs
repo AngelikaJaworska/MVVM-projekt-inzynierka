@@ -65,6 +65,15 @@ namespace MVVM_application.Models.DoctorModels
             return specialisationList;
         }
 
+        internal void SetSpecialisation(string _specialisation)
+        {
+            if(_specialisation != null && _specialisation != "")
+            {
+                _doctor.Specialisation.Name = _specialisation;
+                _database.SaveChanges();
+            }
+        }
+
         internal void SetDoctorName(string _name)
         {
             if(_doctor != null && _name != null && _name != "")
@@ -118,5 +127,7 @@ namespace MVVM_application.Models.DoctorModels
                 _database.SaveChanges();
             }
         }
+
+       
     }
 }

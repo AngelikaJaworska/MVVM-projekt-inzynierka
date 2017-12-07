@@ -28,6 +28,7 @@ namespace MVVM_application.ViewModels.DoctorViewModels
         private Doctor _doctor;
 
         private string _name;
+        private string _specialisation;
         private string _surname;
         private string _street;
         private string _homeNr;
@@ -41,6 +42,15 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             {
                 _name = value;
                 RaisePropertyChanged("Name");
+            }
+        }
+        public string Specialisation
+        {
+            get { return _specialisation; }
+            set
+            {
+                _specialisation = value;
+                RaisePropertyChanged("Specialisation");
             }
         }
         public string Surname
@@ -126,6 +136,7 @@ namespace MVVM_application.ViewModels.DoctorViewModels
         private void SetData()
         {
             _doctorEditDataModel.SetDoctorName(_name);
+            _doctorEditDataModel.SetSpecialisation(_specialisation);
             _doctorEditDataModel.SetDoctorSurame(_surname);
             _doctorEditDataModel.SetDoctorStreet(_street);
             _doctorEditDataModel.SetDoctorHomeNr(_homeNr);

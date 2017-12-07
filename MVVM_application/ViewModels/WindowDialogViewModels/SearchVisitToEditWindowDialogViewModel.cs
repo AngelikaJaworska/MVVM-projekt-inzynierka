@@ -56,7 +56,6 @@ namespace MVVM_application.ViewModels
         public ObservableCollection<string> DoctorList { get; set; }
 
         public RelayCommand<SearchVisitToEditWindowDialog> SearchVisitCommand { get; private set; }
-        public RelayCommand<SearchVisitToEditWindowDialog> SkipVisitCommand { get; private set; }
         public RelayCommand<SearchVisitToEditWindowDialog> CancelVisitCommand { get; private set; }
         public RelayCommand<string> RefreshVisitCommand { get; private set; }
 
@@ -69,6 +68,7 @@ namespace MVVM_application.ViewModels
             {
                 FillData();
             }
+            InitialiseCommand();
         }
 
         private void FillData()
@@ -82,12 +82,11 @@ namespace MVVM_application.ViewModels
         private void InitialiseCommand()
         {
             SearchVisitCommand = new RelayCommand<SearchVisitToEditWindowDialog>(ExecuteSearchVisitCommand);
-            SkipVisitCommand = new RelayCommand<SearchVisitToEditWindowDialog>(ExecuteSkipVisitCommand);
             CancelVisitCommand = new RelayCommand<SearchVisitToEditWindowDialog>(ExecuteCancelVisitCommand);
-            RefreshVisitCommand = new RelayCommand<string>(RefreshRefreshVisitCommand);
+            RefreshVisitCommand = new RelayCommand<string>(ExecuteRefreshVisitCommand);
         }
 
-        private void RefreshRefreshVisitCommand(string specialisation)
+        private void ExecuteRefreshVisitCommand(string specialisation)
         {
             if (specialisation != null)
             {
@@ -106,26 +105,29 @@ namespace MVVM_application.ViewModels
             windowEditVisit.Close();
             _manager.SetUnchangedView(true);
         }
-
-        private void ExecuteSkipVisitCommand(SearchVisitToEditWindowDialog windowEditVisit)
-        {
-            windowEditVisit.Close();
-            _manager.SetUnchangedView(false);
-        }
-
+        
         private void ExecuteSearchVisitCommand(SearchVisitToEditWindowDialog windowEditVisit)
         {
             var doctor = _searchVisitToEditWindowDialogModel.SearchDoctor(_specialisation, _doctor);
+
             if (doctor != null)
             {
-                _manager.SetDoctor(doctor);
-                windowEditVisit.DialogResult = true;
-                _manager.SetUnchangedView(false);
+                if (_searchVisitToEditWindowDialogModel.CheckIfAnyVisitExist(doctor, _patient))
+                {
+                    _manager.SetDoctor(doctor);
+                    windowEditVisit.DialogResult = true;
+                    _manager.SetUnchangedView(false);
+                }
+                else
+                {
+                    MessageBox.Show("Brak wizyt dla wybranych danych");
+                }
             }
             else
             {
-                MessageBox.Show("Prosze, wybrać odpowiednie dane");
+                MessageBox.Show("Prosze, wybrać odpowiednie dane"); 
             }
+            
         }
     }
 }

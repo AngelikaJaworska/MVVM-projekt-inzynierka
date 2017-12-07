@@ -28,7 +28,7 @@
         <TextBox Grid.Column="1"
                  Grid.ColumnSpan="2"
                Grid.Row="0"
-                 Text="{Binding Patient}"
+                 Text="{Binding Main.RegisterUCModel.SearchVisitToEditWDViewModel.Patient}"
                  IsEnabled="False"/>
 
         <Label Grid.Column="0"
@@ -61,15 +61,16 @@
                   SelectedItem="{Binding Main.RegisterUCModel.SearchVisitToEditWDViewModel.Doctor}"
                   SelectedValuePath="Doctor"/>
 
-        <Button Grid.Column="0" Grid.Row ="3" Content="Pomin" 
-                Command="{Binding Main.RegisterUCModel.SearchVisitToEditWDViewModel.SkipVisitCommand}"  
-                CommandParameter="{Binding ElementName=windowEditVisit, Mode=OneWay}"/>
-
-        <Button Grid.Column="1" Grid.Row ="3" Content="Wyszukaj" 
+        <Button Grid.Column="0" Grid.ColumnSpan ="2" Grid.Row="3"  
+                Width="150"
+                HorizontalAlignment="Left"
+                Content="Wyszukaj" 
                 Command="{Binding Main.RegisterUCModel.SearchVisitToEditWDViewModel.SearchVisitCommand}"  
                 CommandParameter="{Binding ElementName=windowEditVisit, Mode=OneWay}"/>
 
-        <Button Grid.Column="2" Grid.Row ="3" Content="Anuluj" 
+        <Button Grid.Column="1" Grid.ColumnSpan ="2" Grid.Row="3"  
+                Width="150"
+                HorizontalAlignment="Right" Content="Anuluj" 
                 Command="{Binding Main.RegisterUCModel.SearchVisitToEditWDViewModel.CancelVisitCommand}" 
                 CommandParameter="{Binding ElementName=windowEditVisit, Mode=OneWay}"/>
 

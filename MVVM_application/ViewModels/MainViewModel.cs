@@ -128,6 +128,7 @@ namespace MVVM_application.ViewModels
         SearchPatientModel _searchPatientModel;
 
         AddNewPatientModel _addNewPatientModel;
+        EditVisitModel _editVisitModel;
         #endregion
 
         public MainViewModel()
@@ -154,7 +155,7 @@ namespace MVVM_application.ViewModels
             _doctorViewModel = new DoctorViewModel(this);
 
             _addNewPatientViewModel = new AddNewPatientViewModel(this, _addNewPatientModel);
-            _editVisitViewModel = new EditVisitViewModel(this);
+            _editVisitViewModel = new EditVisitViewModel(this, _editVisitModel);
 
 
             _searchPatientViewModel = new SearchPatientViewModel(this, _searchPatientModel);
@@ -188,6 +189,7 @@ namespace MVVM_application.ViewModels
             _searchPatientModel = new SearchPatientModel(this);
 
             _addNewPatientModel = new AddNewPatientModel(this);
+            _editVisitModel = new EditVisitModel(this);
         }
 
         public void ChangeView(TypesOfViews view)

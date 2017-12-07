@@ -20,10 +20,7 @@ namespace MVVM_application.ViewModels.MainViewModels
     {
         private IManager _manager;
         private readonly LoginModel _loginModel;
-
-        //private IModelManager _modelManager;
-        //private readonly ModelBase _loginModel;
-
+        
         private string _login;
         private string _password;
 
@@ -48,17 +45,22 @@ namespace MVVM_application.ViewModels.MainViewModels
         public ObservableCollection<Receptionist> ReceptionistList { get; set; }
 
         public ICommand LoginCommand { get; private set; }
+        public ICommand ExitCommand { get; private set; }
 
-          public LoginViewModel(IManager manager, LoginModel loginModel)// IModelManager modelManager)
+          public LoginViewModel(IManager manager, LoginModel loginModel)
         {
             _manager = manager;
             _loginModel = loginModel;
-            //_modelManager = modelManager;
-            //_loginModel = _modelManager.GetModel(TypesOfModels.LoginModel);
 
             this.ReceptionistList = new ObservableCollection<Receptionist>(_loginModel.FillReceptionsList());
 
             LoginCommand = new RelayCommand(ExecuteLoginViewCommand);
+            ExitCommand = new RelayCommand(ExecuteExitCommand);
+        }
+
+        private void ExecuteExitCommand()
+        {
+            MessageBox.Show("TODO zamkniecie programu");
         }
 
         private void ExecuteLoginViewCommand()
