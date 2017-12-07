@@ -123,6 +123,7 @@
     <Compile Include="Models\RegisterModels\AddNewPatientModel.cs" />
     <Compile Include="Models\RegisterModels\EditVisitModel.cs" />
     <Compile Include="Models\WindowDialogModels\DoctorVisitHoursWindowDialogModel.cs" />
+    <Compile Include="Models\WindowDialogModels\EditDoctorVisitHoursWindowDialogModel.cs" />
     <Compile Include="Models\WindowDialogModels\SearchDoctorWindowDialogModel.cs" />
     <Compile Include="Models\WindowDialogModels\SearchPatientWindowDialogModel.cs" />
     <Compile Include="Models\WindowDialogModels\SearchVisitToEditWindowDialogModel.cs" />
@@ -161,6 +162,7 @@
     <Compile Include="ViewModels\UserControlsModel\RegisterUCModel.cs" />
     <Compile Include="ViewModels\MainViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="ViewModels\WindowDialogViewModels\EditDoctorVisitHoursWindowDialogViewModel.cs" />
     <Compile Include="ViewModels\WindowDialogViewModels\SearchDoctorWindowDialogViewModel.cs" />
     <Compile Include="ViewModels\WindowDialogViewModels\DoctorVisitHoursWindowDialogViewModel.cs" />
     <Compile Include="ViewModels\WindowDialogViewModels\SearchPatientWindowDialogViewModel.cs" />
@@ -221,6 +223,9 @@
     </Compile>
     <Compile Include="Views\UserControls\RegisterUserControl.xaml.cs">
       <DependentUpon>RegisterUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WindowDialogViews\EditDoctorVisitHourWindowDialog.xaml.cs">
+      <DependentUpon>EditDoctorVisitHourWindowDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WindowDialogViews\SearchDoctorWindowDialog.xaml.cs">
       <DependentUpon>SearchDoctorWindowDialog.xaml</DependentUpon>
@@ -322,6 +327,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\RegisterUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WindowDialogViews\EditDoctorVisitHourWindowDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

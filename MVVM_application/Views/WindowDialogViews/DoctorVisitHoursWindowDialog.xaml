@@ -4,10 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVVM_application.Views"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" x:Class="MVVM_application.Views.DoctorVisitHoursWindowDialog"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+        x:Class="MVVM_application.Views.DoctorVisitHoursWindowDialog"
         mc:Ignorable="d"
         x:Name="windowDoctorVisitHours"
-        Title="DoctorVisitHoursWindowDialog" Height="270" Width="330" 
+        Title="DoctorVisitHoursWindowDialog" Height="170" Width="330" 
              DataContext="{Binding Main.CurrentViewModel.DoctorVisitHoursWDViewModel, Source={StaticResource Locator}}">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -19,14 +20,12 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="25"/>
             <RowDefinition Height="50" />
-            <RowDefinition Height="50" />
-            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
         <Label Grid.Column="0"
                Grid.ColumnSpan="2"
                Grid.Row="0" 
-               Content="Edycja godzin pracy lekarza"
+               Content="Podglad godzin pracy lekarza"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"/>
         <Label Grid.Column="0"
@@ -49,39 +48,11 @@
                  VerticalAlignment="Center"
             Text="{Binding EndHour}" />
 
-        <Label Grid.Column="0"
-               Grid.Row="3" Content="Nowa godzina rozpoczęcia:"/>
-        <ComboBox x:Name="comboBox"
-                  Grid.Column="1"
-                 Grid.Row="3"
-                  ItemsSource="{Binding StartHourList}"
-                  SelectedItem="{Binding StartHour}">
-
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="DropDownClosed">
-                    <i:InvokeCommandAction CommandParameter="{Binding SelectedItem, ElementName=comboBox}" 
-                                           Command="{Binding RefreshEndHoursCommand, Mode=OneWay}"/>
-
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-
-        </ComboBox>
-
-        <Label Grid.Column="0"
-               Grid.Row="4" Content="Nowa godzina zakonczenia:"/>
-        <ComboBox Grid.Column="1"
-                 Grid.Row="4"
-                  ItemsSource="{Binding EndHourList}"
-                 SelectedItem="{Binding EndHour}"/>
-        <Button Grid.Row="5"
-                Grid.Column="1"
+        <Button Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
                 Content="Zamknij"
                 Command="{Binding CloseCommand}"
-                CommandParameter="{Binding ElementName=windowDoctorVisitHours, Mode=OneWay}"/>
-        <Button Grid.Row="5"
-                Grid.Column="0"
-                Content="Zapisz"
-                Command="{Binding SaveCommand}"
                 CommandParameter="{Binding ElementName=windowDoctorVisitHours, Mode=OneWay}"/>
     </Grid>
 </Window>

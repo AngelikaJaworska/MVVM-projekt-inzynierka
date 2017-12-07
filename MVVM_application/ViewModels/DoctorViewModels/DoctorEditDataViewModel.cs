@@ -11,6 +11,9 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using System.Windows;
 using System.Collections.ObjectModel;
+using MVVM_application.Models.WindowDialogModels;
+using MVVM_application.ViewModels.WindowDialogViewModels;
+using MVVM_application.Views;
 
 namespace MVVM_application.ViewModels.DoctorViewModels
 {
@@ -18,6 +21,9 @@ namespace MVVM_application.ViewModels.DoctorViewModels
     {
         private readonly IManager _manager;
         private readonly DoctorEditDataModel _doctorEditDataModel;
+        
+        private EditDoctorVisitHoursWindowDialogModel _editDoctorVisitHoursWindowDialogModel;
+        public EditDoctorVisitHoursWindowDialogViewModel EditDoctorVisitHoursWDViewModel { get; set; }
 
         private Doctor _doctor;
 
@@ -112,6 +118,9 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             _phone = _doctorEditDataModel.GetDoctorPhone();
 
             SpecialisationtList = new ObservableCollection<string>(_doctorEditDataModel.FillSpecialisationList());
+
+            _editDoctorVisitHoursWindowDialogModel = new EditDoctorVisitHoursWindowDialogModel(_manager);
+            EditDoctorVisitHoursWDViewModel = new EditDoctorVisitHoursWindowDialogViewModel(_manager, _editDoctorVisitHoursWindowDialogModel);
         }
 
         private void SetData()
@@ -138,7 +147,8 @@ namespace MVVM_application.ViewModels.DoctorViewModels
 
         private void ExecuteEditVisitHoursCommand()
         {
-            MessageBox.Show("dziala! //todo");
+            EditDoctorVisitHourWindowDialog editDoctorVisitHoursWindowDialog = new EditDoctorVisitHourWindowDialog();
+            editDoctorVisitHoursWindowDialog.ShowDialog();
         }
     }
 }
