@@ -122,8 +122,10 @@
     <Compile Include="Models\PatientCardModels\SearchPatientModel.cs" />
     <Compile Include="Models\RegisterModels\AddNewPatientModel.cs" />
     <Compile Include="Models\RegisterModels\EditVisitModel.cs" />
+    <Compile Include="Models\WindowDialogModels\DoctorVisitHoursWindowDialogModel.cs" />
     <Compile Include="Models\WindowDialogModels\SearchDoctorWindowDialogModel.cs" />
     <Compile Include="Models\WindowDialogModels\SearchPatientWindowDialogModel.cs" />
+    <Compile Include="Models\WindowDialogModels\SearchVisitToEditWindowDialogModel.cs" />
     <Compile Include="Patient.cs">
       <DependentUpon>ClinicDataBase.tt</DependentUpon>
     </Compile>
@@ -162,6 +164,7 @@
     <Compile Include="ViewModels\WindowDialogViewModels\SearchDoctorWindowDialogViewModel.cs" />
     <Compile Include="ViewModels\WindowDialogViewModels\DoctorVisitHoursWindowDialogViewModel.cs" />
     <Compile Include="ViewModels\WindowDialogViewModels\SearchPatientWindowDialogViewModel.cs" />
+    <Compile Include="ViewModels\WindowDialogViewModels\SearchVisitToEditWindowDialogViewModel.cs" />
     <Compile Include="Views\DoctorViews\DoctorDailyVisitView.xaml.cs">
       <DependentUpon>DoctorDailyVisitView.xaml</DependentUpon>
     </Compile>
@@ -227,6 +230,9 @@
     </Compile>
     <Compile Include="Views\WindowDialogViews\SearchPatientWindowDialog.xaml.cs">
       <DependentUpon>SearchPatientWindowDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WindowDialogViews\SearchVisitToEditWindowDialog.xaml.cs">
+      <DependentUpon>SearchVisitToEditWindowDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Visits.cs">
       <DependentUpon>ClinicDataBase.tt</DependentUpon>
@@ -328,6 +334,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\WindowDialogViews\SearchPatientWindowDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WindowDialogViews\SearchVisitToEditWindowDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

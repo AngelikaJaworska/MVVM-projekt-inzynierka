@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVVM_application.Views"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:Custom="http://www.galasoft.ch/mvvmlight" x:Class="MVVM_application.Views.SearchPatientWindowDialog"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+    xmlns:Custom="http://www.galasoft.ch/mvvmlight" x:Class="MVVM_application.Views.SearchPatientWindowDialog"
         mc:Ignorable="d"
         x:Name="WindowSearchPatient"
         Title="SearchPatientWindowDialog"  Height="185" Width="300" DataContext="{DynamicResource Locator}">

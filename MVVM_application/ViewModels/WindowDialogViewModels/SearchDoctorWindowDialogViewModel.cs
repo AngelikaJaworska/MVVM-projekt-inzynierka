@@ -57,16 +57,24 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
         {
             _manager = manager;
             _addDoctorWindowDialogModel = addDoctorWindowDialogModel;
+            FillData();
+            InitialiseCommand();
+        }
+        private void FillData()
+        {
             _doctorNameList = new List<string>();
             this.SpecialisationtList = new ObservableCollection<string>(_addDoctorWindowDialogModel.FillSpecialisationList());
             this.DoctorList = new ObservableCollection<string>();
+        }
 
+        private void InitialiseCommand()
+        {
             SearchDoctorCommand = new RelayCommand<SearchDoctorWindowDialog>(ExecuteSearchDoctorCommand);
             SkipDoctorCommand = new RelayCommand<SearchDoctorWindowDialog>(ExecuteSkipDoctorCommand);
             CancelDoctorCommand = new RelayCommand<SearchDoctorWindowDialog>(ExecuteCancelDoctorCommand);
-            RefreshDoctorCommand = new RelayCommand<string>(RefreshDoctorsInfo);
+            RefreshDoctorCommand = new RelayCommand<string>(RefreshDoctorsInfo); 
         }
-
+        
         private void ExecuteSearchDoctorCommand(SearchDoctorWindowDialog windowSearchdoctor)
         {
             var doctor = _addDoctorWindowDialogModel.SearchDoctor(_specialisation, _doctor);

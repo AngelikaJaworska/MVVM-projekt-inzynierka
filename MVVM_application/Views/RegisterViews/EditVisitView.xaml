@@ -22,8 +22,6 @@
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
-        <uc:MainUserControl Grid.RowSpan="4" Grid.ColumnSpan="4" />
-        <uc:RegisterUserControl Grid.Row="1" Grid.ColumnSpan="4" />
 
         <Grid Grid.Row="2" Grid.ColumnSpan="4">
             <Grid.ColumnDefinitions>
@@ -46,52 +44,59 @@
 
             <TextBox Grid.Row="0"
                      Grid.Column="0"
-                     Width="200"
+                     Width="170"
                      HorizontalAlignment="Right" />
 
-            <Label Grid.Row="1"
-                   Grid.Column="0"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center"
-                   FontSize="14">
-                Specjalnosc
-            </Label>
-            <ComboBox Grid.Row="1"
-                      Grid.Column="0"
-                      Width="200"
-                      HorizontalAlignment="Right" />
-            <Label Grid.Row="2"
-                   Grid.Column="0"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center"
-                   FontSize="14">
-                Lekarz
-            </Label>
-            <ComboBox Grid.Row="3"
-                     Grid.Column="0"
-                     Width="200"
-                     HorizontalAlignment="Right" />
+          
             <Label Grid.Row="0"
                    Grid.Column="1"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
                    FontSize="14">
-                Data i godzina wizyty
+                Lekarz
+            </Label>
+            <ComboBox Grid.Row="0"
+                     Grid.Column="1"
+                     Width="200"
+                     HorizontalAlignment="Right" />
+            <Label Grid.Row="1"
+                   Grid.Column="0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   FontSize="14">
+                Termin wizyty
             </Label>
             <ComboBox Grid.Row="1"
-                      Grid.Column="1" />
-           
-            <Label Grid.Row="2"
+                      Grid.Column="0" 
+                      HorizontalAlignment="Right"
+                      Width="170"/>
+            <Label Grid.Row="1"
                    Grid.Column="1"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   FontSize="14">
+                Nowy termin wizyty
+            </Label>
+            <ComboBox Grid.Row="1"
+                      Grid.Column="1" 
+                      HorizontalAlignment="Right"
+                      Width="170"/>
+            <Label Grid.Row="2"
+                   Grid.Column="0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
                    FontSize="14">
                 Uwagi
             </Label>
             <TextBox Grid.Row="2"
-                     Grid.Column="1"
-                     Width="200"
+                     Grid.Column="0"
+                     Width="170"
                      HorizontalAlignment="Right" />
+
+            <Button Grid.Column="1"
+                    Grid.Row="2">
+                Odwolaj
+            </Button>
         </Grid>
         <Button Grid.Row="3"
                 Grid.Column="0"
@@ -103,5 +108,9 @@
                 Command="{Binding CancelCommand}">
             Anuluj
         </Button>
+
+
+        <uc:MainUserControl Grid.RowSpan="4" Grid.ColumnSpan="4" />
+        <uc:RegisterUserControl Grid.Row="1" Grid.ColumnSpan="4" />
     </Grid>
 </UserControl>

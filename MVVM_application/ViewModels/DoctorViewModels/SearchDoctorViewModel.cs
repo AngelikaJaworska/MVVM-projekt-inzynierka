@@ -12,6 +12,7 @@ using GalaSoft.MvvmLight.Command;
 using System.Windows;
 using MVVM_application.Views;
 using MVVM_application.ViewModels.WindowDialogViewModels;
+using MVVM_application.Models.WindowDialogModels;
 
 namespace MVVM_application.ViewModels.DoctorViewModels
 {
@@ -20,7 +21,7 @@ namespace MVVM_application.ViewModels.DoctorViewModels
         private readonly IManager _manager;
         private readonly SearchDoctorModel _searchDoctorModel;
 
-        //private readonly DoctorVisitHoursWindowDialogModel _doctorVisitHoursWindowDialogModel;
+        private DoctorVisitHoursWindowDialogModel _doctorVisitHoursWindowDialogModel;
         public DoctorVisitHoursWindowDialogViewModel DoctorVisitHoursWDViewModel { get; set; }
 
         private Doctor _doctor;
@@ -118,7 +119,8 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             }
 
             VisitHoursCommand = new RelayCommand(ExecuteVisitHoursCommand);
-            DoctorVisitHoursWDViewModel = new DoctorVisitHoursWindowDialogViewModel(_manager);
+            _doctorVisitHoursWindowDialogModel = new DoctorVisitHoursWindowDialogModel(_manager);
+            DoctorVisitHoursWDViewModel = new DoctorVisitHoursWindowDialogViewModel(_manager, _doctorVisitHoursWindowDialogModel);
         }
 
         private void ExecuteVisitHoursCommand()
