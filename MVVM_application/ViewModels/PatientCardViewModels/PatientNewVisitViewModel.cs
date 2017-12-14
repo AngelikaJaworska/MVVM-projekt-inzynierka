@@ -14,24 +14,23 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
     {
         private readonly IManager _manager;
         private readonly PatientNewVisitModel _patientNewVisitModel;
-
-        private Patient _patient;
+        
         private List<string> _doctorNameList;
         private List<DateTime> _visitDateList;
 
-        private string _nameAndSurname;
+        private string _patientName;
         private string _specialisationName;
         private string _doctorName;
         private string _visitDate;
         private string _comments;
 
-        public string NameAndSurname
+        public string PatientName
         {
-            get { return _nameAndSurname; }
+            get { return _patientName; }
             set
             {
-                _nameAndSurname = value;
-                RaisePropertyChanged("NameAndSurname");
+                _patientName = value;
+                RaisePropertyChanged("PatientName");
             }
         }
         public string SpecialisationName
@@ -71,12 +70,14 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
             }
         }
 
+        public ObservableCollection<string> PatientNameList { get; set; }
         public ObservableCollection<string> SpecialisationtNameList { get; set; }
         public ObservableCollection<string> DoctorNameList { get; set; }
         public ObservableCollection<DateTime> VisitDateList { get; set; }
 
         public ICommand SaveCommand { get; private set; }
         public ICommand CancelCommand { get; private set; }
+        public RelayCommand RefreshPatientCommand { get; private set; }
         public RelayCommand RefreshDoctorCommand { get; private set; }
         public RelayCommand RefreshVisitDateCommand { get; private set; }
 
@@ -84,9 +85,12 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
         {
             _manager = manager;
             _patientNewVisitModel = patientNewVisitModel;
-            _patient = _manager.GetPatient();
 
-            if(_patient != null)
+            if (_manager.GetPatientList() != null)
+            {
+                FillData();
+            }
+            else if (_manager.GetPatient() != null)
             {
                 FillData();
             }
@@ -96,7 +100,7 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
 
         private void FillData()
         {
-            _nameAndSurname = _patientNewVisitModel.GetPatientNameAndSurname();
+            PatientNameList = new ObservableCollection<string>(_patientNewVisitModel.FillPatientNameList());
             SpecialisationtNameList = new ObservableCollection<string>(_patientNewVisitModel.FillSpecialisationList());
             DoctorNameList = new ObservableCollection<string>();
             VisitDateList = new ObservableCollection<DateTime>();
@@ -108,13 +112,22 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
         {
             SaveCommand = new RelayCommand(ExecuteSaveCommand);
             CancelCommand = new RelayCommand(ExecuteCancelCommand);
+            RefreshPatientCommand = new RelayCommand(ExecuteRefreshPatientCommand);
             RefreshDoctorCommand = new RelayCommand(ExecuteRefreshDoctorCommand);
             RefreshVisitDateCommand = new RelayCommand(ExecuteRefreshVisitDateCommand);
         }
 
+        private void ExecuteRefreshPatientCommand()
+        {
+            if(_patientName != null)
+            {
+                _patientNewVisitModel.SetPatient(_patientName);
+            }
+        }
+
         private void ExecuteSaveCommand()
         {
-            if (_patientNewVisitModel.CreateVisitWithData(_nameAndSurname, _specialisationName, _doctorName, _visitDate, _comments))
+            if (_patientNewVisitModel.CreateVisitWithData(_patientName, _specialisationName, _doctorName, _visitDate, _comments))
             {
                 MessageBox.Show("Wizyta zapisana");
                 ClearLists();
@@ -161,6 +174,7 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
 
         private void ClearLists()
         {
+            this.PatientNameList.Clear();
             this.SpecialisationtNameList.Clear();
             this.DoctorNameList.Clear();
             this.VisitDateList.Clear();

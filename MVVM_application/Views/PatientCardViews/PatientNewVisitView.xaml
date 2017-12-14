@@ -44,12 +44,20 @@
                    VerticalAlignment="Center"
                    FontSize="14" Content="Pacjent"/>
 
-            <TextBox Grid.Row="0"
+            <ComboBox Grid.Row="0"
                      Grid.Column="0"
                      Width="200"
                      HorizontalAlignment="Right" 
-                     Text="{Binding NameAndSurname}"
-                     IsEnabled="False"/>
+                     ItemsSource="{Binding PatientNameList}"
+                     SelectedItem="{Binding PatientName}"
+                     SelectedValuePath="PatientName" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="DropDownClosed">
+                        <i:InvokeCommandAction CommandParameter="{Binding SelectedItem, ElementName=comboBox}" 
+                                           Command="{Binding RefreshPatientCommand, Mode=OneWay}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
 
             <Label Grid.Row="1"
                    Grid.Column="0"

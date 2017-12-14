@@ -19,7 +19,6 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
 
         private string _pesel;
         private string _patient;
-        private List<string> _patientNameList;
 
         public string Pesel
         {
@@ -30,7 +29,6 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
                 RaisePropertyChanged("Pesel");
             }
         }
-
         public string Patient
         {
             get { return _patient; }
@@ -41,43 +39,18 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
             }
         }
 
-        public ObservableCollection<string> PeselList { get; set; }
-        public ObservableCollection<string> PatientList { get; set; }
-
         private SearchPatientWindowDialogModel _searchPatientWindowDialogModel;
 
         public RelayCommand<SearchPatientWindowDialog> SearchPatientCommand { get; private set; }
-        public RelayCommand<SearchPatientWindowDialog> SkipPatientCommand { get; private set; }
         public RelayCommand<SearchPatientWindowDialog> CancelPatientCommand { get; private set; }
-        public RelayCommand<string> RefreshPatientCommand { get; private set; }
 
         public SearchPatientWindowDialogViewModel(IManager manager, SearchPatientWindowDialogModel searchPatientWindowDialogModel)
         {
             _manager = manager;
             _searchPatientWindowDialogModel = searchPatientWindowDialogModel;
-            _patientNameList = new List<string>();
-
-            this.PeselList = new ObservableCollection<string>(_searchPatientWindowDialogModel.FillPeselList());
-            this.PatientList = new ObservableCollection<string>();
 
             SearchPatientCommand = new RelayCommand<SearchPatientWindowDialog>(ExecuteSearchPatientCommand);
-            SkipPatientCommand = new RelayCommand<SearchPatientWindowDialog>(ExecuteSkipPatientCommand);
             CancelPatientCommand = new RelayCommand<SearchPatientWindowDialog>(ExecuteCancelPatientCommand);
-            RefreshPatientCommand = new RelayCommand<string>(ExecuteRefreshPatientCommand);
-        }
-
-        private void ExecuteRefreshPatientCommand(string pesel)
-        {
-            if (pesel != null)
-            {
-                _patientNameList.Clear();
-                _patientNameList = _searchPatientWindowDialogModel.FillPatientList(pesel);
-                this.PatientList.Clear();
-                for (int i = 0; i < _patientNameList.Count; i++)
-                {
-                    this.PatientList.Add(_patientNameList[i]);
-                }
-            }
         }
 
         private void ExecuteCancelPatientCommand(SearchPatientWindowDialog windowSearchPatient)
@@ -88,31 +61,55 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
 
         private void ExecuteSearchPatientCommand(SearchPatientWindowDialog windowSearchPatient)
         {
-            var patient = _searchPatientWindowDialogModel.SearchPatient(_pesel, _patient);
-            if (patient != null)
+            if(_pesel != null && _pesel != ""
+                && _patient != null && _patient != "")
             {
-                _manager.SetPatient(patient);
-                windowSearchPatient.DialogResult = true;
-                _manager.SetUnchangedView(false);
+                var patient = _searchPatientWindowDialogModel.SearchPatient(_pesel, _patient);
+                if (patient != null)
+                {
+                    _manager.SetPatient(patient);
+                    windowSearchPatient.DialogResult = true;
+                    _manager.SetUnchangedView(false);
+                }
+                else
+                {
+                    MessageBox.Show("Prosze, uzupelnic poprawnie wszystkie dane");
+                }
+            }
+            else if(_pesel != null && _pesel != "")
+            {
+                var patient = _searchPatientWindowDialogModel.SearchPatientByPesel(_pesel);
+                if (patient != null)
+                {
+                    _manager.SetPatient(patient);
+                    windowSearchPatient.DialogResult = true;
+                    _manager.SetUnchangedView(false);
+                }
+                else
+                {
+                    MessageBox.Show("Prosze, uzupelnic poprawnie dane");
+                }
+            }
+            else if(_patient != null && _patient != "")
+            {
+                var patientList = _searchPatientWindowDialogModel.SearchPatientBySurname(_patient);
+                if (patientList.Count > 0)
+                {
+                    _manager.SetPatientList(patientList);
+                    windowSearchPatient.DialogResult = true;
+                    _manager.SetUnchangedView(false);
+                }
+                else
+                {
+                    MessageBox.Show("Prosze, uzupelnic poprawnie dane");
+                }
             }
             else
             {
-                MessageBox.Show("Prosze, wybrać odpowiednie dane");
-            }
-        }
-
-        private void ExecuteSkipPatientCommand(SearchPatientWindowDialog windowSearchPatient)
-        {
-            if(_manager.GetPatient() != null)
-            {
-                windowSearchPatient.Close();
-                _manager.SetUnchangedView(false);
+                MessageBox.Show("Prosze, uzupelnic poprawnie wszystkie dane");
             }
 
-            else
-            {
-                MessageBox.Show("Prosze, wybrać najpierw pacjenta");
-            }
         }
+        
     }
 }

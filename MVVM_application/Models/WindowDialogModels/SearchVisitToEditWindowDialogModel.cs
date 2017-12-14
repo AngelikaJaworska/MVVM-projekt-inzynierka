@@ -13,30 +13,32 @@ namespace MVVM_application.Models
         private IManager _manager;
         private Clinic _database;
         private List<string> _doctorNameList;
+        private List<string> _specialisationList;
 
         public SearchVisitToEditWindowDialogModel(IManager manager)
         {
             _manager = manager;
             _database = _manager.GetDatabase();
+            _specialisationList = new List<string>();
             _doctorNameList = new List<string>();
         }
 
         public List<string> FillSpecialisationList()
         {
-            var specialisationList = _database.Specialisation
-                  .Select(s => s.Name)
-                  .ToList();
+            var doctorSpecialisationList = _database.Doctor
+                .Select(d => d.Specialisation.Name).ToList();
 
-            return specialisationList;
+            foreach (string specialisation in doctorSpecialisationList)
+            {
+                if (!_specialisationList.Contains(specialisation))
+                {
+                    _specialisationList.Add(specialisation);
+                }
+            }
+
+            return _specialisationList;
         }
-
-        public string SetPatient()
-        {
-            var _patient = _manager.GetPatient();
-            var _patientName = _patient.First_Name + " " + _patient.Last_Name;
-            return _patientName;
-        }
-
+        
         public List<string> FillDoctorList(string specialisation)
         {
             if (specialisation != null)
@@ -81,18 +83,30 @@ namespace MVVM_application.Models
             return null;
         }
 
-        public bool CheckIfAnyVisitExist(Doctor doctor, Patient patient)
+        public bool CheckIfAnyVisitExist(Doctor doctor, string patientPesel)
         {
-            var visit = _database.Visits
-                    .Where(v => (v.IDDoctor == doctor.IDDoctor)
-                    && (v.IDPatient == patient.IDPatient))
-                    .ToList();
-            if (visit.Count > 0)
+            try
             {
-                return true;
-            }
-            else return false;
+                var _patient = _database.Patient
+                .Where(p => p.PESEL.Equals(patientPesel))
+                .Single();
 
+                var visit = _database.Visits
+                   .Where(v => (v.IDDoctor == doctor.IDDoctor)
+                   && (v.IDPatient == _patient.IDPatient))
+                   .ToList();
+                if (visit.Count > 0)
+                {
+                    _manager.SetPatient(_patient);
+                    _manager.SetDoctor(doctor);
+                    return true;
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Szukany pacjent z wpisanym numerem pesel nie istnieje");
+            }
+            return false;
 
         }
     }

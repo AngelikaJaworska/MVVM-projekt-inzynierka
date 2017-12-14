@@ -16,8 +16,7 @@ namespace MVVM_application.ViewModels.UserControlsModel
         public SearchVisitToEditWindowDialogViewModel SearchVisitToEditWDViewModel { get; private set; }
 
         #region ICommand
-
-        public ICommand SearchPatientRegisterCommand { get; private set; }
+            
         public ICommand AddVisitCommand { get; private set; }
         public RelayCommand EditVisitCommand { get; private set; }
         public ICommand AddNewPatientCommand { get; private set; }
@@ -35,50 +34,34 @@ namespace MVVM_application.ViewModels.UserControlsModel
 
         public void InitialiseCommand()
         {
-            SearchPatientRegisterCommand = new RelayCommand(ExecuteSearchPatientRegisterCommand);
             AddVisitCommand = new RelayCommand(ExecuteAddVisitCommand);
             EditVisitCommand = new RelayCommand(ExecuteEditVisitCommand);
             AddNewPatientCommand = new RelayCommand(ExecuteAddNewPatientCommand);
         }
-
-        public void ExecuteSearchPatientRegisterCommand()
+        
+        public void ExecuteAddVisitCommand()
         {
             SearchPatientWindowDialog searchPatientWindowDialog = new SearchPatientWindowDialog();
             searchPatientWindowDialog.ShowDialog();
-            if (_manager.GetUnchangedView() == false)
-            {//ChangeView
-                _manager.RefreshAll(TypesOfViews.SearchPatientViewModel);
-            }
-        }
-
-        public void ExecuteAddVisitCommand()
-        {
-            if (_manager.GetPatient() != null)
+            if (_manager.GetPatient() != null && _manager.GetUnchangedView() == false)
             {
-                _manager.ChangeView(TypesOfViews.PatientNewVisitViewModel);
+                _manager.RefreshAll(TypesOfViews.PatientNewVisitViewModel);
             }
-            else
+            else if (_manager.GetPatientList() != null && _manager.GetUnchangedView() == false)
             {
-                MessageBox.Show("Nie wybrano pacjenta");
+                _manager.RefreshAll(TypesOfViews.PatientNewVisitViewModel);
             }
         }
 
         public void ExecuteEditVisitCommand()
         {
-            if (_manager.GetPatient() != null)
+            SearchVisitToEditWindowDialog searchVisitToEditWindowDialog = new SearchVisitToEditWindowDialog();
+            searchVisitToEditWindowDialog.ShowDialog();
+            if (_manager.GetUnchangedView() == false)
             {
-                SearchVisitToEditWindowDialog searchVisitToEditWindowDialog = new SearchVisitToEditWindowDialog();
-                searchVisitToEditWindowDialog.ShowDialog();
-                if (_manager.GetUnchangedView() == false)
-                {//ChangeView
-                    _manager.RefreshAll(TypesOfViews.EditVisitViewModel);
-                }
+                _manager.RefreshAll(TypesOfViews.EditVisitViewModel);
             }
-            else
-            {
-                MessageBox.Show("Nie wybrano pacjenta");
-            }
-           
+
         }
 
         public void ExecuteAddNewPatientCommand()

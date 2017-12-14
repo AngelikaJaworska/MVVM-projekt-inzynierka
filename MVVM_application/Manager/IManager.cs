@@ -24,6 +24,9 @@ namespace MVVM_application.Manager
         Patient GetPatient();
         void SetPatient(Patient patient);
 
+        List<Patient> GetPatientList();
+        void SetPatientList(List<Patient> patientList);
+
         void RefreshViewModel(TypesOfViews view);
         void RefreshAll(TypesOfViews view);
 

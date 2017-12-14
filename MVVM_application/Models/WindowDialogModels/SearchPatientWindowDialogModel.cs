@@ -12,67 +12,68 @@ namespace MVVM_application.Models.WindowDialogModels
     {
         private Clinic _database;
         private IManager _manager;
-        private List<string> _patientNameList;
 
         public SearchPatientWindowDialogModel(IManager manager)
         {
             _manager = manager;
             _database = _manager.GetDatabase();
-            _patientNameList = new List<string>();
         }
 
-        internal List<string> FillPeselList()
+        public Patient SearchPatient(string pesel, string patientSurname)
         {
-            var peselList = _database.Patient
-                .Select(p => p.PESEL)
-                .ToList();
-
-            return peselList;
-        }
-
-        public List<string> FillPatientList(string pesel)
-        {
-            if (pesel != null)
+            if (pesel != null && pesel != ""
+                && patientSurname != null && patientSurname != "")
             {
-                var _patientList = _database.Patient
-                    .Where(p => p.PESEL
-                    .Equals(pesel))
-                    .ToList();
-
-                foreach (Patient p in _patientList)
+                try
                 {
-                    _patientNameList.Add(p.First_Name + " " + p.Last_Name);
+                    var _patient = _database.Patient
+                         .Where(p =>
+                     (p.Last_Name
+                     .Equals(patientSurname)
+                     && (p.PESEL
+                     .Equals(pesel))))
+                     .Single();
+                    return _patient;
                 }
-
-            }
-            else
-            {
-                MessageBox.Show("Proszę wybrać pesel");
-            }
-
-            return _patientNameList;
-        }
-
-        public Patient SearchPatient(string pesel, string patientName)
-        {
-            if (pesel != null && patientName != null)
-            {
-                var _patientName = patientName.Split(' ');
-                var _patientFirstName = _patientName[0];
-                var _patientLastName = _patientName[1];
-
-                var _patient = _database.Patient
-                    .Where(p =>
-                (p.First_Name.Equals(_patientFirstName))
-                && (p.Last_Name
-                .Equals(_patientLastName)
-                && (p.PESEL
-                .Equals(pesel))))
-                .Single();
-                return _patient;
+                catch
+                {
+                    MessageBox.Show("Szukany pacjent nie istnieje");
+                }
             }
             return null;
 
+        }
+
+        public Patient SearchPatientByPesel(string pesel)
+        {
+            if (pesel != null && pesel != "")
+            {
+                try
+                {
+                    var _patient = _database.Patient
+                         .Where(p => p.PESEL.Equals(pesel))
+                     .Single();
+                    return _patient;
+                }
+                catch
+                {
+                    MessageBox.Show("Szukany pacjent z wpisanym numerem pesel nie istnieje");
+                }
+            }
+            return null;
+        }
+
+        internal List<Patient> SearchPatientBySurname(string patientSurname)
+        {
+            if(patientSurname != null && patientSurname != "")
+            {
+                var _patientList = _database.Patient
+                  .Where(p => p.Last_Name.Contains(patientSurname))
+                  .ToList();
+                return _patientList;
+               
+            }
+            return null;
         }
     }
 }

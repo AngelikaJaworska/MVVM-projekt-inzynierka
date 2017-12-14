@@ -17,20 +17,19 @@ namespace MVVM_application.ViewModels
     {
         private IManager _manager;
         private SearchVisitToEditWindowDialogModel _searchVisitToEditWindowDialogModel;
-
-        private Patient _patient;
-        private string _patientName;
+        
+        private string _patientPesel;
         private string _doctor;
         private string _specialisation;
         private List<string> _doctorNameList;
 
-        public string Patient
+        public string PatientPesel
         {
-            get { return _patientName; }
+            get { return _patientPesel; }
             set
             {
-                _patientName = value;
-                RaisePropertyChanged("Patient");
+                _patientPesel = value;
+                RaisePropertyChanged("PatientPesel");
             }
         }
         public string Doctor
@@ -63,17 +62,12 @@ namespace MVVM_application.ViewModels
         {
             _manager = manager;
             _searchVisitToEditWindowDialogModel = searchVisitToEditWindowDialogModel;
-            _patient = _manager.GetPatient();
-            if(_patient != null)
-            {
-                FillData();
-            }
+            FillData();
             InitialiseCommand();
         }
 
         private void FillData()
         {
-            _patientName = _searchVisitToEditWindowDialogModel.SetPatient();
             _doctorNameList = new List<string>();
             this.SpecialisationtList = new ObservableCollection<string>(_searchVisitToEditWindowDialogModel.FillSpecialisationList());
             this.DoctorList = new ObservableCollection<string>();
@@ -112,9 +106,8 @@ namespace MVVM_application.ViewModels
 
             if (doctor != null)
             {
-                if (_searchVisitToEditWindowDialogModel.CheckIfAnyVisitExist(doctor, _patient))
+                if (_searchVisitToEditWindowDialogModel.CheckIfAnyVisitExist(doctor, _patientPesel))
                 {
-                    _manager.SetDoctor(doctor);
                     windowEditVisit.DialogResult = true;
                     _manager.SetUnchangedView(false);
                 }

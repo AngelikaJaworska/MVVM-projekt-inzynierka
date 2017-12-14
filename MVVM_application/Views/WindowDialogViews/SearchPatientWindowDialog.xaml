@@ -8,10 +8,10 @@
     xmlns:Custom="http://www.galasoft.ch/mvvmlight" x:Class="MVVM_application.Views.SearchPatientWindowDialog"
         mc:Ignorable="d"
         x:Name="WindowSearchPatient"
-        Title="SearchPatientWindowDialog"  Height="185" Width="300" DataContext="{DynamicResource Locator}">
+        Title="SearchPatientWindowDialog"  Height="185" Width="400" DataContext="{DynamicResource Locator}">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="200" />
             <ColumnDefinition Width="100" />
             <ColumnDefinition Width="100" />
         </Grid.ColumnDefinitions>
@@ -24,37 +24,24 @@
         <Label Grid.Column="0"
                Grid.Row="0" 
                HorizontalContentAlignment="Center"
-               VerticalContentAlignment="Center" Content="PESEL"/>
-        <ComboBox x:Name="comboBox" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row ="0" 
-                   HorizontalContentAlignment="Center"
-                   VerticalContentAlignment="Center"
-                  ItemsSource="{Binding Main.PatientCardUCModel.SearchPatientWDViewModel.PeselList}"
-                  SelectedItem="{Binding Main.PatientCardUCModel.SearchPatientWDViewModel.Pesel}"
-                  SelectedValuePath="m" >
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="DropDownClosed">
-                    <i:InvokeCommandAction CommandParameter="{Binding SelectedItem, ElementName=comboBox}" 
-                                           Command="{Binding Main.PatientCardUCModel.SearchPatientWDViewModel.RefreshPatientCommand, Mode=OneWay}"/>
-
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-
-        </ComboBox>
-
+               VerticalContentAlignment="Center" Content="Wyszukaj po numerze pesel"/>
+        
         <Label Grid.Column="0"
                Grid.Row="1" 
                HorizontalContentAlignment="Center"
-               VerticalContentAlignment="Center" Content="Pacjent"/>
-        <ComboBox  Grid.ColumnSpan="2" Grid.Column="1" Grid.Row ="1" 
-                   HorizontalContentAlignment="Center"
-                   VerticalContentAlignment="Center"
-                  ItemsSource="{Binding Main.PatientCardUCModel.SearchPatientWDViewModel.PatientList}"
-                  SelectedItem="{Binding Main.PatientCardUCModel.SearchPatientWDViewModel.Patient}"
-                  SelectedValuePath="Patient"/>
-
-        <Button Grid.Column="0" Grid.Row ="2" Content="Pomin" 
-                Command="{Binding Main.PatientCardUCModel.SearchPatientWDViewModel.SkipPatientCommand}"  
-                CommandParameter="{Binding ElementName=WindowSearchPatient, Mode=OneWay}"/>
+               VerticalContentAlignment="Center" Content="Wyszukaj po nazwisku pacjenta"/>
+        
+        <TextBox Grid.Column="1"
+                 Grid.ColumnSpan="2"
+                 Grid.Row="0"
+                 VerticalAlignment="Center"
+                 Text="{Binding Main.PatientCardUCModel.SearchPatientWDViewModel.Pesel}"/>
+        
+        <TextBox Grid.Column="1"
+                 Grid.ColumnSpan="2"
+                 Grid.Row="1"
+                 VerticalAlignment="Center"
+                 Text="{Binding Main.PatientCardUCModel.SearchPatientWDViewModel.Patient}"/>
 
         <Button Grid.Column="1" Grid.Row ="2" Content="Wyszukaj" 
                 Command="{Binding Main.PatientCardUCModel.SearchPatientWDViewModel.SearchPatientCommand}"  

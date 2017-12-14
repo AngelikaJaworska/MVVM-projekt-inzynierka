@@ -17,6 +17,7 @@ using MVVM_application.Models;
 using MVVM_application.Models.DoctorModels;
 using MVVM_application.Models.PatientCardModels;
 using MVVM_application.Models.RegisterModels;
+using System.Collections.Generic;
 
 namespace MVVM_application.ViewModels
 {
@@ -27,6 +28,7 @@ namespace MVVM_application.ViewModels
         Receptionist _reception;
         Doctor _doctor;
         Patient _patient;
+        List<Patient> _patientList;
         //sprawdza czy zmienil sie widok czy nie
         bool _unchangedView;
 
@@ -302,6 +304,16 @@ namespace MVVM_application.ViewModels
         public void SetPatient(Patient patient)
         {
             _patient = patient;
+        }
+
+        public List<Patient> GetPatientList()
+        {
+            return _patientList;
+        }
+
+        public void SetPatientList(List<Patient> patientList)
+        {
+            _patientList = patientList;
         }
     }
 }
