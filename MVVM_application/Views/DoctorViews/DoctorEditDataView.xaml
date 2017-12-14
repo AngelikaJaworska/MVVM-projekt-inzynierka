@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:MVVM_application.Views"
             xmlns:uc="clr-namespace:MVVM_application.Views.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="600"
+             d:DesignHeight="330" d:DesignWidth="600"
              DataContext="{Binding Main.CurrentViewModel,
                                    Source={StaticResource Locator}}">
     <Grid>
@@ -21,8 +21,9 @@
             <RowDefinition Height="50" />
             <RowDefinition Height="150" />
             <RowDefinition Height="50" />
+            <RowDefinition Height="30" />
         </Grid.RowDefinitions>
-        <uc:MainUserControl Grid.RowSpan="4" Grid.ColumnSpan="4" />
+        <uc:MainUserControl Grid.RowSpan="5" Grid.ColumnSpan="4" />
         <uc:DoctorUserControl Grid.Row="1" Grid.ColumnSpan="4" />
         <Grid Grid.Row="2" Grid.ColumnSpan="4">
             <Grid.ColumnDefinitions>

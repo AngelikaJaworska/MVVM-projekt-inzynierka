@@ -150,7 +150,7 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             {
                 _doctorEditDataModel.DeleteDoctor();
                 MessageBox.Show("Lekarz zostal usuniety");
-                _manager.ChangeView(TypesOfViews.DoctorViewModel);
+                _manager.RefreshAll(TypesOfViews.DoctorViewModel);
             }
         }
 
@@ -158,6 +158,7 @@ namespace MVVM_application.ViewModels.DoctorViewModels
         {
             SetData();
             MessageBox.Show("Dane prawidlowo zmienione");
+            _manager.RefreshAll(TypesOfViews.SearchDoctorViewModel);
         }
 
         private void ExecuteEditVisitHoursCommand()

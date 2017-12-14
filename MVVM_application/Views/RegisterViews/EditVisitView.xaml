@@ -7,7 +7,8 @@
              xmlns:uc="clr-namespace:MVVM_application.Views.UserControls"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" x:Class="MVVM_application.Views.EditVisitView"
              DataContext="{Binding Main.CurrentViewModel, Source={StaticResource Locator}}"
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+             d:DesignHeight="330">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150" />
@@ -20,7 +21,9 @@
             <RowDefinition Height="50" />
             <RowDefinition Height="150" />
             <RowDefinition Height="50" />
+            <RowDefinition Height="30" />
         </Grid.RowDefinitions>
+        <uc:MainUserControl Grid.RowSpan="5" Grid.ColumnSpan="4" />
 
 
         <Grid Grid.Row="2" Grid.ColumnSpan="4">
@@ -114,7 +117,6 @@
                 Command="{Binding CancelCommand}" Content="Anuluj"/>
 
 
-        <uc:MainUserControl Grid.RowSpan="4" Grid.ColumnSpan="4" />
         <uc:RegisterUserControl Grid.Row="1" Grid.ColumnSpan="4" />
     </Grid>
 </UserControl>

@@ -10,6 +10,17 @@ namespace MVVM_application.ViewModels.UserControlsModel
     public class MainUCModel: ViewModelBase
     {
         private readonly IManager _manager;
+        private string _recepcionist;
+
+        public string Recepcionist
+        {
+            get { return _recepcionist; }
+            set
+            {
+                _recepcionist = value;
+                RaisePropertyChanged("Recepcionist");
+            }
+        }
 
         #region Command
 
@@ -25,7 +36,7 @@ namespace MVVM_application.ViewModels.UserControlsModel
         public MainUCModel(IManager manager)
         {
            _manager = manager;
-    
+            _recepcionist = "Zalogowany jako: "+ _manager.GetReceptionist().Login;
             InitiliseCommand();
         }
 
@@ -41,7 +52,7 @@ namespace MVVM_application.ViewModels.UserControlsModel
 
         public void ExecuteDailyCommand()
         {
-            _manager.ChangeView(TypesOfViews.DailyViewModel);
+            _manager.RefreshAll(TypesOfViews.DailyViewModel);
             
         }
 

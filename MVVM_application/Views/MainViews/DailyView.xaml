@@ -4,7 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:uc="clr-namespace:MVVM_application.Views.UserControls"
-             d:DesignHeight="300"
+             d:DesignHeight="330"
              d:DesignWidth="600"
              DataContext="{Binding Main.CurrentViewModel,
                                    Source={StaticResource Locator}}"
@@ -21,8 +21,9 @@
             <RowDefinition Height="50" />
             <RowDefinition Height="150" />
             <RowDefinition Height="50" />
+            <RowDefinition Height="30" />
         </Grid.RowDefinitions>
-        <uc:MainUserControl Grid.RowSpan="4" Grid.ColumnSpan="4" />
+        <uc:MainUserControl Grid.RowSpan="5" Grid.ColumnSpan="4" />
         <Label Grid.Row="1"
                Grid.Column="1"
                Grid.ColumnSpan="2"

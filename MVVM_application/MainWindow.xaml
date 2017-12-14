@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ViewModels="clr-namespace:MVVM_application.ViewModels" 
         x:Class="MVVM_application.MainWindow"
-        Title="MainWindow" 
         d:DesignHeight="400"
         d:DesignWidth="450"
         ResizeMode="NoResize"

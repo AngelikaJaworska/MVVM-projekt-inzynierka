@@ -7,7 +7,8 @@
              xmlns:uc="clr-namespace:MVVM_application.Views.UserControls"
              DataContext="{Binding Main.CurrentViewModel,
                                    Source={StaticResource Locator}}"
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+             d:DesignHeight="330">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150" />
@@ -20,8 +21,9 @@
             <RowDefinition Height="50" />
             <RowDefinition Height="150" />
             <RowDefinition Height="50" />
+            <RowDefinition Height="30" />
         </Grid.RowDefinitions>
-        <uc:MainUserControl Grid.RowSpan="4" Grid.ColumnSpan="4" />
+        <uc:MainUserControl Grid.RowSpan="5" Grid.ColumnSpan="4" />
         <uc:RegisterUserControl Grid.Row="1" Grid.ColumnSpan="4" />
         <Grid Grid.Row="2" Grid.ColumnSpan="4">
             <Grid.ColumnDefinitions>

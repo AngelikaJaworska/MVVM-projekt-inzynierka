@@ -4,7 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:MVVM_application.Views.UserControls"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DesignHeight="300"
+             d:DesignHeight="330"
              d:DesignWidth="600"
              DataContext="{Binding Main.MainUcModel,
                                    Source={StaticResource Locator}}"
@@ -21,6 +21,7 @@
             <RowDefinition Height="50" />
             <RowDefinition Height="150" />
             <RowDefinition Height="50" />
+            <RowDefinition Height="30" />
         </Grid.RowDefinitions>
 
         <Button Grid.Column="0" Command="{Binding DailyCommand}">
@@ -62,7 +63,11 @@
                 <TextBlock Text="Zakoncz program" />
             </WrapPanel>
         </Button>
-
+        <Label Grid.Column="0"
+               Grid.ColumnSpan="4"
+            Grid.Row="4"
+            Content="{Binding Recepcionist}"
+            />
 
     </Grid>
 </UserControl>

@@ -119,7 +119,7 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
             {
                 _patientEditDataModel.DeletePatient();
                 MessageBox.Show("Pacjent zostal wyrejestrowany");
-                _manager.ChangeView(TypesOfViews.PatientCardViewModel);
+                _manager.RefreshAll(TypesOfViews.PatientCardViewModel);
             }
         }
 
@@ -127,6 +127,7 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
         {
             SetData();
             MessageBox.Show("Dane prawidlowo zmienione");
+            _manager.RefreshAll(TypesOfViews.SearchPatientViewModel);
         }
 
         private void SetData()
