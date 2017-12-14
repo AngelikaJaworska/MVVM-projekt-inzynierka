@@ -98,7 +98,7 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
 
 
         public ICommand SaveCommand { get; private set; }
-        public ICommand CancelCommand { get; private set; }
+        public ICommand DeleteCommand { get; private set; }
 
         public PatientEditDataViewModel(IManager manager, PatientEditDataModel patientEditDataModel)
         {
@@ -110,13 +110,17 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
                 FillData();
             }
             SaveCommand = new RelayCommand(ExecuteSaveCommand);
-            CancelCommand = new RelayCommand(ExecuteCancelCommand);
+            DeleteCommand = new RelayCommand(ExecuteDeleteCommand);
         }
 
-        private void ExecuteCancelCommand()
+        private void ExecuteDeleteCommand()
         {
-            FillData();
-            MessageBox.Show("Anulowanie");
+            if(_patient != null)
+            {
+                _patientEditDataModel.DeletePatient();
+                MessageBox.Show("Pacjent zostal wyrejestrowany");
+                _manager.ChangeView(TypesOfViews.PatientCardViewModel);
+            }
         }
 
         private void ExecuteSaveCommand()

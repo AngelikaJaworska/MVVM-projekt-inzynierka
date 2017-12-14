@@ -25,20 +25,34 @@ namespace MVVM_application.Models.WindowDialogModels
 
         public string SetStartHour()
         {
-            var startHour = _database.Doctor
-                .Where(d => d.IDDoctor == _doctor.IDDoctor)
-                .Select(s => s.WorkStart)
-                .Single();
-            return startHour.ToString();
+            if(_doctor != null)
+            {
+                var startHour = _database.Doctor
+                    .Where(d => d.IDDoctor == _doctor.IDDoctor)
+                    .Select(s => s.WorkStart)
+                    .Single();
+                return startHour.ToString();
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public string SetEndHour()
         {
-            var endHour = _database.Doctor
+            if (_doctor != null)
+            {
+                var endHour = _database.Doctor
             .Where(d => d.IDDoctor == _doctor.IDDoctor)
             .Select(s => s.WorkEnd)
             .Single();
-            return endHour.ToString();
+                return endHour.ToString();
+            }
+            else
+            {
+                return null;
+            }
         }
         
     }

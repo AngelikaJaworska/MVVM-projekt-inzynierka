@@ -141,8 +141,8 @@
         </Button>
         <Button Grid.Row="3"
                 Grid.Column="3"
-                Command="{Binding CancelCommand}">
-            Anuluj
+                Command="{Binding DeleteCommand}">
+            Usun
         </Button>
     </Grid>
 </UserControl>

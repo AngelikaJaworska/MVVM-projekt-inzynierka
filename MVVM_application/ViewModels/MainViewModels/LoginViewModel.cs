@@ -47,7 +47,7 @@ namespace MVVM_application.ViewModels.MainViewModels
         public ICommand LoginCommand { get; private set; }
         public ICommand ExitCommand { get; private set; }
 
-          public LoginViewModel(IManager manager, LoginModel loginModel)
+        public LoginViewModel(IManager manager, LoginModel loginModel)
         {
             _manager = manager;
             _loginModel = loginModel;
@@ -60,7 +60,8 @@ namespace MVVM_application.ViewModels.MainViewModels
 
         private void ExecuteExitCommand()
         {
-            MessageBox.Show("TODO zamkniecie programu");
+            MessageBox.Show("Nastapi zamkniecie programu");
+            Application.Current.Shutdown();
         }
 
         private void ExecuteLoginViewCommand()

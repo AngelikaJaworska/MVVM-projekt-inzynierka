@@ -60,6 +60,8 @@
             Margin="126,39,74,41"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Command="{Binding ExitCommand, Mode=OneWay}" Grid.ColumnSpan="2" Content="Zakoncz" Grid.Column="1"/>
+            Command="{Binding ExitCommand, Mode=OneWay}" 
+            Grid.ColumnSpan="2" Content="Zakoncz" Grid.Column="1"/>
     </Grid>
+
 </UserControl>

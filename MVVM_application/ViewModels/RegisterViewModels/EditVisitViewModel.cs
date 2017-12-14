@@ -19,8 +19,8 @@ namespace MVVM_application.ViewModels.RegisterViewModels
 
         private string _patient;
         private string _doctor;
-        private string _visitDate;
-        private string _newVisitDate;
+        private DateTime _visitDate;
+        private DateTime _newVisitDate;
 
         public string Patient
         {
@@ -40,7 +40,7 @@ namespace MVVM_application.ViewModels.RegisterViewModels
                 RaisePropertyChanged("Doctor");
             }
         }
-        public string VisitDate
+        public DateTime VisitDate
         {
             get { return _visitDate; }
             set
@@ -49,7 +49,7 @@ namespace MVVM_application.ViewModels.RegisterViewModels
                 RaisePropertyChanged("VisitDate");
             }
         }
-        public string NewVisitDate
+        public DateTime NewVisitDate
         {
             get { return _newVisitDate; }
             set
@@ -101,6 +101,12 @@ namespace MVVM_application.ViewModels.RegisterViewModels
             {
                 _editVisitModel.DeleteVisit(_visitDate);
                 MessageBox.Show("Wizyta odwolana");
+                this.VisitDateList.Remove(_visitDate);
+                if (VisitDateList.Count == 0)
+                {
+                    MessageBox.Show("Brak kolejnych wizyt do edycji");
+                    _manager.ChangeView(TypesOfViews.PatientCardViewModel);
+                }
             }
             else
             {
@@ -124,8 +130,8 @@ namespace MVVM_application.ViewModels.RegisterViewModels
 
         private void ExecuteCancelCommand()
         {
-            FillData();
             MessageBox.Show("Anulowanie");
+            _manager.ChangeView(TypesOfViews.PatientCardViewModel);
         }
 
         private void ExecuteSaveCommand()
@@ -134,6 +140,14 @@ namespace MVVM_application.ViewModels.RegisterViewModels
             {
                 _editVisitModel.ChangeVisitDate(_visitDate, _newVisitDate);
                 MessageBox.Show("Wizyta edytowana");
+                this.VisitDateList.Remove(_visitDate);
+                this.NewVisitDateList.Add(_newVisitDate);
+
+                if(VisitDateList.Count == 0)
+                {
+                    MessageBox.Show("Brak kolejnych wizyt do edycji");
+                    _manager.ChangeView(TypesOfViews.PatientCardViewModel);
+                }
             }
             else
             {

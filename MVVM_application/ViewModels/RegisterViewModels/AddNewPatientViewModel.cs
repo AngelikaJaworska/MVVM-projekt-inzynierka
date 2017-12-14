@@ -114,6 +114,7 @@ namespace MVVM_application.ViewModels.RegisterViewModels
             {
                 MessageBox.Show("Pacjent zapisany");
                 SetBlankSpace();
+                _manager.RefreshAll(TypesOfViews.PatientCardViewModel);
             }
             else
             {

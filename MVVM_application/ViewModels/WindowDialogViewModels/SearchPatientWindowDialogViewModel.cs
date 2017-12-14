@@ -103,8 +103,16 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
 
         private void ExecuteSkipPatientCommand(SearchPatientWindowDialog windowSearchPatient)
         {
-            windowSearchPatient.Close();
-            _manager.SetUnchangedView(false);
+            if(_manager.GetPatient() != null)
+            {
+                windowSearchPatient.Close();
+                _manager.SetUnchangedView(false);
+            }
+
+            else
+            {
+                MessageBox.Show("Prosze, wybrać najpierw pacjenta");
+            }
         }
     }
 }

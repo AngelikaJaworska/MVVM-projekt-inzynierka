@@ -51,7 +51,7 @@ namespace MVVM_application.Models.RegisterModels
 
                 _database.Patient.Add(_patient);
                 _database.SaveChanges();
-
+                _manager.SetPatient(_patient);
                 return true;
             }
             else

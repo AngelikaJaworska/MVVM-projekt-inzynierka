@@ -128,6 +128,23 @@ namespace MVVM_application.Models.DoctorModels
             }
         }
 
-       
+        internal void DeleteDoctor()
+        {
+            if(_doctor != null)
+            {
+                var deleteVisits = _database.Visits
+                    .Where(d => d.IDDoctor == _doctor.IDDoctor)
+                    .ToList();
+
+                foreach(Visits v in deleteVisits)
+                {
+                    _database.Visits.Remove(v);
+                }
+
+                _manager.SetDoctor(null);
+                _database.Doctor.Remove(_doctor);
+                _database.SaveChanges();
+            }
+        }
     }
 }

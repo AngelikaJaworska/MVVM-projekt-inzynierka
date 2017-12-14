@@ -67,7 +67,8 @@ namespace MVVM_application.ViewModels.UserControlsModel
 
         public void ExecuteExitCommand()
         {
-            MessageBox.Show("TODO zamkniecie programu");
+            MessageBox.Show("Nastapi zamkniecie programu");
+            Application.Current.Shutdown();
         }
     }
 }

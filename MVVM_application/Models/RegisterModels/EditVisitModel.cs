@@ -58,7 +58,7 @@ namespace MVVM_application.Models.RegisterModels
 
         internal List<DateTime> FillNewVisitDateList(DateTime visit)
         {
-            foreach (DateTime day in EachDay(DateTime.Today, DateTime.Now.AddDays(4)))
+            foreach (DateTime day in EachDay(DateTime.Now, DateTime.Now.AddDays(4)))
             {
                 _visitList.Add(day);
             }
@@ -67,33 +67,32 @@ namespace MVVM_application.Models.RegisterModels
             return _visitList;
         }
 
-        internal void DeleteVisit(string _visitDate)
+        internal void DeleteVisit(DateTime _visitDate)
         {
-            string[] visitDate = _visitDate.Split(' ');
-            string date = visitDate[0].Replace('/', '-');
-            string time = visitDate[1];
-
             var visitList = _database.Visits.Where(v => (v.IDDoctor == _doctor.IDDoctor) 
             && (v.IDPatient == _patient.IDPatient)).ToList();
             foreach (Visits v in visitList)
             {
-                if (v.VisitDate.Date.ToShortDateString().Equals(date) && v.VisitDate.TimeOfDay.ToString().Equals(time))
-                {
-                    _database.Visits.Remove(v);
-                    _database.SaveChanges();
+                if (v.VisitDate.Date.Day.Equals(_visitDate.Day))
+               {
+                    if(v.VisitDate.TimeOfDay.Equals(_visitDate.TimeOfDay))
+                    {
+                        _database.Visits.Remove(v);
+                        _database.SaveChanges();
+                    }
                 }
             }
         }
 
-        internal void ChangeVisitDate(string _visitDate, string _newVisitDate)
+        internal void ChangeVisitDate(DateTime _visitDate, DateTime _newVisitDate)
         {
             var visitToChange = _database.Visits
-                .Where(v => (v.VisitDate == DateTime.Parse(_visitDate))
+                .Where(v => (v.VisitDate == _visitDate)
                 && (v.IDDoctor == _doctor.IDDoctor)
                 && (v.IDPatient == _patient.IDPatient))
                 .Single();
 
-            visitToChange.VisitDate = DateTime.Parse(_newVisitDate);
+            visitToChange.VisitDate = _newVisitDate;
             visitToChange.IdReceptionist = _manager.GetReceptionist().IDReceptionist;
             _database.SaveChanges();
         }

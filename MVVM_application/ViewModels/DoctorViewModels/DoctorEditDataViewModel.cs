@@ -102,7 +102,7 @@ namespace MVVM_application.ViewModels.DoctorViewModels
 
         public ICommand EditVisitHoursCommand { get; private set; }
         public ICommand SaveCommand { get; private set; }
-        public ICommand CancelCommand { get; private set; }
+        public ICommand DeleteCommand { get; private set; }
 
         public DoctorEditDataViewModel(IManager manager, DoctorEditDataModel doctorEditDataModel)
         {
@@ -115,7 +115,7 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             }
             EditVisitHoursCommand = new RelayCommand(ExecuteEditVisitHoursCommand);
             SaveCommand = new RelayCommand(ExecuteSaveCommand);
-            CancelCommand = new RelayCommand(ExecuteCancelCommand);
+            DeleteCommand = new RelayCommand(ExecuteDeleteCommand);
         }
 
         private void FillData()
@@ -144,10 +144,14 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             _doctorEditDataModel.SetDoctorPhone(_phone);
         }
 
-        private void ExecuteCancelCommand()
+        private void ExecuteDeleteCommand()
         {
-            FillData();
-            MessageBox.Show("Anulowanie");
+            if(_doctor != null)
+            {
+                _doctorEditDataModel.DeleteDoctor();
+                MessageBox.Show("Lekarz zostal usuniety");
+                _manager.ChangeView(TypesOfViews.DoctorViewModel);
+            }
         }
 
         private void ExecuteSaveCommand()

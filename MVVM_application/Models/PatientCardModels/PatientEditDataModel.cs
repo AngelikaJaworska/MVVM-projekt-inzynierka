@@ -130,6 +130,24 @@ namespace MVVM_application.Models.PatientCardModels
             }
         }
 
+        internal void DeletePatient()
+        {
+            if(_patient != null)
+            {
+              var deleteVisits = _database.Visits
+                    .Where(p => p.IDPatient == _patient.IDPatient)
+                    .ToList();
+                foreach(Visits v in deleteVisits)
+                {
+                    _database.Visits.Remove(v);
+                }
+
+                _manager.SetPatient(null);
+                _database.Patient.Remove(_patient);
+                _database.SaveChanges();
+            }
+        }
+
         public void SetPatientDateOfBirth(string _dateOfBirth)
         {
             if (_patient != null && _dateOfBirth != null && _dateOfBirth != "")

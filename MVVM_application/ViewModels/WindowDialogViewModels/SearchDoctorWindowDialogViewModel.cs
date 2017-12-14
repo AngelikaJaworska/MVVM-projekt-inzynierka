@@ -99,8 +99,15 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
 
         private void ExecuteSkipDoctorCommand(SearchDoctorWindowDialog windowSearchdoctor)
         {
-            windowSearchdoctor.Close();
-            _manager.SetUnchangedView(false);
+            if(_manager.GetDoctor() != null)
+            {
+                windowSearchdoctor.Close();
+                _manager.SetUnchangedView(false);
+            }
+            else
+            {
+                MessageBox.Show("Prosze, wybrać najpierw lekarza");
+            }
         }
 
         private void RefreshDoctorsInfo(string specialisation)
