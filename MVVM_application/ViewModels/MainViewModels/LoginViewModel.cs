@@ -70,7 +70,8 @@ namespace MVVM_application.ViewModels.MainViewModels
             if (reception != null)
             {
                 _manager.SetReceptionist(reception);
-                _manager.RefreshViewModel(TypesOfViews.DailyViewModel);
+                _manager.RefreshViewModel();
+                _manager.ChangeView(TypesOfViews.DailyViewModel);
             }
             else
             {

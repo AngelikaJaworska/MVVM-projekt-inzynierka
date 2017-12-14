@@ -242,12 +242,11 @@ namespace MVVM_application.ViewModels
             }
         }
 
-        public void RefreshViewModel(TypesOfViews view)
+        public void RefreshViewModel()
         {
             if (_reception.IDReceptionist != 0)
             {
                 InitialiseAllViewModels();
-                ChangeView(view);
             }
         }
 

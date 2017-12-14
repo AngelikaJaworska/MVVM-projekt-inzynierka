@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Command;
 using MVVM_application.Manager;
 using MVVM_application.Views;
 using MVVM_application.Models;
+using MVVM_application.Views.WindowDialogViews;
 
 namespace MVVM_application.ViewModels.UserControlsModel
 {
@@ -41,6 +42,8 @@ namespace MVVM_application.ViewModels.UserControlsModel
         
         public void ExecuteAddVisitCommand()
         {
+            _manager.SetPatient(null);
+            _manager.SetPatientList(null);
             SearchPatientWindowDialog searchPatientWindowDialog = new SearchPatientWindowDialog();
             searchPatientWindowDialog.ShowDialog();
             if (_manager.GetPatient() != null && _manager.GetUnchangedView() == false)
@@ -49,6 +52,9 @@ namespace MVVM_application.ViewModels.UserControlsModel
             }
             else if (_manager.GetPatientList() != null && _manager.GetUnchangedView() == false)
             {
+                _manager.RefreshViewModel();
+                PatientListWindowDialog patientListWindowDialog = new PatientListWindowDialog();
+                patientListWindowDialog.ShowDialog();
                 _manager.RefreshAll(TypesOfViews.PatientNewVisitViewModel);
             }
         }

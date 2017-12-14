@@ -14,6 +14,7 @@ namespace MVVM_application.ViewModels.UserControlsModel
     {
         private readonly IManager _manager;
         private readonly SearchPatientWindowDialogModel _searchPatientWindowDialogModel;
+        private readonly PatientListWindowDialogModel _patientListWindowDialogModel;
 
         #region ICommand
 
@@ -25,12 +26,16 @@ namespace MVVM_application.ViewModels.UserControlsModel
         #endregion ICommand
 
         public SearchPatientWindowDialogViewModel SearchPatientWDViewModel { get; private set; }
-        
+        public PatientListWindowDialogViewModel PatientListWDViewModel { get; private set; }
+
         public PatientCardUCModel(IManager manager)
         { 
             _manager = manager;
             _searchPatientWindowDialogModel = new SearchPatientWindowDialogModel(_manager);
             SearchPatientWDViewModel = new SearchPatientWindowDialogViewModel(_manager, _searchPatientWindowDialogModel);
+
+            _patientListWindowDialogModel = new PatientListWindowDialogModel(_manager);
+            PatientListWDViewModel = new PatientListWindowDialogViewModel(_manager, _patientListWindowDialogModel);
             InitialiseCommand();
         }
 
@@ -47,7 +52,7 @@ namespace MVVM_application.ViewModels.UserControlsModel
             SearchPatientWindowDialog searchPatientWindowDialog = new SearchPatientWindowDialog();
             searchPatientWindowDialog.ShowDialog();
             if(_manager.GetUnchangedView() == false)
-            {//ChangeView
+            {
                 _manager.RefreshAll(TypesOfViews.SearchPatientViewModel);
             }
         }

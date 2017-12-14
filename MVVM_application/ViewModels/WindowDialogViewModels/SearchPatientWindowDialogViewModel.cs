@@ -48,7 +48,11 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
         {
             _manager = manager;
             _searchPatientWindowDialogModel = searchPatientWindowDialogModel;
+            InitialiseCommand();
+        }
 
+        public void InitialiseCommand()
+        {
             SearchPatientCommand = new RelayCommand<SearchPatientWindowDialog>(ExecuteSearchPatientCommand);
             CancelPatientCommand = new RelayCommand<SearchPatientWindowDialog>(ExecuteCancelPatientCommand);
         }

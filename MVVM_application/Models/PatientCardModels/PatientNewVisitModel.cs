@@ -95,6 +95,13 @@ namespace MVVM_application.Models.PatientCardModels
              }
             return _visitDateList;
         }
+
+        internal string SetPatientName()
+        {
+            var patient = _manager.GetPatient().First_Name.ToString() + " " + _manager.GetPatient().Last_Name.ToString() + "," + _manager.GetPatient().PESEL;
+            return patient;
+        }
+
         public IEnumerable<DateTime> EachDay(DateTime start, DateTime end)
         {
             for (var day = start.Date; day.Date <= end.Date; day = day.AddMinutes(30))
@@ -108,7 +115,14 @@ namespace MVVM_application.Models.PatientCardModels
 
         public List<string> FillPatientNameList()
         {
-            if(_manager.GetPatientList() != null)
+            _patientNameList.Clear();
+
+            if (_manager.GetPatient() != null)
+            {
+                var patient = _manager.GetPatient();
+                _patientNameList.Add(patient.First_Name + " " + patient.Last_Name + "," + patient.PESEL);
+            }
+            else if (_manager.GetPatientList() != null)
             {
                 var patientList = _manager.GetPatientList();
                 foreach (Patient p in patientList)
@@ -116,12 +130,6 @@ namespace MVVM_application.Models.PatientCardModels
                     _patientNameList.Add(p.First_Name + " " + p.Last_Name + "," + p.PESEL);
                 }
             }
-            if (_manager.GetPatient() != null)
-            {
-                var patient = _manager.GetPatient();
-                _patientNameList.Add(patient.First_Name + " " + patient.Last_Name + "," + patient.PESEL);
-            }
-            
             return _patientNameList;
         }
 
@@ -174,19 +182,7 @@ namespace MVVM_application.Models.PatientCardModels
 
 
         }
-
-        internal void SetPatient(string _patientName)
-        {
-            var patient = _patientName.Split(',');
-            var pesel = patient[1];
-
-            var patientToSet = _database.Patient
-                .Where(p => p.PESEL.Equals(pesel))
-                .Single();
-            _manager.SetPatient(patientToSet);
-
-        }
-
+        
         internal bool CreateVisitWithData(string nameAndSurname, string specialisationName, 
             string doctorName, string visitDate, string comments)
         {

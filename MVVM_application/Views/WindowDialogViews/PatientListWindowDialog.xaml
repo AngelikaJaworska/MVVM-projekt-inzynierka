@@ -1,0 +1,46 @@
+﻿<Window x:Class="MVVM_application.Views.WindowDialogViews.PatientListWindowDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVVM_application.Views"
+        mc:Ignorable="d"
+        Title="PatientListWindowDialog" x:Name="WindowPatientList"
+         Height="285" Width="400" DataContext="{DynamicResource Locator}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="200" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <ListView x:Name="listView"
+                  Grid.Row="0"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="2"
+                  Width="400"
+                  Height="170"
+                  VerticalAlignment="Top"
+                  ItemsSource="{Binding Main.PatientCardUCModel.PatientListWDViewModel.PatientList}" 
+                  SelectedItem="{Binding Main.PatientCardUCModel.PatientListWDViewModel.Patient, Mode=TwoWay}">
+
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="199" DisplayMemberBinding="{Binding Patient}">Imie i nazwisko pacjenta</GridViewColumn>
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding Pesel}">Pesel</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button Grid.Column="0" Grid.Row ="1" Content="Wybierz" 
+                Command="{Binding Main.PatientCardUCModel.PatientListWDViewModel.GetPatientFromListCommand}"  
+                CommandParameter="{Binding ElementName=WindowPatientList, Mode=OneWay}"/>
+
+        <Button Grid.Column="1" Grid.Row ="1" Content="Anuluj" 
+                Command="{Binding Main.PatientCardUCModel.PatientListWDViewModel.CancelCommand}" 
+                CommandParameter="{Binding ElementName=WindowPatientList, Mode=OneWay}"/>
+    </Grid>
+</Window>

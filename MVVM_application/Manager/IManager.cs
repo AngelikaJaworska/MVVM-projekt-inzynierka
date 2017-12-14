@@ -27,7 +27,7 @@ namespace MVVM_application.Manager
         List<Patient> GetPatientList();
         void SetPatientList(List<Patient> patientList);
 
-        void RefreshViewModel(TypesOfViews view);
+        void RefreshViewModel();
         void RefreshAll(TypesOfViews view);
 
         void SetUnchangedView(bool unchangedView);

@@ -15,6 +15,18 @@ namespace MVVM_application.ViewModels.MainViewModels
         
         private Receptionist _receptionist;
 
+        //private VisitManager _visitManagerObject;
+        //public VisitManager VisitManagerObject
+        //{
+        //    get { return _visitManagerObject; }
+        //    set
+        //    {
+        //        _visitManagerObject = value;
+        //        RaisePropertyChanged("VisitManagerObject");
+        //    }
+        //}
+
+
         private ObservableCollection<VisitManager> _todayVisitsList;
         public ObservableCollection<VisitManager> TodayVisitsList
         {

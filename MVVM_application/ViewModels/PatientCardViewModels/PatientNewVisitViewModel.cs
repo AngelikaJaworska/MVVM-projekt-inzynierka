@@ -69,15 +69,13 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
                 RaisePropertyChanged("Comments");
             }
         }
-
-        public ObservableCollection<string> PatientNameList { get; set; }
+        
         public ObservableCollection<string> SpecialisationtNameList { get; set; }
         public ObservableCollection<string> DoctorNameList { get; set; }
         public ObservableCollection<DateTime> VisitDateList { get; set; }
 
         public ICommand SaveCommand { get; private set; }
         public ICommand CancelCommand { get; private set; }
-        public RelayCommand RefreshPatientCommand { get; private set; }
         public RelayCommand RefreshDoctorCommand { get; private set; }
         public RelayCommand RefreshVisitDateCommand { get; private set; }
 
@@ -85,14 +83,11 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
         {
             _manager = manager;
             _patientNewVisitModel = patientNewVisitModel;
+            FillData();
 
-            if (_manager.GetPatientList() != null)
+            if (_manager.GetPatient() != null)
             {
-                FillData();
-            }
-            else if (_manager.GetPatient() != null)
-            {
-                FillData();
+                _patientName = _patientNewVisitModel.SetPatientName();
             }
 
             InitialiseCommand();
@@ -100,7 +95,6 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
 
         private void FillData()
         {
-            PatientNameList = new ObservableCollection<string>(_patientNewVisitModel.FillPatientNameList());
             SpecialisationtNameList = new ObservableCollection<string>(_patientNewVisitModel.FillSpecialisationList());
             DoctorNameList = new ObservableCollection<string>();
             VisitDateList = new ObservableCollection<DateTime>();
@@ -112,19 +106,10 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
         {
             SaveCommand = new RelayCommand(ExecuteSaveCommand);
             CancelCommand = new RelayCommand(ExecuteCancelCommand);
-            RefreshPatientCommand = new RelayCommand(ExecuteRefreshPatientCommand);
             RefreshDoctorCommand = new RelayCommand(ExecuteRefreshDoctorCommand);
             RefreshVisitDateCommand = new RelayCommand(ExecuteRefreshVisitDateCommand);
         }
-
-        private void ExecuteRefreshPatientCommand()
-        {
-            if(_patientName != null)
-            {
-                _patientNewVisitModel.SetPatient(_patientName);
-            }
-        }
-
+        
         private void ExecuteSaveCommand()
         {
             if (_patientNewVisitModel.CreateVisitWithData(_patientName, _specialisationName, _doctorName, _visitDate, _comments))
@@ -174,7 +159,7 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
 
         private void ClearLists()
         {
-            this.PatientNameList.Clear();
+           // this.PatientNameList.Clear();
             this.SpecialisationtNameList.Clear();
             this.DoctorNameList.Clear();
             this.VisitDateList.Clear();

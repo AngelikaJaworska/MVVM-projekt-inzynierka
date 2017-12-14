@@ -12,8 +12,7 @@ namespace MVVM_application.ViewModels.RegisterViewModels
     {
         private readonly IManager _manager;
         private readonly AddNewPatientModel _addNewPatientModel;
-
-        //private Patient _patient;
+        
         private string _name;
         private string _surname;
         private string _street;
@@ -103,7 +102,6 @@ namespace MVVM_application.ViewModels.RegisterViewModels
         {
             _manager = manager;
             _addNewPatientModel = addNewPatientModel;
-            //_patient = _manager.GetPatient();
 
             SaveCommand = new RelayCommand(ExecuteSaveCommand);
             CancelCommand = new RelayCommand(ExecuteCancelCommand);
@@ -113,7 +111,6 @@ namespace MVVM_application.ViewModels.RegisterViewModels
            if(_addNewPatientModel.CreatePatientCard(_name, _surname, _dateOfBirth, _street, _homeNr, _city, _phone, _pesel))
             {
                 MessageBox.Show("Pacjent zapisany");
-                SetBlankSpace();
                 _manager.RefreshAll(TypesOfViews.PatientCardViewModel);
             }
             else
@@ -125,19 +122,8 @@ namespace MVVM_application.ViewModels.RegisterViewModels
         private void ExecuteCancelCommand()
         {
             MessageBox.Show("Anulowanie");
-            SetBlankSpace();
+            _manager.ChangeView(TypesOfViews.RegisterViewModel);
         }
-
-        private void SetBlankSpace()
-        {
-            _name = "";
-            _surname = "";
-            _dateOfBirth = "";
-            _street = "";
-            _homeNr = "";
-            _city = "";
-            _phone = "";
-            _pesel = "";
-        }
+        
     }
 }
