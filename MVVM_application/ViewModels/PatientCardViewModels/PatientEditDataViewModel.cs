@@ -99,6 +99,7 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
 
         public ICommand SaveCommand { get; private set; }
         public ICommand DeleteCommand { get; private set; }
+        public ICommand GoBackCommand { get; private set; }
 
         public PatientEditDataViewModel(IManager manager, PatientEditDataModel patientEditDataModel)
         {
@@ -111,6 +112,12 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
             }
             SaveCommand = new RelayCommand(ExecuteSaveCommand);
             DeleteCommand = new RelayCommand(ExecuteDeleteCommand);
+            GoBackCommand = new RelayCommand(ExecuteGoBackCommand);
+        }
+
+        private void ExecuteGoBackCommand()
+        {
+            _manager.ChangeView(TypesOfViews.SearchPatientViewModel);
         }
 
         private void ExecuteDeleteCommand()

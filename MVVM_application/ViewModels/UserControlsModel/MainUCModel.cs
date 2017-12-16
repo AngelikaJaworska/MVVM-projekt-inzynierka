@@ -4,6 +4,8 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
 using MVVM_application.Manager;
+using MVVM_application.Views;
+using MVVM_application.ViewModels.WindowDialogViewModels;
 
 namespace MVVM_application.ViewModels.UserControlsModel
 {
@@ -22,14 +24,15 @@ namespace MVVM_application.ViewModels.UserControlsModel
             }
         }
 
+        //public ExitWindowDialogViewModel ExitWDViewModel { get; private set; }
         #region Command
 
-        public ICommand DailyCommand { get; private set; }
-        public ICommand RegisterCommand { get; private set; }
-        public ICommand PatientCardCommand { get; private set; }
-        public ICommand DoctorCommand { get; private set; }
-        public ICommand LogoutCommand { get; private set; }
-        public ICommand ExitCommand { get; private set; }
+        public RelayCommand DailyCommand { get; private set; }
+        public RelayCommand RegisterCommand { get; private set; }
+        public RelayCommand PatientCardCommand { get; private set; }
+        public RelayCommand DoctorCommand { get; private set; }
+        public RelayCommand LogoutCommand { get; private set; }
+        public RelayCommand ExitCommand { get; private set; }
 
         #endregion 
         
@@ -37,6 +40,8 @@ namespace MVVM_application.ViewModels.UserControlsModel
         {
            _manager = manager;
             _recepcionist = "Zalogowany jako: "+ _manager.GetReceptionist().Login;
+
+            //ExitWDViewModel = new ExitWindowDialogViewModel();
             InitiliseCommand();
         }
 
@@ -78,8 +83,9 @@ namespace MVVM_application.ViewModels.UserControlsModel
 
         public void ExecuteExitCommand()
         {
-            MessageBox.Show("Nastapi zamkniecie programu");
             Application.Current.Shutdown();
+            //ExitWindowDialog exitWindowDialog = new ExitWindowDialog();
+            //exitWindowDialog.ShowDialog();
         }
     }
 }

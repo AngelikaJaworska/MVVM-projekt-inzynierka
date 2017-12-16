@@ -34,7 +34,8 @@
                   Width="600"
                   Height="150"
                   VerticalAlignment="Bottom"
-                  ItemsSource="{Binding PatientVisitsList}">
+                  ItemsSource="{Binding PatientVisitsList}"
+                  SelectedItem="{Binding VisitManagerObject, Mode=TwoWay}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="200" DisplayMemberBinding="{Binding Specialisation}">Wizita do specjalisty</GridViewColumn>
@@ -43,5 +44,14 @@
                 </GridView>
             </ListView.View>
         </ListView>
+
+
+        <Button Grid.Row="3"
+                Grid.ColumnSpan="2"
+                Grid.Column="1"
+                Command="{Binding ShowVisitCommand}">
+            Podglad
+        </Button>
+
     </Grid>
 </UserControl>

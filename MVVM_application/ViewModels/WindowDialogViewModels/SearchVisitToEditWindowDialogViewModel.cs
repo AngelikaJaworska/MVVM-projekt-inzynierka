@@ -68,6 +68,10 @@ namespace MVVM_application.ViewModels
 
         private void FillData()
         {
+            if(_manager.GetPatient() != null)
+            {
+                _patientPesel = _searchVisitToEditWindowDialogModel.SetPatientPesel();
+            } 
             _doctorNameList = new List<string>();
             this.SpecialisationtList = new ObservableCollection<string>(_searchVisitToEditWindowDialogModel.FillSpecialisationList());
             this.DoctorList = new ObservableCollection<string>();

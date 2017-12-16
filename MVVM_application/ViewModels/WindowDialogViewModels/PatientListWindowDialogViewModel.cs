@@ -4,12 +4,7 @@ using MVVM_application.Manager;
 using MVVM_application.Models.Manager;
 using MVVM_application.Models.WindowDialogModels;
 using MVVM_application.Views.WindowDialogViews;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace MVVM_application.ViewModels.WindowDialogViewModels
@@ -72,6 +67,7 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
             if(_patient != null)
             {
                 _patientListWindowDialogModel.SetPatientFromList(_patient);
+                _manager.SetUnchangedView(false);
                 windowPatientList.DialogResult = true;
             }
             else

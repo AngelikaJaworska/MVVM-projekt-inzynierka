@@ -39,7 +39,7 @@ namespace MVVM_application.Models.MainModels
 
         private VisitManager CreateNewTodayVisit(Visits visit)
         {
-            var patientInfo = visit.Patient.First_Name.ToString() + " " + visit.Patient.Last_Name.ToString();
+            var patientInfo = visit.Patient.First_Name.ToString() + " " + visit.Patient.Last_Name.ToString()+" " + visit.Patient.PESEL;
             var specialisation = visit.Doctor.Specialisation.Name.ToString();
             var doctorInfo = visit.Doctor.First_Name.ToString() + " " + visit.Doctor.Last_Name.ToString();
             var timeOfDay = visit.VisitDate.TimeOfDay.ToString();

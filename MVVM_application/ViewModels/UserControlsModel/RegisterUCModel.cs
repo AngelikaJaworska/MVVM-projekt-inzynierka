@@ -15,14 +15,11 @@ namespace MVVM_application.ViewModels.UserControlsModel
         private readonly IManager _manager;
         private readonly SearchVisitToEditWindowDialogModel _searchVisitToEditWindowDialogModel;
         public SearchVisitToEditWindowDialogViewModel SearchVisitToEditWDViewModel { get; private set; }
-
-        #region ICommand
-            
-        public ICommand AddVisitCommand { get; private set; }
+                    
+        public RelayCommand AddVisitCommand { get; private set; }
         public RelayCommand EditVisitCommand { get; private set; }
-        public ICommand AddNewPatientCommand { get; private set; }
-
-        #endregion ICommand
+        public RelayCommand AddNewPatientCommand { get; private set; }
+        
         
         public RegisterUCModel(IManager manager)
         {
@@ -55,7 +52,10 @@ namespace MVVM_application.ViewModels.UserControlsModel
                 _manager.RefreshViewModel();
                 PatientListWindowDialog patientListWindowDialog = new PatientListWindowDialog();
                 patientListWindowDialog.ShowDialog();
-                _manager.RefreshAll(TypesOfViews.PatientNewVisitViewModel);
+                if (_manager.GetUnchangedView() == false)
+                {
+                    _manager.RefreshAll(TypesOfViews.PatientNewVisitViewModel);
+                }
             }
         }
 
@@ -63,11 +63,10 @@ namespace MVVM_application.ViewModels.UserControlsModel
         {
             SearchVisitToEditWindowDialog searchVisitToEditWindowDialog = new SearchVisitToEditWindowDialog();
             searchVisitToEditWindowDialog.ShowDialog();
-            if (_manager.GetUnchangedView() == false)
+            if (_manager.GetPatient() != null && _manager.GetUnchangedView() == false)
             {
                 _manager.RefreshAll(TypesOfViews.EditVisitViewModel);
             }
-
         }
 
         public void ExecuteAddNewPatientCommand()

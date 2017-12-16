@@ -1,18 +1,13 @@
 ﻿using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Collections.ObjectModel;
-using MVVM_application.Models;
-using System.ComponentModel;
+
 using MVVM_application.Manager;
-using MVVM_application.Models.Manager;
 using MVVM_application.Models.MainModels;
+using MVVM_application.Views;
+using MVVM_application.ViewModels.WindowDialogViewModels;
 
 namespace MVVM_application.ViewModels.MainViewModels
 {
@@ -43,6 +38,7 @@ namespace MVVM_application.ViewModels.MainViewModels
             }
         }
         public ObservableCollection<Receptionist> ReceptionistList { get; set; }
+        
 
         public ICommand LoginCommand { get; private set; }
         public ICommand ExitCommand { get; private set; }
@@ -53,15 +49,16 @@ namespace MVVM_application.ViewModels.MainViewModels
             _loginModel = loginModel;
 
             this.ReceptionistList = new ObservableCollection<Receptionist>(_loginModel.FillReceptionsList());
-
+            
             LoginCommand = new RelayCommand(ExecuteLoginViewCommand);
             ExitCommand = new RelayCommand(ExecuteExitCommand);
         }
 
         private void ExecuteExitCommand()
         {
-            MessageBox.Show("Nastapi zamkniecie programu");
             Application.Current.Shutdown();
+            //ExitWindowDialog exitWindowDialog = new ExitWindowDialog();
+            //exitWindowDialog.ShowDialog();
         }
 
         private void ExecuteLoginViewCommand()

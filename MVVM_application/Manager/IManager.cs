@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using MVVM_application.Models.Manager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,5 +33,8 @@ namespace MVVM_application.Manager
 
         void SetUnchangedView(bool unchangedView);
         bool GetUnchangedView();
+
+        VisitManager GetVisitManager();
+        void SetVisitManager(VisitManager visitManager);
     }
 }

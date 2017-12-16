@@ -52,5 +52,11 @@
                 </GridView>
             </ListView.View>
         </ListView>
+
+        <Button Grid.Row="3"
+                Grid.Column="0"
+                Command="{Binding ShowVisitCommand}">
+            Podglad
+        </Button>
     </Grid>
 </UserControl>

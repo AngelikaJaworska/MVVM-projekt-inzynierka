@@ -13,9 +13,12 @@
             <ColumnDefinition Width="200" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+
             <RowDefinition Height="200" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
+
+     
 
         <ListView x:Name="listView"
                   Grid.Row="0"

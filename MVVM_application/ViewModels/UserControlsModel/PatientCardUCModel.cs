@@ -7,6 +7,7 @@ using MVVM_application.Manager;
 using MVVM_application.Models.WindowDialogModels;
 using MVVM_application.ViewModels.WindowDialogViewModels;
 using MVVM_application.Views;
+using MVVM_application.Views.WindowDialogViews;
 
 namespace MVVM_application.ViewModels.UserControlsModel
 {
@@ -15,18 +16,16 @@ namespace MVVM_application.ViewModels.UserControlsModel
         private readonly IManager _manager;
         private readonly SearchPatientWindowDialogModel _searchPatientWindowDialogModel;
         private readonly PatientListWindowDialogModel _patientListWindowDialogModel;
+        public SearchPatientWindowDialogViewModel SearchPatientWDViewModel { get; private set; }
+        public PatientListWindowDialogViewModel PatientListWDViewModel { get; private set; }
 
         #region ICommand
 
         public ICommand SearchPatientCommand { get; private set; }
-        public ICommand PatientNewVisitCommand { get; private set; }
         public ICommand PatientVisitCommand { get; private set; }
-        public ICommand PatientEditDataCommand { get; private set; }
 
         #endregion ICommand
 
-        public SearchPatientWindowDialogViewModel SearchPatientWDViewModel { get; private set; }
-        public PatientListWindowDialogViewModel PatientListWDViewModel { get; private set; }
 
         public PatientCardUCModel(IManager manager)
         { 
@@ -42,48 +41,55 @@ namespace MVVM_application.ViewModels.UserControlsModel
         public void InitialiseCommand()
         {
             SearchPatientCommand = new RelayCommand(ExecuteSearchPatientCommand);
-            PatientNewVisitCommand = new RelayCommand(ExecutePatientNewVisitCommand);
             PatientVisitCommand = new RelayCommand(ExecutePatientVisitCommand);
-            PatientEditDataCommand = new RelayCommand(ExecutePatientEditDataCommand);
         }
 
         public void ExecuteSearchPatientCommand()
         {
-            SearchPatientWindowDialog searchPatientWindowDialog = new SearchPatientWindowDialog();
-            searchPatientWindowDialog.ShowDialog();
-            if(_manager.GetUnchangedView() == false)
-            {
-                _manager.RefreshAll(TypesOfViews.SearchPatientViewModel);
-            }
+            SearchPatient(TypesOfViews.SearchPatientViewModel);
         }
 
-        public void ExecutePatientNewVisitCommand()
+        public void ExecutePatientVisitCommand()
         {
-            if(_manager.GetPatient() != null)
+            if (_manager.GetPatient() != null)
             {
-                _manager.ChangeView(TypesOfViews.PatientNewVisitViewModel);
+                _manager.ChangeView(TypesOfViews.PatientVisitViewModel);
             }
             else
             {
                 MessageBox.Show("Nie wybrano pacjenta");
             }
+        }
+        
+        
+        public void SearchPatient(TypesOfViews typeOfView)
+        {
+            _manager.SetPatient(null);
+            _manager.SetPatientList(null);
 
-        }
-        public void ExecutePatientVisitCommand()
-        {
-            _manager.ChangeView(TypesOfViews.PatientVisitViewModel);
-        }
-        public void ExecutePatientEditDataCommand()
-        {
-            if (_manager.GetPatient() != null)
+            SearchPatientWindowDialog searchPatientWindowDialog = new SearchPatientWindowDialog();
+            searchPatientWindowDialog.ShowDialog();
+
+            if (_manager.GetPatient() != null && _manager.GetUnchangedView() == false)
             {
-                _manager.ChangeView(TypesOfViews.PatientEditDataViewModel);
+                _manager.RefreshAll(typeOfView);
+            }
+            else if (_manager.GetPatientList() != null && _manager.GetUnchangedView() == false)
+            {
+                _manager.RefreshViewModel();
+
+                PatientListWindowDialog patientListWindowDialog = new PatientListWindowDialog();
+                patientListWindowDialog.ShowDialog();
+
+                if (_manager.GetUnchangedView() == false)
+                {
+                    _manager.RefreshAll(typeOfView);
+                }
             }
             else
             {
-                MessageBox.Show("Nie wybrano pacjenta do edycji");
+                MessageBox.Show("Nie wybrano pacjenta");
             }
-
         }
     }
 }

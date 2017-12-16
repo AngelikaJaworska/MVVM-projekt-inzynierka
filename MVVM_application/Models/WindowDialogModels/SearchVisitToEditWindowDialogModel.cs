@@ -83,6 +83,12 @@ namespace MVVM_application.Models
             return null;
         }
 
+        internal string SetPatientPesel()
+        {
+            var pesel = _manager.GetPatient().PESEL;
+            return pesel;
+        }
+
         public bool CheckIfAnyVisitExist(Doctor doctor, string patientPesel)
         {
             try

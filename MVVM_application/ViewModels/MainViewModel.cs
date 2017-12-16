@@ -31,6 +31,8 @@ namespace MVVM_application.ViewModels
         List<Patient> _patientList;
         //sprawdza czy zmienil sie widok czy nie
         bool _unchangedView;
+        VisitManager _visitManager;
+
 
         #region ViewModel
 
@@ -313,6 +315,16 @@ namespace MVVM_application.ViewModels
         public void SetPatientList(List<Patient> patientList)
         {
             _patientList = patientList;
+        }
+
+        public VisitManager GetVisitManager()
+        {
+            return _visitManager;
+        }
+
+        public void SetVisitManager(VisitManager visitManager)
+        {
+            _visitManager = visitManager;
         }
     }
 }

@@ -129,6 +129,7 @@
     <Compile Include="Models\WindowDialogModels\SearchDoctorWindowDialogModel.cs" />
     <Compile Include="Models\WindowDialogModels\SearchPatientWindowDialogModel.cs" />
     <Compile Include="Models\WindowDialogModels\SearchVisitToEditWindowDialogModel.cs" />
+    <Compile Include="Models\WindowDialogModels\ShowVisitWindowDialogModel.cs" />
     <Compile Include="Patient.cs">
       <DependentUpon>ClinicDataBase.tt</DependentUpon>
     </Compile>
@@ -165,11 +166,13 @@
     <Compile Include="ViewModels\MainViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="ViewModels\WindowDialogViewModels\EditDoctorVisitHoursWindowDialogViewModel.cs" />
+    <Compile Include="ViewModels\WindowDialogViewModels\ExitWindowDialogViewModel.cs" />
     <Compile Include="ViewModels\WindowDialogViewModels\PatientListWindowDialogViewModel.cs" />
     <Compile Include="ViewModels\WindowDialogViewModels\SearchDoctorWindowDialogViewModel.cs" />
     <Compile Include="ViewModels\WindowDialogViewModels\DoctorVisitHoursWindowDialogViewModel.cs" />
     <Compile Include="ViewModels\WindowDialogViewModels\SearchPatientWindowDialogViewModel.cs" />
     <Compile Include="ViewModels\WindowDialogViewModels\SearchVisitToEditWindowDialogViewModel.cs" />
+    <Compile Include="ViewModels\WindowDialogViewModels\ShowVisitWindowDialogViewModel.cs" />
     <Compile Include="Views\DoctorViews\DoctorDailyVisitView.xaml.cs">
       <DependentUpon>DoctorDailyVisitView.xaml</DependentUpon>
     </Compile>
@@ -181,6 +184,9 @@
     </Compile>
     <Compile Include="Views\DoctorViews\SearchDoctorView.xaml.cs">
       <DependentUpon>SearchDoctorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WindowDialogViews\ExitWindowDialog.xaml.cs">
+      <DependentUpon>ExitWindowDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PatientCardViews\PatientEditDataView.xaml.cs">
       <DependentUpon>PatientEditDataView.xaml</DependentUpon>
@@ -245,6 +251,9 @@
     <Compile Include="Views\WindowDialogViews\SearchVisitToEditWindowDialog.xaml.cs">
       <DependentUpon>SearchVisitToEditWindowDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\WindowDialogViews\ShowVisitWindowDialog.xaml.cs">
+      <DependentUpon>ShowVisitWindowDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Visits.cs">
       <DependentUpon>ClinicDataBase.tt</DependentUpon>
     </Compile>
@@ -273,6 +282,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DoctorViews\SearchDoctorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WindowDialogViews\ExitWindowDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -357,6 +370,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\WindowDialogViews\SearchVisitToEditWindowDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WindowDialogViews\ShowVisitWindowDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

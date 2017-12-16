@@ -1,20 +1,18 @@
 ﻿using MVVM_application.Manager;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MVVM_application.Models.PatientCardModels
 {
     public class SearchPatientModel
     {
         private IManager _manager;
+        private Clinic _database;
         private Patient _patient;
 
         public SearchPatientModel(IManager manager)
         {
-           _manager = manager;
+            _manager = manager;
+            _database = _manager.GetDatabase();
             _patient = _manager.GetPatient();
         }
 

@@ -11,32 +11,21 @@
              mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150" />
-            <ColumnDefinition Width="150" />
-            <ColumnDefinition Width="150" />
-            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="300" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
-        <Button Grid.Column="1" Command="{Binding PatientNewVisitCommand}">
-            <WrapPanel>
-                <TextBlock Text="Kreator nowej wizyty" />
-            </WrapPanel>
-        </Button>
+        
 
         <Button Grid.Column="2" Command="{Binding PatientVisitCommand}">
             <WrapPanel>
-                <TextBlock Text="Dotychczasowe wizyty" />
+                <TextBlock Text="Wizyty" />
             </WrapPanel>
         </Button>
 
-        <Button Grid.Column="3" Command="{Binding PatientEditDataCommand}">
-            <WrapPanel>
-                <TextBlock Text="Aktualizuj dane" />
-            </WrapPanel>
-        </Button>
         <Button Grid.Row="1"
                   Grid.Column="0"
                 Command="{Binding SearchPatientCommand}">

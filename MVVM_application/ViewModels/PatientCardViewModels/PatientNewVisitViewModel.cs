@@ -15,9 +15,6 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
         private readonly IManager _manager;
         private readonly PatientNewVisitModel _patientNewVisitModel;
         
-        private List<string> _doctorNameList;
-        private List<DateTime> _visitDateList;
-
         private string _patientName;
         private string _specialisationName;
         private string _doctorName;
@@ -69,13 +66,16 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
                 RaisePropertyChanged("Comments");
             }
         }
-        
+
+        private List<string> _doctorNameList;
+        private List<DateTime> _visitDateList;
+
         public ObservableCollection<string> SpecialisationtNameList { get; set; }
         public ObservableCollection<string> DoctorNameList { get; set; }
         public ObservableCollection<DateTime> VisitDateList { get; set; }
 
-        public ICommand SaveCommand { get; private set; }
-        public ICommand CancelCommand { get; private set; }
+        public RelayCommand SaveCommand { get; private set; }
+        public RelayCommand CancelCommand { get; private set; }
         public RelayCommand RefreshDoctorCommand { get; private set; }
         public RelayCommand RefreshVisitDateCommand { get; private set; }
 
@@ -83,23 +83,22 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
         {
             _manager = manager;
             _patientNewVisitModel = patientNewVisitModel;
-            FillData();
-
             if (_manager.GetPatient() != null)
             {
                 _patientName = _patientNewVisitModel.SetPatientName();
             }
 
+            FillData();
             InitialiseCommand();
         }
 
         private void FillData()
         {
+            _doctorNameList = new List<string>();
+            _visitDateList = new List<DateTime>();
             SpecialisationtNameList = new ObservableCollection<string>(_patientNewVisitModel.FillSpecialisationList());
             DoctorNameList = new ObservableCollection<string>();
             VisitDateList = new ObservableCollection<DateTime>();
-            _doctorNameList = new List<string>();
-            _visitDateList = new List<DateTime>();
         }
 
         private void InitialiseCommand()
@@ -115,7 +114,7 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
             if (_patientNewVisitModel.CreateVisitWithData(_patientName, _specialisationName, _doctorName, _visitDate, _comments))
             {
                 MessageBox.Show("Wizyta zapisana");
-                ClearLists();
+                MessageBox.Show("//todo przejscie do wizyt zapisanych");
             }
                 else
             {
@@ -125,8 +124,8 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
         
         private void ExecuteCancelCommand()
         {
-            MessageBox.Show("Anulowanie");
-            ClearLists();
+            MessageBox.Show("Anulowano");
+            _manager.RefreshAll(TypesOfViews.SearchPatientViewModel);
         }
 
         private void ExecuteRefreshDoctorCommand()
@@ -156,13 +155,6 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
                 }
             }
         }
-
-        private void ClearLists()
-        {
-           // this.PatientNameList.Clear();
-            this.SpecialisationtNameList.Clear();
-            this.DoctorNameList.Clear();
-            this.VisitDateList.Clear();
-        }
+        
     }
 }

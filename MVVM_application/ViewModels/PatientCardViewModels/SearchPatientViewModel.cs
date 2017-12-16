@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight;
-
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using MVVM_application.Manager;
 using MVVM_application.Models.PatientCardModels;
+using System.Windows;
+using System.Windows.Input;
+using System;
+using MVVM_application.Views;
+using MVVM_application.Views.WindowDialogViews;
 
 namespace MVVM_application.ViewModels.PatientCardViewModels
 {
@@ -97,8 +97,9 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
                 RaisePropertyChanged("Pesel");
             }
         }
-
-
+        
+        public ICommand PatientNewVisitCommand { get; private set; }
+        public ICommand PatientEditDataCommand { get; private set; }
 
         public SearchPatientViewModel(IManager manager, SearchPatientModel searchPatientModel)
         {
@@ -107,11 +108,15 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
             _patient = _manager.GetPatient();
             if (_patient != null)
             {
-                FillData();
+                FillPatientData();
             }
+
+
+            PatientNewVisitCommand = new RelayCommand(ExecutePatientNewVisitCommand);
+            PatientEditDataCommand = new RelayCommand(ExecutePatientEditDataCommand);
         }
 
-        private void FillData()
+        private void FillPatientData()
         {
             _name = _searchPatientModel.GetPatientName();
             _surname = _searchPatientModel.GetPatientSurame();
@@ -121,6 +126,18 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
             _phone = _searchPatientModel.GetPatientPhone();
             _dateOfBirth = _searchPatientModel.GetPatientDateOfBirth();
             _pesel = _searchPatientModel.GetPatientPesel();
+        }
+
+
+        public void ExecutePatientNewVisitCommand()
+        {
+            _manager.RefreshAll(TypesOfViews.PatientNewVisitViewModel);
+        }
+        
+
+        public void ExecutePatientEditDataCommand()
+        {
+            _manager.ChangeView(TypesOfViews.PatientEditDataViewModel);
         }
     }
 }

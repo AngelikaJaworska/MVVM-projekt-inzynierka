@@ -23,7 +23,7 @@ namespace MVVM_application.Models.PatientCardModels
         {
             var _patient = patient;
             var doctorAllVisitsList = _patient.Visits
-                .Where(x => x.VisitDate.Date <= DateTime.Today)
+                //.Where(x => x.VisitDate.Date <= DateTime.Today)
                 .Select(x => CreateNewPatientVisit(x))
                 .ToList();
 
