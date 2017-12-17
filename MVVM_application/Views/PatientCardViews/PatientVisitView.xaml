@@ -24,7 +24,7 @@
             <RowDefinition Height="50" />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
-        <uc:MainUserControl Grid.RowSpan="5" Grid.ColumnSpan="4" />
+        <uc:MainUserControl Grid.RowSpan="5" Grid.ColumnSpan="4" Grid.Row="0" />
         <uc:PatientCardUserControl Grid.RowSpan="4" Grid.ColumnSpan="4" Grid.Row="1"/>
 
         <ListView x:Name="listView"
@@ -47,10 +47,15 @@
 
 
         <Button Grid.Row="3"
-                Grid.ColumnSpan="2"
-                Grid.Column="1"
+                Grid.Column="0"
                 Command="{Binding ShowVisitCommand}">
             Podglad
+        </Button>
+        
+        <Button Grid.Row="3"
+                Grid.Column="3"
+                Command="{Binding GoBackCommand}">
+            wstecz
         </Button>
 
     </Grid>

@@ -14,9 +14,9 @@
         PatientNewVisitViewModel,
         PatientVisitViewModel,
         SearchDoctorViewModel,
-        DoctorDailyVisitViewModel,
         DoctorEditDataViewModel,
         DoctorVisitViewModel,
-        
+        AddNewDoctorViewModel,
+
     }
 }

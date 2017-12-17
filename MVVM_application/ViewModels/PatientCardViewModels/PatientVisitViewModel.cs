@@ -47,7 +47,8 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
         }
 
         public RelayCommand ShowVisitCommand { get; private set; }
-        
+        public RelayCommand GoBackCommand { get; private set; }
+
         public ShowVisitWindowDialogViewModel ShowVisitWDViewModel { get; set; }
         private ShowVisitWindowDialogModel _showVisitWindowDialogModel;
 
@@ -63,9 +64,15 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
             }
 
             ShowVisitCommand = new RelayCommand(ExecuteShowVisitCommand);
+            GoBackCommand = new RelayCommand(ExecuteGoBackCommand);
 
             _showVisitWindowDialogModel = new ShowVisitWindowDialogModel(_manager);
             ShowVisitWDViewModel = new ShowVisitWindowDialogViewModel(_manager, _showVisitWindowDialogModel);
+        }
+
+        private void ExecuteGoBackCommand()
+        {
+            _manager.ChangeView(TypesOfViews.SearchPatientViewModel);
         }
 
         private void ExecuteShowVisitCommand()

@@ -8,58 +8,22 @@ using System.Windows;
 
 namespace MVVM_application.Models.WindowDialogModels
 {
-    public class EditDoctorVisitHoursWindowDialogModel
+    public class AddDoctorVisitHoursWindowDialogModel
     {
         private IManager _manager;
         private Clinic _database;
-        private Doctor _doctor;
         private List<string> _startHoursList;
         private List<string> _endHoursList;
 
-        public EditDoctorVisitHoursWindowDialogModel(IManager manager)
+        public AddDoctorVisitHoursWindowDialogModel(IManager manager)
         {
             _manager = manager;
             _database = _manager.GetDatabase();
-            _doctor = _manager.GetDoctor();
             _startHoursList = new List<string>();
             _endHoursList = new List<string>();
         }
 
-        public string SetStartHour()
-        {
-            var startHour = _database.Doctor
-                .Where(d => d.IDDoctor == _doctor.IDDoctor)
-                .Select(s => s.WorkStart)
-                .Single();
-            return startHour.ToString();
-        }
-
-        public string SetEndHour()
-        {
-            var endHour = _database.Doctor
-            .Where(d => d.IDDoctor == _doctor.IDDoctor)
-            .Select(s => s.WorkEnd)
-            .Single();
-            return endHour.ToString();
-        }
-
-        internal bool SaveData(string startHour, string endHour)
-        {
-            if (startHour != null && startHour != ""
-                && endHour != null && endHour != "")
-            {
-                _doctor.WorkStart = TimeSpan.Parse(startHour);
-                _doctor.WorkEnd = TimeSpan.Parse(endHour);
-                _database.SaveChanges();
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        internal List<string> FillEndHoursList(string startHour)
+        public  List<string> FillEndHoursList(string startHour)
         {
             if (startHour != null)
             {
@@ -83,7 +47,7 @@ namespace MVVM_application.Models.WindowDialogModels
             return _endHoursList;
         }
 
-        internal List<string> SetStartHourList()
+        public List<string> SetStartHourList()
         {
             var startHours = Enumerable.Range(09, 09).Select(i => (DateTime.MinValue.AddHours(i)).ToString("HH:mm tt"));
             foreach (string hour in startHours)

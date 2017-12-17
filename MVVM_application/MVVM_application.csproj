@@ -106,7 +106,7 @@
     <Compile Include="Doctor.cs">
       <DependentUpon>ClinicDataBase.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DoctorModels\DoctorDailyVisitModel.cs" />
+    <Compile Include="Models\DoctorModels\AddNewDoctorModel.cs" />
     <Compile Include="Models\DoctorModels\DoctorEditDataModel.cs" />
     <Compile Include="Models\DoctorModels\DoctorVisitModel.cs" />
     <Compile Include="Models\DoctorModels\SearchDoctorModel.cs" />
@@ -123,6 +123,7 @@
     <Compile Include="Models\PatientCardModels\SearchPatientModel.cs" />
     <Compile Include="Models\RegisterModels\AddNewPatientModel.cs" />
     <Compile Include="Models\RegisterModels\EditVisitModel.cs" />
+    <Compile Include="Models\WindowDialogModels\AddDoctorVisitHoursWindowDialogModel.cs" />
     <Compile Include="Models\WindowDialogModels\DoctorVisitHoursWindowDialogModel.cs" />
     <Compile Include="Models\WindowDialogModels\EditDoctorVisitHoursWindowDialogModel.cs" />
     <Compile Include="Models\WindowDialogModels\PatientListWindowDialogModel.cs" />
@@ -142,7 +143,7 @@
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>ClinicDataBase.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\DoctorViewModels\DoctorDailyVisitViewModel.cs" />
+    <Compile Include="ViewModels\DoctorViewModels\AddNewDoctorViewModel.cs" />
     <Compile Include="ViewModels\DoctorViewModels\DoctorEditDataViewModel.cs" />
     <Compile Include="ViewModels\DoctorViewModels\DoctorVisitViewModel.cs" />
     <Compile Include="ViewModels\DoctorViewModels\SearchDoctorViewModel.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="ViewModels\UserControlsModel\RegisterUCModel.cs" />
     <Compile Include="ViewModels\MainViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="ViewModels\WindowDialogViewModels\AddDoctorVisitHoursWindowDialogViewModel.cs" />
     <Compile Include="ViewModels\WindowDialogViewModels\EditDoctorVisitHoursWindowDialogViewModel.cs" />
     <Compile Include="ViewModels\WindowDialogViewModels\ExitWindowDialogViewModel.cs" />
     <Compile Include="ViewModels\WindowDialogViewModels\PatientListWindowDialogViewModel.cs" />
@@ -173,8 +175,11 @@
     <Compile Include="ViewModels\WindowDialogViewModels\SearchPatientWindowDialogViewModel.cs" />
     <Compile Include="ViewModels\WindowDialogViewModels\SearchVisitToEditWindowDialogViewModel.cs" />
     <Compile Include="ViewModels\WindowDialogViewModels\ShowVisitWindowDialogViewModel.cs" />
-    <Compile Include="Views\DoctorViews\DoctorDailyVisitView.xaml.cs">
-      <DependentUpon>DoctorDailyVisitView.xaml</DependentUpon>
+    <Compile Include="Views\WindowDialogViews\AddDoctorVisitHoursWindowDialog.xaml.cs">
+      <DependentUpon>AddDoctorVisitHoursWindowDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DoctorViews\AddNewDoctorView.xaml.cs">
+      <DependentUpon>AddNewDoctorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DoctorViews\DoctorEditDataView.xaml.cs">
       <DependentUpon>DoctorEditDataView.xaml</DependentUpon>
@@ -269,7 +274,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\DoctorViews\DoctorDailyVisitView.xaml">
+    <Page Include="Views\WindowDialogViews\AddDoctorVisitHoursWindowDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DoctorViews\AddNewDoctorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

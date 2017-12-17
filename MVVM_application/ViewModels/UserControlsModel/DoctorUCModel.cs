@@ -7,6 +7,7 @@ using MVVM_application.Manager;
 using MVVM_application.ViewModels.WindowDialogViewModels;
 using MVVM_application.Views;
 using MVVM_application.Models.WindowDialogModels;
+using System;
 
 namespace MVVM_application.ViewModels.UserControlsModel
 {
@@ -18,11 +19,10 @@ namespace MVVM_application.ViewModels.UserControlsModel
         #region Command
 
         public RelayCommand SearchDoctorCommand { get; private set; }
-        public ICommand DoctorDailyVisitCommand { get; private set; }
-        public ICommand DoctorVisitCommand { get; private set; }
-        public ICommand DoctorEditDataCommand { get; private set; }
-        
-        #endregion 
+        public RelayCommand DoctorVisitCommand { get; private set; }
+        public RelayCommand AddNewDoctorCommand { get; private set; }
+
+        #endregion
 
         public SearchDoctorWindowDialogViewModel SearchDoctorWDModel {get;set;}
 
@@ -37,9 +37,13 @@ namespace MVVM_application.ViewModels.UserControlsModel
         public void InitialiseCommand()
         {
             SearchDoctorCommand = new RelayCommand(ExecuteSearchDoctorCommand);
-            DoctorDailyVisitCommand = new RelayCommand(ExecuteDoctorDailyVisitCommand);
             DoctorVisitCommand = new RelayCommand(ExecuteDoctorVisitCommand);
-            DoctorEditDataCommand = new RelayCommand(ExecuteDoctorEditDataCommand);
+            AddNewDoctorCommand = new RelayCommand(ExecuteAddNewDoctorCommand);
+        }
+
+        private void ExecuteAddNewDoctorCommand()
+        {
+            _manager.ChangeView(TypesOfViews.AddNewDoctorViewModel);
         }
 
         private void ExecuteSearchDoctorCommand()
@@ -51,27 +55,13 @@ namespace MVVM_application.ViewModels.UserControlsModel
                 _manager.RefreshAll(TypesOfViews.SearchDoctorViewModel);
             }
         }
-
-        public void ExecuteDoctorDailyVisitCommand()
-        {
-            _manager.ChangeView(TypesOfViews.DoctorDailyVisitViewModel);
-        }
+        
 
         public void ExecuteDoctorVisitCommand()
         {
             _manager.ChangeView(TypesOfViews.DoctorVisitViewModel);
         }
 
-        public void ExecuteDoctorEditDataCommand()
-        {
-            if(_manager.GetDoctor() != null)
-            {
-                _manager.ChangeView(TypesOfViews.DoctorEditDataViewModel);
-            }
-            else
-            {
-                MessageBox.Show("Nie wybrano lekarza do edycji");
-            }
-        }
+
     }
 }

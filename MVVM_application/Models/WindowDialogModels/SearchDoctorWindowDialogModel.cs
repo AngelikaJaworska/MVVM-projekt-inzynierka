@@ -12,22 +12,31 @@ namespace MVVM_application.Models.WindowDialogModels
     {
         private Clinic _database;
         private IManager _manager;
+        private List<string> _specialisationList;
         private List<string> _doctorNameList;
 
         public SearchDoctorWindowDialogModel(IManager manager)
         {
             _manager = manager;
             _database = _manager.GetDatabase();
+            _specialisationList = new List<string>();
             _doctorNameList = new List<string>();
         }
 
         public List<string> FillSpecialisationList()
         {
-            var specialisationList = _database.Specialisation
-                .Select(s => s.Name)
-                .ToList();
+            var doctorSpecialisationList = _database.Doctor
+                .Select(d => d.Specialisation.Name).ToList();
 
-            return specialisationList;
+            foreach (string specialisation in doctorSpecialisationList)
+            {
+                if (!_specialisationList.Contains(specialisation))
+                {
+                    _specialisationList.Add(specialisation);
+                }
+            }
+
+            return _specialisationList;
         }
 
         public List<string> FillDoctorList(string specialisation)

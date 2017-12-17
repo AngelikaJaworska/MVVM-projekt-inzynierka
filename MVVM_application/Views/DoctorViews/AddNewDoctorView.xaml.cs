@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MVVM_application.Views
 {
     /// <summary>
-    /// Interaction logic for DoctorDailyVisitView.xaml
+    /// Interaction logic for AddNewDocotrView.xaml
     /// </summary>
-    public partial class DoctorDailyVisitView : UserControl
+    public partial class AddNewDoctorView : UserControl
     {
-        public DoctorDailyVisitView()
+        public AddNewDoctorView()
         {
             InitializeComponent();
         }

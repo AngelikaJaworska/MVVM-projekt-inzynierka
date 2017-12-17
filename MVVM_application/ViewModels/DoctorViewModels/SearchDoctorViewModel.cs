@@ -98,7 +98,9 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             }
         }
 
-        public ICommand VisitHoursCommand { get; private set; }
+        public RelayCommand VisitHoursCommand { get; private set; }
+        public RelayCommand DoctorEditDataCommand { get; private set; }
+        public RelayCommand DeleteDoctorCommand { get; private set; }
 
         public SearchDoctorViewModel(IManager manager, SearchDoctorModel searchDoctorModel)
         {
@@ -119,14 +121,41 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             }
 
             VisitHoursCommand = new RelayCommand(ExecuteVisitHoursCommand);
+            DoctorEditDataCommand = new RelayCommand(ExecuteDoctorEditDataCommand);
+            DeleteDoctorCommand = new RelayCommand(ExecuteDeleteDoctorCommand);
+
             _doctorVisitHoursWindowDialogModel = new DoctorVisitHoursWindowDialogModel(_manager);
             DoctorVisitHoursWDViewModel = new DoctorVisitHoursWindowDialogViewModel(_manager, _doctorVisitHoursWindowDialogModel);
+        }
+
+        private void ExecuteDeleteDoctorCommand()
+        {
+            if( _searchDoctorModel.DeleteDoctor())
+            {
+                _manager.ChangeView(TypesOfViews.DoctorViewModel);
+            }
+            else
+            {
+                MessageBox.Show("Nieprawidlowe dane");
+            }
         }
 
         private void ExecuteVisitHoursCommand()
         {
             DoctorVisitHoursWindowDialog doctorVisitHoursWindowDialog = new DoctorVisitHoursWindowDialog();
             doctorVisitHoursWindowDialog.ShowDialog();
+        }
+
+        public void ExecuteDoctorEditDataCommand()
+        {
+            if (_manager.GetDoctor() != null)
+            {
+                _manager.ChangeView(TypesOfViews.DoctorEditDataViewModel);
+            }
+            else
+            {
+                MessageBox.Show("Nie wybrano lekarza do edycji");
+            }
         }
     }
 }

@@ -121,7 +121,6 @@ namespace MVVM_application.ViewModels.RegisterViewModels
 
         private void ExecuteCancelCommand()
         {
-            MessageBox.Show("Anulowanie");
             _manager.ChangeView(TypesOfViews.RegisterViewModel);
         }
         

@@ -142,8 +142,16 @@
         </Button>
         <Button Grid.Row="3"
                 Grid.Column="3"
+                HorizontalAlignment="Right"
                 Command="{Binding DeleteCommand}">
             Usun
         </Button>
+        <Button Grid.Row="3"
+                Grid.Column="3"
+                HorizontalAlignment="Left"
+                Command="{Binding GoBackCommand}">
+            Wstecz
+        </Button>
+
     </Grid>
 </UserControl>

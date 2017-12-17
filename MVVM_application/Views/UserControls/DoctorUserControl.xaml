@@ -11,10 +11,9 @@
              mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150" />
-            <ColumnDefinition Width="150" />
-            <ColumnDefinition Width="150" />
-            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="200" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
@@ -26,29 +25,22 @@
             Wyszukaj lekarza
         </Button>
                 
+
         <Button Grid.Row="0"
                 Grid.Column="1"
-                Command="{Binding DoctorDailyVisitCommand}">
-            <WrapPanel>
-                <TextBlock Text="Dzisiejsze wizyty" />
-            </WrapPanel>
-        </Button>
-
-        <Button Grid.Row="0"
-                Grid.Column="2"
                 Command="{Binding DoctorVisitCommand}">
             <WrapPanel>
-                <TextBlock Text="Dotychczasowe wizyty" />
+                <TextBlock Text="Wizyty" />
+            </WrapPanel>
+        </Button>
+        <Button Grid.Row="0"
+                Grid.Column="2"
+                Command="{Binding AddNewDoctorCommand}">
+            <WrapPanel>
+                <TextBlock Text="Dodanie nowego lekarza" />
             </WrapPanel>
         </Button>
 
-        <Button Grid.Row="0"
-                Grid.Column="3"
-                Command="{Binding DoctorEditDataCommand}">
-            <WrapPanel>
-                <TextBlock Text="Aktualizuj dane" />
-            </WrapPanel>
-        </Button>
 
     </Grid>
 </UserControl>

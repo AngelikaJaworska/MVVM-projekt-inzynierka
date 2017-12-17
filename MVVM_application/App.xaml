@@ -64,14 +64,14 @@
         <DataTemplate DataType="{x:Type doctorViewModels:SearchDoctorViewModel}">
             <views:SearchDoctorView />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type doctorViewModels:DoctorDailyVisitViewModel}">
-            <views:DoctorDailyVisitView />
-        </DataTemplate>
         <DataTemplate DataType="{x:Type doctorViewModels:DoctorEditDataViewModel}">
             <views:DoctorEditDataView />
         </DataTemplate>
         <DataTemplate DataType="{x:Type doctorViewModels:DoctorVisitViewModel}">
             <views:DoctorVisitView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type doctorViewModels:AddNewDoctorViewModel}">
+            <views:AddNewDoctorView />
         </DataTemplate>
     </Application.Resources>
 </Application>

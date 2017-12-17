@@ -19,9 +19,8 @@ namespace MVVM_application.ViewModels.MainViewModels
         private readonly IManager _manager;
         private readonly DailyModel _dailyModel;
         private Receptionist _receptionist;
-        private VisitManager _visitManager;
-        
 
+        private VisitManager _visitManager;
         private VisitManager _visitManagerObject;
         public VisitManager VisitManagerObject
         {
@@ -36,7 +35,18 @@ namespace MVVM_application.ViewModels.MainViewModels
                 RaisePropertyChanged("VisitManagerObject");
             }
         }
-        
+
+        private DateTime _date;
+        public DateTime Date
+        {
+            get { return _date; }
+            set
+            {
+                _date = value;
+                RaisePropertyChanged("Date");
+            }
+        }
+
         private ObservableCollection<VisitManager> _todayVisitsList;
         public ObservableCollection<VisitManager> TodayVisitsList
         {
@@ -48,7 +58,19 @@ namespace MVVM_application.ViewModels.MainViewModels
             }
         }
 
+        private ObservableCollection<DateTime> _dateList;
+        public ObservableCollection<DateTime> DateList
+        {
+            get { return _dateList; }
+            set
+            {
+                _dateList = value;
+                RaisePropertyChanged("DateList");
+            }
+        }
+
         public RelayCommand ShowVisitCommand { get; private set; }
+        public RelayCommand RefreshDateCommand { get; private set; }
 
         public ShowVisitWindowDialogViewModel ShowVisitWDViewModel { get; set; }
         private ShowVisitWindowDialogModel _showVisitWindowDialogModel;
@@ -58,14 +80,30 @@ namespace MVVM_application.ViewModels.MainViewModels
             _manager = manager;
             _dailyModel = dailyModel;
             _receptionist = _manager.GetReceptionist();
+
+            var date = DateTime.Parse("0001-01-01 00:00:00");
             if (_receptionist.IDReceptionist != 0)
             {
-                TodayVisitsList = new ObservableCollection<VisitManager>(_dailyModel.GetAllVisitsWithReceptionist(_receptionist.IDReceptionist));
+                if(_date != date)
+                {
+                    this.TodayVisitsList = new ObservableCollection<VisitManager>(_dailyModel.GetAllVisitsWithReceptionist(_receptionist.IDReceptionist, _date));
+                }
+                else
+                {
+                    this.TodayVisitsList = new ObservableCollection<VisitManager>(_dailyModel.GetAllVisitsWithReceptionist(_receptionist.IDReceptionist, DateTime.Today));
+                }
+                this.DateList = new ObservableCollection<DateTime>(_dailyModel.GetDate());
             }
             ShowVisitCommand = new RelayCommand(ExecuteShowVisitCommand);
-            
+            RefreshDateCommand = new RelayCommand(ExecuteRefreshDateCommand);
+
             _showVisitWindowDialogModel = new ShowVisitWindowDialogModel(_manager);
             ShowVisitWDViewModel = new ShowVisitWindowDialogViewModel(_manager, _showVisitWindowDialogModel);
+        }
+
+        private void ExecuteRefreshDateCommand()
+        {
+             this.TodayVisitsList = new ObservableCollection<VisitManager>(_dailyModel.GetAllVisitsWithReceptionist(_receptionist.IDReceptionist, _date));
         }
 
         private void ExecuteShowVisitCommand()

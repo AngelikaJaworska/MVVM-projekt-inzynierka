@@ -10,13 +10,13 @@ namespace MVVM_application.Models.DoctorModels
     public class SearchDoctorModel
     {
         private IManager _manager;
-        //private Clinic _database;
+        private Clinic _database;
         private Doctor _doctor;
 
         public SearchDoctorModel(IManager manager)
         {
             _manager = manager;
-            //_database = _viewManager.GetDatabase();
+            _database = _manager.GetDatabase();
             _doctor = _manager.GetDoctor();
         }
 
@@ -60,6 +60,31 @@ namespace MVVM_application.Models.DoctorModels
         {
             var _specialisation = _doctor.Specialisation.Name;
             return _specialisation;
+        }
+
+        public bool DeleteDoctor()
+        {
+            try
+            {
+                var visitsToDelete = _database.Visits
+                .Where(d => d.Doctor.IDDoctor == _doctor.IDDoctor)
+                .ToList();
+
+                foreach (Visits v in visitsToDelete)
+                {
+                    _database.Visits.Remove(v);
+                }
+
+                _manager.SetDoctor(null);
+                _database.Doctor.Remove(_doctor);
+                _database.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            
         }
     }
 }

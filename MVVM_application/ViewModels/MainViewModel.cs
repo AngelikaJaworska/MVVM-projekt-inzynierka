@@ -53,14 +53,15 @@ namespace MVVM_application.ViewModels
         private PatientEditDataViewModel _patientEditDataViewModel;
 
         private SearchDoctorViewModel _searchDoctorViewModel;
-        private DoctorDailyVisitViewModel _doctorDailyVisitViewModel;
         private DoctorEditDataViewModel _doctorEditDataViewModel;
         private DoctorVisitViewModel _doctorVisitViewModel;
+        private AddNewDoctorViewModel _addNewDoctorViewModel;
 
         private MainUCModel _mainUcModel;
         private RegisterUCModel _registerUCModel;
         private PatientCardUCModel _patientCardUCModel;
         private DoctorUCModel _doctorUCModel;
+
 
         #region Properties
 
@@ -120,11 +121,11 @@ namespace MVVM_application.ViewModels
         #region Model
         LoginModel _loginModel;
         DailyModel _dailyModel;
-
-        DoctorDailyVisitModel _doctorDailyVisitModel;
+        
         DoctorEditDataModel _doctorEditDataModel;
         DoctorVisitModel _doctorVisitModel;
         SearchDoctorModel _searchDoctorModel;
+        AddNewDoctorModel _addNewDoctorModel;
 
         PatientEditDataModel _patientEditDataModel;
         PatientNewVisitModel _patientNewVisitModel;
@@ -168,9 +169,9 @@ namespace MVVM_application.ViewModels
             _patientEditDataViewModel = new PatientEditDataViewModel(this, _patientEditDataModel);
 
             _searchDoctorViewModel = new SearchDoctorViewModel(this, _searchDoctorModel);
-            _doctorDailyVisitViewModel = new DoctorDailyVisitViewModel(this, _doctorDailyVisitModel);
             _doctorEditDataViewModel = new DoctorEditDataViewModel(this, _doctorEditDataModel);
             _doctorVisitViewModel = new DoctorVisitViewModel(this, _doctorVisitModel);
+            _addNewDoctorViewModel = new AddNewDoctorViewModel(this, _addNewDoctorModel);
 
             _mainUcModel = new MainUCModel(this);
             _registerUCModel = new RegisterUCModel(this);
@@ -182,10 +183,11 @@ namespace MVVM_application.ViewModels
         {
             _loginModel = new LoginModel(this);
             _dailyModel = new DailyModel(this);
-            _doctorDailyVisitModel = new DoctorDailyVisitModel(this);
+
             _doctorEditDataModel = new DoctorEditDataModel(this);
             _doctorVisitModel = new DoctorVisitModel(this);
             _searchDoctorModel = new SearchDoctorModel(this);
+            _addNewDoctorModel = new AddNewDoctorModel(this);
 
             _patientEditDataModel = new PatientEditDataModel(this);
             _patientNewVisitModel = new PatientNewVisitModel(this);
@@ -233,12 +235,12 @@ namespace MVVM_application.ViewModels
 
                 case TypesOfViews.SearchDoctorViewModel:
                     return _searchDoctorViewModel;
-                case TypesOfViews.DoctorDailyVisitViewModel:
-                    return _doctorDailyVisitViewModel;
                 case TypesOfViews.DoctorEditDataViewModel:
                     return _doctorEditDataViewModel;
                 case TypesOfViews.DoctorVisitViewModel:
                     return _doctorVisitViewModel;
+                case TypesOfViews.AddNewDoctorViewModel:
+                    return _addNewDoctorViewModel;
                 default:
                     return null;
             }

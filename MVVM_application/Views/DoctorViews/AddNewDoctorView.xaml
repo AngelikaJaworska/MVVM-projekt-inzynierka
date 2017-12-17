@@ -1,15 +1,14 @@
-﻿<UserControl x:Class="MVVM_application.Views.SearchDoctorView"
+﻿<UserControl x:Class="MVVM_application.Views.AddNewDoctorView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVM_application.Views"
             xmlns:uc="clr-namespace:MVVM_application.Views.UserControls"
-             d:DesignHeight="330"
-             d:DesignWidth="600"
+             mc:Ignorable="d" 
+             d:DesignHeight="330" d:DesignWidth="600"
              DataContext="{Binding Main.CurrentViewModel,
-                                   Source={StaticResource Locator}}"
-             mc:Ignorable="d">
+                                   Source={StaticResource Locator}}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150" />
@@ -24,12 +23,14 @@
             <RowDefinition Height="50" />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
-        <uc:MainUserControl Grid.RowSpan="5" Grid.ColumnSpan="4" Grid.Row="0" />
+
+        <uc:MainUserControl Grid.RowSpan="5" Grid.ColumnSpan="4" />
+        <uc:DoctorUserControl Grid.Row="1" Grid.ColumnSpan="4" />
 
         <Grid Grid.Row="2" Grid.ColumnSpan="4">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="300"/>
-                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="300" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="37.5" />
@@ -47,9 +48,8 @@
             <TextBox Grid.Row="0"
                      Grid.Column="0"
                      Width="190"
-                     HorizontalAlignment="Right" 
-                     IsEnabled="False"
-                     Text="{Binding Name}"/>
+                     HorizontalAlignment="Right"
+                     Text="{Binding Name}" />
 
             <Label Grid.Row="1"
                    Grid.Column="0"
@@ -62,7 +62,6 @@
                      Grid.Column="0"
                      Width="190"
                      HorizontalAlignment="Right" 
-                     IsEnabled="False"
                      Text="{Binding Surname}"/>
 
             <Label Grid.Row="2"
@@ -76,8 +75,7 @@
                      Grid.Column="0"
                      Width="190"
                      HorizontalAlignment="Right" 
-                     IsEnabled="False"
-                     Text="{Binding Street}" />
+                     Text="{Binding Street}"/>
 
             <Label Grid.Row="3"
                    Grid.Column="0"
@@ -89,8 +87,7 @@
             <TextBox Grid.Row="3"
                      Grid.Column="0"
                      Width="190"
-                     HorizontalAlignment="Right"  
-                     IsEnabled="False"
+                     HorizontalAlignment="Right" 
                      Text="{Binding HomeNr}"/>
 
             <Label Grid.Row="0"
@@ -103,8 +100,7 @@
             <TextBox Grid.Row="0"
                      Grid.Column="1"
                      Width="190"
-                     HorizontalAlignment="Right"  
-                     IsEnabled="False"
+                     HorizontalAlignment="Right" 
                      Text="{Binding City}"/>
 
             <Label Grid.Row="1"
@@ -117,9 +113,8 @@
             <TextBox Grid.Row="1"
                      Grid.Column="1"
                      Width="190"
-                     HorizontalAlignment="Right" 
-                     IsEnabled="False"
-                     Text="{Binding Phone}" />
+                     HorizontalAlignment="Right"
+                     Text="{Binding Phone}"/>
 
             <Label Grid.Row="2"
                    Grid.Column="1"
@@ -128,36 +123,44 @@
                    FontSize="14">
                 Specjalnosc
             </Label>
-            <TextBox Grid.Row="2"
+            <ComboBox Grid.Row="2"
                       Grid.Column="1"
                       Width="190"
                       HorizontalAlignment="Right" 
-                     IsEnabled="False"
-                     Text="{Binding Specialisation}"/>
-            <Button
-                Grid.Column="1"
-                Grid.Row="3"
-                Command="{Binding VisitHoursCommand}">
-                Godziny przyjec
-            </Button>
+                      ItemsSource="{Binding SpecialisationtList}"
+                      SelectedItem="{Binding Specialisation}"
+                      SelectedValuePath="Specialisation" />
+
+            <Label Grid.Row="3"
+                   Grid.Column="1"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   FontSize="14">
+                Data urodzenia
+            </Label>
+            <TextBox Grid.Row="3"
+                     Grid.Column="1"
+                     Width="190"
+                     HorizontalAlignment="Right"
+                     Text="{Binding DateOfBirth}"/>
 
         </Grid>
         <Button Grid.Row="3"
                 Grid.Column="0"
-                Command="{Binding DoctorEditDataCommand}">
-            <WrapPanel>
-                <TextBlock Text="Aktualizuj dane" />
-            </WrapPanel>
+                Command="{Binding SaveCommand}">
+            Zapisz
         </Button>
-
         <Button Grid.Row="3"
+                Grid.Column="3"
+                Command="{Binding CancelCommand}">
+            Anuluj
+        </Button>
+        <Button
                 Grid.Column="4"
-                Command="{Binding DeleteDoctorCommand}">
-            <WrapPanel>
-                <TextBlock Text="Usun" />
-            </WrapPanel>
+                Grid.Row="4"
+                Command="{Binding VisitHoursCommand}">
+            Godziny przyjec
         </Button>
 
-        <uc:DoctorUserControl Grid.RowSpan="4" Grid.ColumnSpan="4" Grid.Row="1"/>
     </Grid>
 </UserControl>

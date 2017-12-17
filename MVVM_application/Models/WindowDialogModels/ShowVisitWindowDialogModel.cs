@@ -14,6 +14,7 @@ namespace MVVM_application.Models.WindowDialogModels
         private IManager _manager;
         private Clinic _database;
         private Patient _patient;
+        private Doctor _doctor;
 
         public ShowVisitWindowDialogModel(IManager manager)
         {
@@ -87,37 +88,43 @@ namespace MVVM_application.Models.WindowDialogModels
                     _patient = _manager.GetPatient();
                 }
                
+                if(_visitManager.Doctor != null)
+                {
+                    var doctorVisitManager = _visitManager.Doctor.Split(' ');
+                    var doctorVisitManagerName = doctorVisitManager[0];
+                    var docotrVisitManagerSurname = doctorVisitManager[1];
 
-                var doctorVisitManager = _visitManager.Doctor.Split(' ');
-                var doctorVisitManagerName = doctorVisitManager[0];
-                var docotrVisitManagerSurname = doctorVisitManager[1];
+                    var specialisationVisitManager = _visitManager.Specialisation;
 
-                var specialisationVisitManager = _visitManager.Specialisation;
-
-                var doctor = _database.Doctor
-                    .Where(d => (d.First_Name.Equals(doctorVisitManagerName)
-                    && (d.Last_Name.Equals(docotrVisitManagerSurname))
-                    && (d.Specialisation.Name.Equals(specialisationVisitManager))))
-                    .Single();
-
+                    _doctor = _database.Doctor
+                        .Where(d => (d.First_Name.Equals(doctorVisitManagerName)
+                        && (d.Last_Name.Equals(docotrVisitManagerSurname))
+                        && (d.Specialisation.Name.Equals(specialisationVisitManager))))
+                        .Single();
+                }
+                else
+                {
+                    _doctor = _manager.GetDoctor();
+                }
+                
                 var dateVisitManager = DateTime.Parse(_visitManager.VisitDate);
 
-                try
-                {
-                    var visit = _database.Visits
-                        .Where(v => (v.Patient.IDPatient == _patient.IDPatient)
-                        && (v.Doctor.IDDoctor == doctor.IDDoctor)
-                        && (v.VisitDate == dateVisitManager))
-                        .Single();
+                var visit = _database.Visits
+                         .Where(v => (v.Patient.IDPatient == _patient.IDPatient)
+                         && (v.Doctor.IDDoctor == _doctor.IDDoctor)
+                         && (v.VisitDate == dateVisitManager))
+                         .Single();
 
-                    return visit;
-                }
-                catch
-                {
-                    return null;
-                }
-               
+                return visit;
 
+                //try
+                //{
+
+                //}
+                //catch
+                //{
+                //    return null;
+                //}
             }
             return null;
 

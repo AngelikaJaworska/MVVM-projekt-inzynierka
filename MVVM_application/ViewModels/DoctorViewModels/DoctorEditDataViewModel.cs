@@ -103,6 +103,7 @@ namespace MVVM_application.ViewModels.DoctorViewModels
         public ICommand EditVisitHoursCommand { get; private set; }
         public ICommand SaveCommand { get; private set; }
         public ICommand DeleteCommand { get; private set; }
+        public ICommand GoBackCommand { get; private set; }
 
         public DoctorEditDataViewModel(IManager manager, DoctorEditDataModel doctorEditDataModel)
         {
@@ -116,6 +117,12 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             EditVisitHoursCommand = new RelayCommand(ExecuteEditVisitHoursCommand);
             SaveCommand = new RelayCommand(ExecuteSaveCommand);
             DeleteCommand = new RelayCommand(ExecuteDeleteCommand);
+            GoBackCommand = new RelayCommand(ExecuteGoBackCommand);
+        }
+
+        private void ExecuteGoBackCommand()
+        {
+            _manager.ChangeView(TypesOfViews.SearchDoctorViewModel);
         }
 
         private void FillData()
