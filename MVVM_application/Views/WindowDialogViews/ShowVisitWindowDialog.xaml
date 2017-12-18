@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVVM_application.Views.WindowDialogViews"
-        Title="ShowVisitWindowDialog" x:Name="WindowShowVisit"
+         x:Name="WindowShowVisit"
          mc:Ignorable="d"
+        Title="Podgląd danych wizyty"
          Height="210" Width="450"  DataContext="{Binding Main.CurrentViewModel.ShowVisitWDViewModel, Source={StaticResource Locator}}">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -41,7 +42,7 @@
                 Command="{Binding CloseCommand}"  
                 CommandParameter="{Binding ElementName=WindowShowVisit, Mode=OneWay}"/>
 
-        <Button Grid.Column="1" Grid.Row ="3" Content="Odwolaj" 
+        <Button Grid.Column="1" Grid.Row ="3" Content="Odwołaj" 
                 Command="{Binding DeleteVisitCommand}" 
                 CommandParameter="{Binding ElementName=WindowShowVisit, Mode=OneWay}"/>
     </Grid>

@@ -36,5 +36,8 @@ namespace MVVM_application.Manager
 
         VisitManager GetVisitManager();
         void SetVisitManager(VisitManager visitManager);
+
+        void SetDoctorVisitHour(string[] visitHours);
+        string[] GetDocotrVisitHour();
     }
 }

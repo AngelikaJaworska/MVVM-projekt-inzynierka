@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using MVVM_application.Manager;
 using MVVM_application.Models.DoctorModels;
+using MVVM_application.Models.Manager;
 using MVVM_application.Models.WindowDialogModels;
 using MVVM_application.ViewModels.WindowDialogViewModels;
 using MVVM_application.Views;
@@ -20,7 +21,7 @@ namespace MVVM_application.ViewModels.DoctorViewModels
     {
         private IManager _manager;
         private AddNewDoctorModel _addNewDoctorModel;
-
+        
         private string _name;
         private string _specialisation;
         private string _surname;
@@ -93,7 +94,6 @@ namespace MVVM_application.ViewModels.DoctorViewModels
                 RaisePropertyChanged("Phone");
             }
         }
-
         public string DateOfBirth
         {
             get { return _dateOfBirth; }
@@ -110,7 +110,6 @@ namespace MVVM_application.ViewModels.DoctorViewModels
         public RelayCommand CancelCommand { get; private set; }
         public RelayCommand VisitHoursCommand { get; private set; }
 
-
         private AddDoctorVisitHoursWindowDialogModel _addDoctorVisitHoursWindowDialogModel;
         public AddDoctorVisitHoursWindowDialogViewModel AddDoctorVisitHoursWDViewModel { get; set; }
 
@@ -119,14 +118,19 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             _manager = manager;
             _addNewDoctorModel = addNewDoctorModel;
 
+            InitialiseCommand();
             SpecialisationtList = new ObservableCollection<string>(_addNewDoctorModel.FillSpecialisationList());
-            SaveCommand = new RelayCommand(ExecuteSaveCommand);
-            CancelCommand = new RelayCommand(ExecuteCancelCommand);
-            VisitHoursCommand = new RelayCommand(ExecuteVisitHoursCommand);
-
+       
             _addDoctorVisitHoursWindowDialogModel = new AddDoctorVisitHoursWindowDialogModel(_manager);
             AddDoctorVisitHoursWDViewModel = new AddDoctorVisitHoursWindowDialogViewModel(_manager, _addDoctorVisitHoursWindowDialogModel);
 
+        }
+
+        public void InitialiseCommand()
+        {
+            SaveCommand = new RelayCommand(ExecuteSaveCommand);
+            CancelCommand = new RelayCommand(ExecuteCancelCommand);
+            VisitHoursCommand = new RelayCommand(ExecuteVisitHoursCommand);
         }
 
         private void ExecuteVisitHoursCommand()
@@ -149,10 +153,9 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             }
             else
             {
-                MessageBox.Show("Prosze uzupelnic dane");
+                MessageBox.Show("Proszę uzupelnić dane, w tym godziny pracy lekarza");
             }
         }
-
-        
+       
     }
 }

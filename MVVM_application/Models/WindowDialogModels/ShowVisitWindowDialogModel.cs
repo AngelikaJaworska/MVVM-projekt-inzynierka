@@ -106,25 +106,23 @@ namespace MVVM_application.Models.WindowDialogModels
                 {
                     _doctor = _manager.GetDoctor();
                 }
-                
-                var dateVisitManager = DateTime.Parse(_visitManager.VisitDate);
 
-                var visit = _database.Visits
-                         .Where(v => (v.Patient.IDPatient == _patient.IDPatient)
-                         && (v.Doctor.IDDoctor == _doctor.IDDoctor)
-                         && (v.VisitDate == dateVisitManager))
-                         .Single();
+                try
+                {
+                    var dateVisitManager = DateTime.Parse(_visitManager.VisitDate);
 
-                return visit;
+                    var visit = _database.Visits
+                             .Where(v => (v.Patient.IDPatient == _patient.IDPatient)
+                             && (v.Doctor.IDDoctor == _doctor.IDDoctor)
+                             && (v.VisitDate == dateVisitManager))
+                             .Single();
 
-                //try
-                //{
-
-                //}
-                //catch
-                //{
-                //    return null;
-                //}
+                    return visit;
+                }
+                catch
+                {
+                    return null;
+                }
             }
             return null;
 

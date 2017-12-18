@@ -122,7 +122,7 @@ namespace MVVM_application.ViewModels
             }
             else
             {
-                MessageBox.Show("Prosze, wybrać odpowiednie dane"); 
+                MessageBox.Show("Proszę wybrać odpowiednie dane"); 
             }
             
         }

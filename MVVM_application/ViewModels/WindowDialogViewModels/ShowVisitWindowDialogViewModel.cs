@@ -63,9 +63,15 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
             _manager = manager;
             _showVisitWindowDialogModel = showvisitWindowDialogModel;
             InitialiseCommand();
+            FillData();
+        }
+
+        public void FillData()
+        {
             _patientInfo = _showVisitWindowDialogModel.SetPatient();
             _doctorInfo = _showVisitWindowDialogModel.SetDocotr();
             _dateInfo = _showVisitWindowDialogModel.SetDate();
+
         }
 
         public void InitialiseCommand()

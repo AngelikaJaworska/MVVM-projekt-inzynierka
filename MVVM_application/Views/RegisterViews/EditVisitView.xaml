@@ -94,16 +94,6 @@
                       ItemsSource="{Binding NewVisitDateList}"
                       SelectedItem="{Binding NewVisitDate}"/>
 
-            <Label Grid.Row="2"
-                   Grid.Column="0"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center"
-                   FontSize="14" Content="Uwagi"/>
-            <TextBox Grid.Row="2"
-                     Grid.Column="0"
-                     Width="170"
-                     HorizontalAlignment="Right" 
-                     Text="{Binding Comments}"/>
 
             <Button Grid.Column="1"
                     Grid.Row="2"

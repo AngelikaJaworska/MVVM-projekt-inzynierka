@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace MVVM_application.Models.PatientCardModels
@@ -13,11 +14,19 @@ namespace MVVM_application.Models.PatientCardModels
         private Clinic _database;
         private Patient _patient;
 
+        private int _year;
+        private int _month;
+        private int _day;
+
         public PatientEditDataModel(IManager manager)
         {
             _manager = manager;
             _database = _manager.GetDatabase();
             _patient = _manager.GetPatient();
+
+            _year = 0;
+            _month = 0;
+            _day = 0;
         }
 
         public string GetPatientName()
@@ -76,61 +85,89 @@ namespace MVVM_application.Models.PatientCardModels
             return pesel;
         }
 
-        public void SetPatientName(string _name)
+        public bool SetPatientName(string _name)
         {
             if (_patient != null && _name != null && _name != "")
             {
-                _patient.First_Name = _name;
-                _database.SaveChanges();
+                if (CheckIfStringContainsOnlyLetter(_name))
+                {
+                    _patient.First_Name = _name;
+                    _database.SaveChanges();
+                    return true;
+                }
+                else return false;
             }
+            return false;
         }
 
-        public void SetPatientSurame(string _surname)
+        public bool SetPatientSurame(string _surname)
         {
             if (_patient != null && _surname != null && _surname != "")
             {
-                _patient.Last_Name = _surname;
-                _database.SaveChanges();
+                if(CheckIfStringContainsOnlyLetter(_surname))
+                {
+                    _patient.Last_Name = _surname;
+                    _database.SaveChanges();
+                    return true;
+                }
+                return false;
             }
+            return false;
         }
 
-        public void SetPatientStreet(string _street)
+        public bool SetPatientStreet(string _street)
         {
             if (_patient != null && _street != null && _street != "")
             {
                 _patient.Street = _street;
                 _database.SaveChanges();
+                return true;
             }
+            return false;
         }
 
-        public void SetPatientHomeNr(string _homeNr)
+        public bool SetPatientHomeNr(string _homeNr)
         {
             if (_patient != null && _homeNr != null && _homeNr != "")
             {
                 _patient.HomeNr = _homeNr;
                 _database.SaveChanges();
+                return true;
             }
+            return false;
         }
 
-        public void SetPatientCity(string _city)
+        public bool SetPatientCity(string _city)
         {
             if (_patient != null && _city != null && _city != "")
             {
-                _patient.City = _city;
-                _database.SaveChanges();
+                if(CheckIfStringContainsOnlyLetter(_city))
+                {
+                    _patient.City = _city;
+                    _database.SaveChanges();
+                    return true;
+                }
+                return false;
             }
+            return false;
         }
 
-        public void SetPatientPhone(string _phone)
+        public bool SetPatientPhone(string _phone)
         {
             if (_patient != null && _phone != null && _phone != "")
             {
-                _patient.Phone = _phone;
-                _database.SaveChanges();
+                if(CheckIfStringContainsPhoneNumber(_phone))
+                {
+                    _patient.Phone = _phone;
+                    _database.SaveChanges();
+                    return true;
+                }
+                return false;
             }
+            return false;
         }
 
-        internal void DeletePatient()
+        public void DeletePatient()
         {
             if(_patient != null)
             {
@@ -148,27 +185,76 @@ namespace MVVM_application.Models.PatientCardModels
             }
         }
 
-        public void SetPatientDateOfBirth(string _dateOfBirth)
+        public bool SetPatientDateOfBirth(string _dateOfBirth)
         {
             if (_patient != null && _dateOfBirth != null && _dateOfBirth != "")
             {
-                var date = _dateOfBirth.Split('-');
-                var year = Int32.Parse(date[0]);
-                var month = Int32.Parse(date[1]);
-                var day = Int32.Parse(date[2]);
-
-                DateTime dateOfBirth = new DateTime(year, month, day);
-                _patient.DateOfBirth = dateOfBirth;
-                _database.SaveChanges();
+                if(CheckIfStringContainsDate(_dateOfBirth))
+                {
+                    _patient.DateOfBirth = new DateTime(_year,_month, _day);
+                    _database.SaveChanges();
+                    return true;
+                }
+                return false;
             }
+            return false;
         }
 
-        public void SetPatientPesel(string _pesel)
+        public bool SetPatientPesel(string _pesel)
         {
             if (_patient != null && _pesel != null && _pesel != "")
             {
-                _patient.PESEL = _pesel;
-                _database.SaveChanges();
+                if(CheckIfStringContainsPesel(_pesel))
+                {
+                    _patient.PESEL = _pesel;
+                    _database.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+
+        private bool CheckIfStringContainsOnlyLetter(string stringToCheck)
+        {
+            Match match = Regex.Match(stringToCheck, @"[\p{L} ]+$");
+            return match.Success;
+        }
+
+        private bool CheckIfStringContainsPhoneNumber(string stringToCheck)
+        {
+            Match match = Regex.Match(stringToCheck, @"\d{9}");
+            return match.Success;
+        }
+
+        private bool CheckIfStringContainsPesel(string stringToCheck)
+        {
+            Match match = Regex.Match(stringToCheck, @"\d{11}");
+            return match.Success;
+        }
+
+        private bool CheckIfStringContainsDate(string stringToCheck)
+        {
+            try
+            {
+                var date = Regex.Split(stringToCheck, @"\W+");// @      special verbatim string syntax
+                                                              // \W+    one or more non-word characters together
+                _year = Int32.Parse(date[0]);
+                _month = Int32.Parse(date[1]);
+                _day = Int32.Parse(date[2]);
+
+                if (_year != 0 && _month != 0 && _day != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
             }
         }
     }

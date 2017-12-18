@@ -1,4 +1,5 @@
 ﻿using MVVM_application.Manager;
+using MVVM_application.Models.Manager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,7 @@ namespace MVVM_application.Models.WindowDialogModels
                 var start = DateTime.Parse(startHour).Hour;
                 IEnumerable<string> end = null;
 
-                for (int j = 0; j <= 18 - start; j++)
+                for (int j = 0; j <= 18 - start; j++) //przychodnia czynna do 18
                 {
                     end = Enumerable.Range(start + 1, 0 + j).Select(i => (DateTime.MinValue.AddHours(i)).ToString("HH:mm tt"));
                 }
@@ -41,7 +42,7 @@ namespace MVVM_application.Models.WindowDialogModels
             }
             else
             {
-                MessageBox.Show("Proszę wybrać godzine rozpoczecia");
+                MessageBox.Show("Proszę wybrać godzinę rozpoczęcia");
             }
 
             return _endHoursList;
@@ -56,5 +57,27 @@ namespace MVVM_application.Models.WindowDialogModels
             }
             return _startHoursList;
         }
+
+        public bool SaveData(string startHour, string endHour)
+        {
+            if(CheckData(startHour, endHour))
+            {
+                var visitHours = new string[] { startHour, endHour };
+                _manager.SetDoctorVisitHour(visitHours);
+                return true;
+            }
+            return false;
+            
+        }
+
+        public bool CheckData(string startHour, string endHour)
+        {
+            if (startHour != null && startHour != " " && endHour != null && endHour != " ")
+            {
+                return true;
+            }
+            return false;
+        }
+
     }
 }

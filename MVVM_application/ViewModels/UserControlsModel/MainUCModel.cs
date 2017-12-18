@@ -23,8 +23,7 @@ namespace MVVM_application.ViewModels.UserControlsModel
                 RaisePropertyChanged("Recepcionist");
             }
         }
-
-        //public ExitWindowDialogViewModel ExitWDViewModel { get; private set; }
+        
         #region Command
 
         public RelayCommand DailyCommand { get; private set; }
@@ -40,8 +39,7 @@ namespace MVVM_application.ViewModels.UserControlsModel
         {
            _manager = manager;
             _recepcionist = "Zalogowany jako: "+ _manager.GetReceptionist().Login;
-
-            //ExitWDViewModel = new ExitWindowDialogViewModel();
+            
             InitiliseCommand();
         }
 
@@ -84,8 +82,6 @@ namespace MVVM_application.ViewModels.UserControlsModel
         public void ExecuteExitCommand()
         {
             Application.Current.Shutdown();
-            //ExitWindowDialog exitWindowDialog = new ExitWindowDialog();
-            //exitWindowDialog.ShowDialog();
         }
     }
 }

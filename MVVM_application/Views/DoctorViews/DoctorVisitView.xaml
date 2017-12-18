@@ -29,9 +29,19 @@
         <uc:MainUserControl Grid.RowSpan="6" Grid.ColumnSpan="4" />
         <uc:DoctorUserControl Grid.RowSpan="4" Grid.ColumnSpan="4" Grid.Row="1"/>
 
+        <Label Grid.Column="1"
+               Grid.ColumnSpan="2"
+            Grid.Row="2"
+            Content="{Binding DoctorInfo}"/>
+
+        <Label  Grid.Row="2"
+                  Grid.Column="0"
+            Content="Wybierz datę wyświetlonych wizyt"
+            />
+
         <ComboBox Grid.Row="2"
                   Grid.Column="0"
-                  VerticalAlignment="Center"
+                  VerticalAlignment="Bottom"
                   ItemsSource="{Binding DateList}"
                   SelectedItem="{Binding Date}"
                   SelectedValuePath="Date"  >

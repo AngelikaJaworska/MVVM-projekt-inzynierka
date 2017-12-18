@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVVM_application.Views"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
-    xmlns:Custom="http://www.galasoft.ch/mvvmlight" x:Class="MVVM_application.Views.SearchPatientWindowDialog"
+        xmlns:Custom="http://www.galasoft.ch/mvvmlight" x:Class="MVVM_application.Views.SearchPatientWindowDialog"
         mc:Ignorable="d"
+        Title="Wyszukaj pacjenta"
         x:Name="WindowSearchPatient"
-        Title="SearchPatientWindowDialog"  Height="185" Width="400" DataContext="{DynamicResource Locator}">
+    Height="185" Width="400" DataContext="{DynamicResource Locator}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200" />

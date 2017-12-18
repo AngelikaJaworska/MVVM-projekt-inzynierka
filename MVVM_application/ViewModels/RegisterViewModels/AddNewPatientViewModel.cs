@@ -95,17 +95,22 @@ namespace MVVM_application.ViewModels.RegisterViewModels
             }
         }
 
-        public ICommand SaveCommand { get; private set; }
-        public ICommand CancelCommand { get; private set; }
+        public RelayCommand SaveCommand { get; private set; }
+        public RelayCommand CancelCommand { get; private set; }
 
         public AddNewPatientViewModel(IManager manager, AddNewPatientModel addNewPatientModel)
         {
             _manager = manager;
             _addNewPatientModel = addNewPatientModel;
+            InitialiseCommand();
+        }
 
+        private void InitialiseCommand()
+        {
             SaveCommand = new RelayCommand(ExecuteSaveCommand);
             CancelCommand = new RelayCommand(ExecuteCancelCommand);
         }
+
         private void ExecuteSaveCommand()
         {
            if(_addNewPatientModel.CreatePatientCard(_name, _surname, _dateOfBirth, _street, _homeNr, _city, _phone, _pesel))
@@ -115,7 +120,7 @@ namespace MVVM_application.ViewModels.RegisterViewModels
             }
             else
             {
-                MessageBox.Show("Prosze uzupelnic dane");
+                MessageBox.Show("Proszę uzupelnię dane");
             }
         }
 

@@ -80,11 +80,22 @@ namespace MVVM_application.ViewModels.MainViewModels
             _manager = manager;
             _dailyModel = dailyModel;
             _receptionist = _manager.GetReceptionist();
+            FillData();
+            InitialiseCommand();
+        }
 
+        public void InitialiseCommand()
+        {
+            ShowVisitCommand = new RelayCommand(ExecuteShowVisitCommand);
+            RefreshDateCommand = new RelayCommand(ExecuteRefreshDateCommand);
+        }
+
+        public void FillData()
+        {
             var date = DateTime.Parse("0001-01-01 00:00:00");
             if (_receptionist.IDReceptionist != 0)
             {
-                if(_date != date)
+                if (_date != date)
                 {
                     this.TodayVisitsList = new ObservableCollection<VisitManager>(_dailyModel.GetAllVisitsWithReceptionist(_receptionist.IDReceptionist, _date));
                 }
@@ -94,8 +105,6 @@ namespace MVVM_application.ViewModels.MainViewModels
                 }
                 this.DateList = new ObservableCollection<DateTime>(_dailyModel.GetDate());
             }
-            ShowVisitCommand = new RelayCommand(ExecuteShowVisitCommand);
-            RefreshDateCommand = new RelayCommand(ExecuteRefreshDateCommand);
 
             _showVisitWindowDialogModel = new ShowVisitWindowDialogModel(_manager);
             ShowVisitWDViewModel = new ShowVisitWindowDialogViewModel(_manager, _showVisitWindowDialogModel);
@@ -117,7 +126,7 @@ namespace MVVM_application.ViewModels.MainViewModels
             }
             else
             {
-                MessageBox.Show("Prosze wybrac wizyte zaznaczajac ja na liscie");
+                MessageBox.Show("Proszę wybrać wizytę zaznaczając ją na liście");
             }
         }
     }

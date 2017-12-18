@@ -113,18 +113,17 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
         {
             if (_patientNewVisitModel.CreateVisitWithData(_patientName, _specialisationName, _doctorName, _visitDate, _comments))
             {
-                MessageBox.Show("Wizyta zapisana");
-                MessageBox.Show("//todo przejscie do wizyt zapisanych");
+                MessageBox.Show("Wizyta poprawnie zapisana");
+                _manager.RefreshAll(TypesOfViews.PatientCardViewModel);
             }
                 else
             {
-                MessageBox.Show("Prosze uzupelnic dane");
+                MessageBox.Show("Proszę uzupełnic dane");
             }
         }
         
         private void ExecuteCancelCommand()
         {
-            MessageBox.Show("Anulowano");
             _manager.RefreshAll(TypesOfViews.SearchPatientViewModel);
         }
 

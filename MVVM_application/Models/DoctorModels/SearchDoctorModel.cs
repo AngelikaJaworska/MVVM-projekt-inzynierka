@@ -58,7 +58,12 @@ namespace MVVM_application.Models.DoctorModels
 
         public string GetDoctorSpecialisation()
         {
-            var _specialisation = _doctor.Specialisation.Name;
+            var specialisationName = _database.Specialisation
+                .Where(s => s.IDSpecialisation == _doctor.IDSpecialisation)
+                .Select(s => s.Name)
+                .Single();
+
+            var _specialisation =specialisationName;
             return _specialisation;
         }
 

@@ -7,7 +7,8 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" x:Class="MVVM_application.Views.SearchVisitToEditWindowDialog"
         mc:Ignorable="d"
         x:Name="windowEditVisit"
-        Title="SearchVisitToEditWindowDialog" Height="235" Width="300" DataContext="{DynamicResource Locator}">
+        Title="Wyszukaj wizyty do edycji"
+    Height="235" Width="300" DataContext="{DynamicResource Locator}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100" />
@@ -33,7 +34,7 @@
         <Label Grid.Column="0"
                Grid.Row="1" 
                HorizontalContentAlignment="Center"
-               VerticalContentAlignment="Center" Content="Specjalnosc"/>
+               VerticalContentAlignment="Center" Content="Specjalność"/>
         <ComboBox x:Name="comboBox" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row ="1" 
                    HorizontalContentAlignment="Center"
                    VerticalContentAlignment="Center"

@@ -21,7 +21,7 @@ using System.Collections.Generic;
 
 namespace MVVM_application.ViewModels
 {
-    public class MainViewModel : ViewModelBase, IManager//, IModelManager
+    public class MainViewModel : ViewModelBase, IManager
     {
 
         Clinic _database;
@@ -32,6 +32,7 @@ namespace MVVM_application.ViewModels
         //sprawdza czy zmienil sie widok czy nie
         bool _unchangedView;
         VisitManager _visitManager;
+        string[] _visitHours;
 
 
         #region ViewModel
@@ -328,5 +329,16 @@ namespace MVVM_application.ViewModels
         {
             _visitManager = visitManager;
         }
+
+        public void SetDoctorVisitHour(string[] visitHours)
+        {
+            _visitHours = visitHours;
+        }
+
+        public string[] GetDocotrVisitHour()
+        {
+            return _visitHours;
+        }
+
     }
 }

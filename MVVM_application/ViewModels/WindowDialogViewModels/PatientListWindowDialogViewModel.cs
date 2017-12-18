@@ -43,13 +43,18 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
         {
             _manager = manager;
             _patientListWindowDialogModel = patientListWindowDialogModel;
+            FillData();
+            InitialiseCommand();
+        }
 
-            if(_manager.GetPatientList() != null)
+        public void FillData()
+        {
+            if (_manager.GetPatientList() != null)
             {
                 this.PatientList = new ObservableCollection<PatientManager>(_patientListWindowDialogModel.GetAllPatient());
             }
-            InitialiseCommand();
         }
+
         public void InitialiseCommand()
         {
             GetPatientFromListCommand = new RelayCommand<PatientListWindowDialog>(ExecuteGetPatientFromListCommand);
@@ -72,7 +77,7 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
             }
             else
             {
-                MessageBox.Show("Prosze zaznaczyc pacjenta klikajac na liste");
+                MessageBox.Show("Proszę zaznaczyć pacjenta klikając na liste");
             }
         }
     }

@@ -16,7 +16,6 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
 {
     public class SearchDoctorWindowDialogViewModel: ViewModelBase
     {
-
         private IManager _manager;
 
         private string _doctor;
@@ -86,7 +85,7 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
             }
             else
             {
-                MessageBox.Show("Prosze, wybrać odpowiednie dane");
+                MessageBox.Show("Proszę wybrać odpowiednie dane");
             }
 
         }
@@ -106,7 +105,7 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
             }
             else
             {
-                MessageBox.Show("Prosze, wybrać najpierw lekarza");
+                MessageBox.Show("Proszę wybrać najpierw lekarza");
             }
         }
 

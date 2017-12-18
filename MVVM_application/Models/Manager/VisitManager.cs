@@ -12,8 +12,6 @@ namespace MVVM_application.Models.Manager
         private string _specialisation;
         private string _doctor;
         private string _visitDate;
-        private long _comments;
-        private string _timeOfDay;
 
         #region Propertis
         public string Patient
@@ -60,17 +58,6 @@ namespace MVVM_application.Models.Manager
                 _visitDate = value;
             }
         }
-        public long Comments
-        {
-            get
-            {
-                return _comments;
-            }
-            set
-            {
-                _comments = value;
-            }
-        }
         #endregion
 
         public VisitManager(string patient, string specialisation, string doctor, string visitDate)
@@ -81,14 +68,6 @@ namespace MVVM_application.Models.Manager
             _visitDate = visitDate;
         }
 
-        public VisitManager(string specialisation, string doctor, string visitDate, long comments)
-        {
-            _specialisation = specialisation;
-            _doctor = doctor;
-            _visitDate = visitDate;
-            _comments = comments;
-        }
-
         public VisitManager(string specialisation, string doctor, string visitDate)
         {
             _specialisation = specialisation;
@@ -96,11 +75,10 @@ namespace MVVM_application.Models.Manager
             _visitDate = visitDate;
         }
 
-        public VisitManager(string patient, string visitDate)//, long comments)
+        public VisitManager(string patient, string visitDate)
         {
             _patient = patient;
             _visitDate = visitDate;
-         //   _comments = comments;
         }
     }
 }

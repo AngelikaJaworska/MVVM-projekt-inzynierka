@@ -98,8 +98,8 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
             }
         }
         
-        public ICommand PatientNewVisitCommand { get; private set; }
-        public ICommand PatientEditDataCommand { get; private set; }
+        public RelayCommand PatientNewVisitCommand { get; private set; }
+        public RelayCommand PatientEditDataCommand { get; private set; }
 
         public SearchPatientViewModel(IManager manager, SearchPatientModel searchPatientModel)
         {
@@ -110,10 +110,7 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
             {
                 FillPatientData();
             }
-
-
-            PatientNewVisitCommand = new RelayCommand(ExecutePatientNewVisitCommand);
-            PatientEditDataCommand = new RelayCommand(ExecutePatientEditDataCommand);
+            InitialiseCommand();
         }
 
         private void FillPatientData()
@@ -128,6 +125,11 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
             _pesel = _searchPatientModel.GetPatientPesel();
         }
 
+        public void InitialiseCommand()
+        {
+            PatientNewVisitCommand = new RelayCommand(ExecutePatientNewVisitCommand);
+            PatientEditDataCommand = new RelayCommand(ExecutePatientEditDataCommand);
+        }
 
         public void ExecutePatientNewVisitCommand()
         {

@@ -13,7 +13,7 @@ namespace MVVM_application.ViewModels.UserControlsModel
     public class RegisterUCModel: ViewModelBase
     {
         private readonly IManager _manager;
-        private readonly SearchVisitToEditWindowDialogModel _searchVisitToEditWindowDialogModel;
+        private SearchVisitToEditWindowDialogModel _searchVisitToEditWindowDialogModel;
         public SearchVisitToEditWindowDialogViewModel SearchVisitToEditWDViewModel { get; private set; }
                     
         public RelayCommand AddVisitCommand { get; private set; }
@@ -24,9 +24,7 @@ namespace MVVM_application.ViewModels.UserControlsModel
         public RegisterUCModel(IManager manager)
         {
             _manager = manager;
-            _searchVisitToEditWindowDialogModel = new SearchVisitToEditWindowDialogModel(_manager);
-            SearchVisitToEditWDViewModel = new SearchVisitToEditWindowDialogViewModel(_manager, _searchVisitToEditWindowDialogModel);
-
+            FillData();
             InitialiseCommand();
         }
 
@@ -35,6 +33,12 @@ namespace MVVM_application.ViewModels.UserControlsModel
             AddVisitCommand = new RelayCommand(ExecuteAddVisitCommand);
             EditVisitCommand = new RelayCommand(ExecuteEditVisitCommand);
             AddNewPatientCommand = new RelayCommand(ExecuteAddNewPatientCommand);
+        }
+        
+        public void FillData()
+        {
+            _searchVisitToEditWindowDialogModel = new SearchVisitToEditWindowDialogModel(_manager);
+            SearchVisitToEditWDViewModel = new SearchVisitToEditWindowDialogViewModel(_manager, _searchVisitToEditWindowDialogModel);
         }
         
         public void ExecuteAddVisitCommand()

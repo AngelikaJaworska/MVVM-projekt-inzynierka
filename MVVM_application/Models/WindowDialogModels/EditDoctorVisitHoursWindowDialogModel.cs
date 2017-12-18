@@ -77,7 +77,7 @@ namespace MVVM_application.Models.WindowDialogModels
             }
             else
             {
-                MessageBox.Show("Proszę wybrać godzine rozpoczecia");
+                MessageBox.Show("Proszę wybrać godzinę rozpoczęcia");
             }
 
             return _endHoursList;

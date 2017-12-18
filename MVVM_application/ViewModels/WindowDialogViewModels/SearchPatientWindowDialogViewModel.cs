@@ -77,7 +77,7 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
                 }
                 else
                 {
-                    MessageBox.Show("Prosze, uzupelnic poprawnie wszystkie dane");
+                    MessageBox.Show("Proszę uzupełnić poprawnie wszystkie dane");
                 }
             }
             else if(_pesel != null && _pesel != "")
@@ -91,7 +91,7 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
                 }
                 else
                 {
-                    MessageBox.Show("Prosze, uzupelnic poprawnie dane");
+                    MessageBox.Show("Proszę uzupełnić poprawnie dane");
                 }
             }
             else if(_patient != null && _patient != "")
@@ -105,12 +105,12 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
                 }
                 else
                 {
-                    MessageBox.Show("Prosze, uzupelnic poprawnie dane");
+                    MessageBox.Show("Proszę uzupełnić poprawnie dane");
                 }
             }
             else
             {
-                MessageBox.Show("Prosze, uzupelnic poprawnie wszystkie dane");
+                MessageBox.Show("Proszę uzupelnić poprawnie wszystkie dane");
             }
 
         }

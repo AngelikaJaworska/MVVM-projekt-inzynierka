@@ -8,15 +8,15 @@
         x:Class="MVVM_application.Views.EditDoctorVisitHourWindowDialog"
         mc:Ignorable="d"
         x:Name="windowEditDoctorVisitHours"
-        Height="270" Width="330" 
-             DataContext="{Binding Main.CurrentViewModel.EditDoctorVisitHoursWDViewModel, Source={StaticResource Locator}}">
+        Height="240" Width="330" 
+        Title="Edycja godzin pracy lekarza"
+        DataContext="{Binding Main.CurrentViewModel.EditDoctorVisitHoursWDViewModel, Source={StaticResource Locator}}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="160" />
             <ColumnDefinition Width="160" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="25"/>
             <RowDefinition Height="50" />
@@ -25,36 +25,30 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Column="0"
-               Grid.ColumnSpan="2"
-               Grid.Row="0" 
-               Content="Edycja godzin pracy lekarza"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"/>
-        <Label Grid.Column="0"
-               Grid.Row="1"
-            Content="Godzina rozpoczecia pracy:"/>
+               Grid.Row="0"
+            Content="Godzina rozpoczęcia pracy:"/>
 
         <Label Grid.Column="1"
-               Grid.Row="1"
-               Content="Godzina zakonczenie pracy:"/>
+               Grid.Row="0"
+               Content="Godzina zakończenie pracy:"/>
 
         <TextBox Grid.Column="0"
-               Grid.Row="2"
+               Grid.Row="1"
                  IsEnabled="False"
                  VerticalAlignment="Center"
             Text="{Binding StartHour}" />
 
         <TextBox Grid.Column="1"
-               Grid.Row="2"
+               Grid.Row="1"
                  IsEnabled="False"
                  VerticalAlignment="Center"
             Text="{Binding EndHour}" />
 
         <Label Grid.Column="0"
-               Grid.Row="3" Content="Nowa godzina rozpoczęcia:"/>
+               Grid.Row="2" Content="Nowa godzina rozpoczęcia:"/>
         <ComboBox x:Name="comboBox"
                   Grid.Column="1"
-                 Grid.Row="3"
+                 Grid.Row="2"
                   ItemsSource="{Binding StartHourList}"
                   SelectedItem="{Binding StartHour}">
             <i:Interaction.Triggers>
@@ -63,15 +57,12 @@
                                            Command="{Binding RefreshEndHoursCommand, Mode=OneWay}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
-
-
-
         </ComboBox>
 
         <Label Grid.Column="0"
-               Grid.Row="4" Content="Nowa godzina zakonczenia:"/>
+               Grid.Row="3" Content="Nowa godzina zakończenia:"/>
         <ComboBox Grid.Column="1"
-                 Grid.Row="4"
+                 Grid.Row="3"
                   ItemsSource="{Binding EndHourList}"
                  SelectedItem="{Binding EndHour}"/>
         <Button Grid.Row="5"

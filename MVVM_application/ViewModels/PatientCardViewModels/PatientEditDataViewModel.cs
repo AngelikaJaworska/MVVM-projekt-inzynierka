@@ -97,9 +97,9 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
         }
 
 
-        public ICommand SaveCommand { get; private set; }
-        public ICommand DeleteCommand { get; private set; }
-        public ICommand GoBackCommand { get; private set; }
+        public RelayCommand SaveCommand { get; private set; }
+        public RelayCommand DeleteCommand { get; private set; }
+        public RelayCommand GoBackCommand { get; private set; }
 
         public PatientEditDataViewModel(IManager manager, PatientEditDataModel patientEditDataModel)
         {
@@ -110,6 +110,11 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
             {
                 FillData();
             }
+            InitialiseCommand();
+        }
+
+        private void InitialiseCommand()
+        {
             SaveCommand = new RelayCommand(ExecuteSaveCommand);
             DeleteCommand = new RelayCommand(ExecuteDeleteCommand);
             GoBackCommand = new RelayCommand(ExecuteGoBackCommand);
@@ -125,28 +130,41 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
             if(_patient != null)
             {
                 _patientEditDataModel.DeletePatient();
-                MessageBox.Show("Pacjent zostal wyrejestrowany");
+                MessageBox.Show("Pacjent został wyrejestrowany");
                 _manager.RefreshAll(TypesOfViews.PatientCardViewModel);
             }
         }
 
         private void ExecuteSaveCommand()
         {
-            SetData();
-            MessageBox.Show("Dane prawidlowo zmienione");
-            _manager.RefreshAll(TypesOfViews.SearchPatientViewModel);
+            if(SetData())
+            {
+                MessageBox.Show("Dane prawidłowo zmienione");
+                _manager.RefreshAll(TypesOfViews.SearchPatientViewModel);
+            }
+            else
+            {
+                MessageBox.Show("Niepoprawne dane");
+            }
         }
 
-        private void SetData()
+        private bool SetData()
         {
-             _patientEditDataModel.SetPatientName(_name);
-             _patientEditDataModel.SetPatientSurame(_surname);
-             _patientEditDataModel.SetPatientStreet(_street);
-             _patientEditDataModel.SetPatientHomeNr(_homeNr);
-             _patientEditDataModel.SetPatientCity(_city);
-             _patientEditDataModel.SetPatientPhone(_phone);
-             _patientEditDataModel.SetPatientDateOfBirth(_dateOfBirth);
-             _patientEditDataModel.SetPatientPesel(_pesel);
+            if (_patientEditDataModel.SetPatientName(_name)
+                &&   _patientEditDataModel.SetPatientSurame(_surname)
+                && _patientEditDataModel.SetPatientStreet(_street)
+                && _patientEditDataModel.SetPatientHomeNr(_homeNr)
+                &&  _patientEditDataModel.SetPatientCity(_city)
+                && _patientEditDataModel.SetPatientPhone(_phone)
+                && _patientEditDataModel.SetPatientDateOfBirth(_dateOfBirth)
+                && _patientEditDataModel.SetPatientPesel(_pesel))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            } 
         }
 
         private void FillData()

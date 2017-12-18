@@ -22,24 +22,32 @@ namespace MVVM_application.Models.DoctorModels
         public List<VisitManager> GetAllVisitsWithDoctor(Doctor doctor, DateTime date)
         {
             var _doctor = doctor;
-            var doctorAllVisitsList = _doctor.Visits
-                .Where(x => x.VisitDate.Date == date)
-                .Select(x => CreateNewDoctorVisit(x))
-                .ToList();
+            if(_doctor != null)
+            {
+                var doctorAllVisitsList = _doctor.Visits
+                    .Where(x => x.VisitDate.Date == date)
+                    .Select(x => CreateNewDoctorVisit(x))
+                    .ToList();
 
-            return doctorAllVisitsList;
+                return doctorAllVisitsList;
+            }
+            return null;
 
         }
 
         private VisitManager CreateNewDoctorVisit(Visits visit)
         {
-            var patientInfo = visit.Patient.First_Name.ToString() + " " + visit.Patient.Last_Name.ToString()+" "+visit.Patient.PESEL;
-            var timeOfDay = visit.VisitDate.ToString("yyyy-MM-dd HH:mm");
-            //var comments = visit.Comments.Single();
-            return new VisitManager(patientInfo, timeOfDay);//, comments);
+            if(visit != null)
+            {
+                var patientInfo = visit.Patient.First_Name.ToString() + " " + visit.Patient.Last_Name.ToString() + " " + visit.Patient.PESEL;
+                var timeOfDay = visit.VisitDate.ToString("yyyy-MM-dd HH:mm");
+                return new VisitManager(patientInfo, timeOfDay);
+            }
+            return null;
+           
         }
 
-        internal List<DateTime> GetDate()
+        public List<DateTime> GetDate()
         {
             var dateList = new List<DateTime>();
 
@@ -60,6 +68,20 @@ namespace MVVM_application.Models.DoctorModels
                     yield return day;
                 }
             }
+        }
+
+        public string SetDoctorInfo()
+        {
+            var doctor = _manager.GetDoctor();
+            var specialisationName = _database.Specialisation
+                .Where(s => s.IDSpecialisation == doctor.IDSpecialisation)
+                .Select(s => s.Name)
+                .Single();
+
+            var doctorInfo = "Podgląd wizyt lekarza: " + _manager.GetDoctor().First_Name + " " + _manager.GetDoctor().Last_Name 
+                + ", " + specialisationName;
+
+            return doctorInfo;
         }
     }
 }

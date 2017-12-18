@@ -98,12 +98,13 @@ namespace MVVM_application.ViewModels.DoctorViewModels
                 RaisePropertyChanged("Phone");
             }
         }
+
         public ObservableCollection<string> SpecialisationtList { get; set; }
 
-        public ICommand EditVisitHoursCommand { get; private set; }
-        public ICommand SaveCommand { get; private set; }
-        public ICommand DeleteCommand { get; private set; }
-        public ICommand GoBackCommand { get; private set; }
+        public RelayCommand EditVisitHoursCommand { get; private set; }
+        public RelayCommand SaveCommand { get; private set; }
+        public RelayCommand DeleteCommand { get; private set; }
+        public RelayCommand GoBackCommand { get; private set; }
 
         public DoctorEditDataViewModel(IManager manager, DoctorEditDataModel doctorEditDataModel)
         {
@@ -114,15 +115,15 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             {
                 FillData();
             }
+            InitialiseCommand();
+        }
+
+        public void InitialiseCommand()
+        {
             EditVisitHoursCommand = new RelayCommand(ExecuteEditVisitHoursCommand);
             SaveCommand = new RelayCommand(ExecuteSaveCommand);
             DeleteCommand = new RelayCommand(ExecuteDeleteCommand);
             GoBackCommand = new RelayCommand(ExecuteGoBackCommand);
-        }
-
-        private void ExecuteGoBackCommand()
-        {
-            _manager.ChangeView(TypesOfViews.SearchDoctorViewModel);
         }
 
         private void FillData()
@@ -140,15 +141,24 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             EditDoctorVisitHoursWDViewModel = new EditDoctorVisitHoursWindowDialogViewModel(_manager, _editDoctorVisitHoursWindowDialogModel);
         }
 
-        private void SetData()
+        private bool SetData()
         {
-            _doctorEditDataModel.SetDoctorName(_name);
-            _doctorEditDataModel.SetSpecialisation(_specialisation);
-            _doctorEditDataModel.SetDoctorSurame(_surname);
-            _doctorEditDataModel.SetDoctorStreet(_street);
-            _doctorEditDataModel.SetDoctorHomeNr(_homeNr);
-            _doctorEditDataModel.SetDoctorCity(_city);
-            _doctorEditDataModel.SetDoctorPhone(_phone);
+            if (_doctorEditDataModel.SetDoctorName(_name)
+                 && _doctorEditDataModel.SetSpecialisation(_specialisation)
+                 && _doctorEditDataModel.SetDoctorSurame(_surname)
+                 && _doctorEditDataModel.SetDoctorStreet(_street)
+                 && _doctorEditDataModel.SetDoctorHomeNr(_homeNr)
+                 && _doctorEditDataModel.SetDoctorCity(_city)
+                 && _doctorEditDataModel.SetDoctorPhone(_phone))
+            {
+                return true;
+            }
+            else return false;
+        }
+
+        private void ExecuteGoBackCommand()
+        {
+            _manager.ChangeView(TypesOfViews.SearchDoctorViewModel);
         }
 
         private void ExecuteDeleteCommand()
@@ -156,16 +166,22 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             if(_doctor != null)
             {
                 _doctorEditDataModel.DeleteDoctor();
-                MessageBox.Show("Lekarz zostal usuniety");
+                MessageBox.Show("Lekarz został usunięty");
                 _manager.RefreshAll(TypesOfViews.DoctorViewModel);
             }
         }
 
         private void ExecuteSaveCommand()
         {
-            SetData();
-            MessageBox.Show("Dane prawidlowo zmienione");
-            _manager.RefreshAll(TypesOfViews.SearchDoctorViewModel);
+            if(SetData())
+            {
+                MessageBox.Show("Dane prawidłowo zmienione");
+                _manager.RefreshAll(TypesOfViews.SearchDoctorViewModel);
+            }
+            else
+            {
+                MessageBox.Show("Nieprawidłowe dane");
+            }
         }
 
         private void ExecuteEditVisitHoursCommand()

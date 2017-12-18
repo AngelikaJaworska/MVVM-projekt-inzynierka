@@ -26,7 +26,7 @@
 
         <Button Grid.Column="0" Command="{Binding DailyCommand}">
             <WrapPanel>
-                <TextBlock Text="Dzisiejsze wizyty" />
+                <TextBlock Text="Wizyty" />
             </WrapPanel>
         </Button>
 

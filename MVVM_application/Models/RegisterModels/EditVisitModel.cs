@@ -24,7 +24,7 @@ namespace MVVM_application.Models.RegisterModels
             _visitList = new List<DateTime>();
         }
 
-        internal string SetPatient()
+        public string SetPatient()
         {
             var nameAndSurname = _patient
                 .First_Name
@@ -35,7 +35,7 @@ namespace MVVM_application.Models.RegisterModels
             return nameAndSurname;
         }
 
-        internal string SetDoctor()
+        public string SetDoctor()
         {
             var nameAndSurname = _doctor
               .First_Name
@@ -46,7 +46,7 @@ namespace MVVM_application.Models.RegisterModels
             return nameAndSurname;
         }
 
-        internal List<DateTime> FillVisitList()
+        public List<DateTime> FillVisitList()
         {
             var visitList = _database.Visits
                     .Where(v => (v.IDDoctor == _doctor.IDDoctor)
@@ -56,7 +56,7 @@ namespace MVVM_application.Models.RegisterModels
             return visitList;
         }
 
-        internal List<DateTime> FillNewVisitDateList(DateTime visit)
+        public List<DateTime> FillNewVisitDateList(DateTime visit)
         {
             foreach (DateTime day in EachDay(DateTime.Now, DateTime.Now.AddDays(4)))
             {
@@ -67,34 +67,48 @@ namespace MVVM_application.Models.RegisterModels
             return _visitList;
         }
 
-        internal void DeleteVisit(DateTime _visitDate)
+        public bool DeleteVisit(DateTime _visitDate)
         {
-            var visitList = _database.Visits.Where(v => (v.IDDoctor == _doctor.IDDoctor) 
-            && (v.IDPatient == _patient.IDPatient)).ToList();
-            foreach (Visits v in visitList)
+            var date = DateTime.Parse("0001-01-01 00:00:00");
+            if(_visitDate != date)
             {
-                if (v.VisitDate.Date.Day.Equals(_visitDate.Day))
-               {
-                    if(v.VisitDate.TimeOfDay.Equals(_visitDate.TimeOfDay))
+                var visitList = _database.Visits.Where(v => (v.IDDoctor == _doctor.IDDoctor)
+                && (v.IDPatient == _patient.IDPatient)).ToList();
+                foreach (Visits v in visitList)
+                {
+                    if (v.VisitDate.Date.Day.Equals(_visitDate.Day))
                     {
-                        _database.Visits.Remove(v);
-                        _database.SaveChanges();
+                        if (v.VisitDate.TimeOfDay.Equals(_visitDate.TimeOfDay))
+                        {
+                            _database.Visits.Remove(v);
+                            _database.SaveChanges();
+                            return true;
+                        }
+                        return false;
                     }
+                    return false;
                 }
             }
+            return false;
         }
 
-        internal void ChangeVisitDate(DateTime _visitDate, DateTime _newVisitDate)
+        public bool ChangeVisitDate(DateTime _visitDate, DateTime _newVisitDate)
         {
-            var visitToChange = _database.Visits
-                .Where(v => (v.VisitDate == _visitDate)
-                && (v.IDDoctor == _doctor.IDDoctor)
-                && (v.IDPatient == _patient.IDPatient))
-                .Single();
+            var date = DateTime.Parse("0001-01-01 00:00:00");
+            if (_newVisitDate != date && _visitDate != date)
+            {
+                var visitToChange = _database.Visits
+                    .Where(v => (v.VisitDate == _visitDate)
+                    && (v.IDDoctor == _doctor.IDDoctor)
+                    && (v.IDPatient == _patient.IDPatient))
+                    .Single();
 
-            visitToChange.VisitDate = _newVisitDate;
-            visitToChange.IdReceptionist = _manager.GetReceptionist().IDReceptionist;
-            _database.SaveChanges();
+                visitToChange.VisitDate = _newVisitDate;
+                visitToChange.IdReceptionist = _manager.GetReceptionist().IDReceptionist;
+                _database.SaveChanges();
+                return true;
+            }
+            return false;
         }
 
         public IEnumerable<DateTime> EachDay(DateTime start, DateTime end)

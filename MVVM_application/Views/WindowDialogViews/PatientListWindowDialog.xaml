@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVVM_application.Views"
         mc:Ignorable="d"
-        Title="PatientListWindowDialog" x:Name="WindowPatientList"
+        x:Name="WindowPatientList"
+        Title="Wyniki wyszukiwania po nazwisku pacjenta"
          Height="285" Width="400" DataContext="{DynamicResource Locator}">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -32,7 +33,7 @@
 
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="199" DisplayMemberBinding="{Binding Patient}">Imie i nazwisko pacjenta</GridViewColumn>
+                    <GridViewColumn Width="199" DisplayMemberBinding="{Binding Patient}">Imię i nazwisko pacjenta</GridViewColumn>
                     <GridViewColumn Width="200" DisplayMemberBinding="{Binding Pesel}">Pesel</GridViewColumn>
                 </GridView>
             </ListView.View>

@@ -25,10 +25,13 @@
         </Grid.RowDefinitions>
         <uc:MainUserControl Grid.RowSpan="5" Grid.ColumnSpan="4" />
 
-
+        <Label Grid.Row="1"
+                  Grid.Column="0"
+            Content="Wybierz datę wyświetlonych wizyt"
+            />
         <ComboBox Grid.Row="1"
                   Grid.Column="0"
-                  VerticalAlignment="Center"
+                  VerticalAlignment="Bottom"
                   ItemsSource="{Binding DateList}"
                   SelectedItem="{Binding Date}"
                   SelectedValuePath="Date" >

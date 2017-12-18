@@ -49,7 +49,11 @@ namespace MVVM_application.ViewModels.MainViewModels
             _loginModel = loginModel;
 
             this.ReceptionistList = new ObservableCollection<Receptionist>(_loginModel.FillReceptionsList());
-            
+            InitialiseCommand();  
+        }
+
+        public void InitialiseCommand()
+        {
             LoginCommand = new RelayCommand(ExecuteLoginViewCommand);
             ExitCommand = new RelayCommand(ExecuteExitCommand);
         }
@@ -57,8 +61,6 @@ namespace MVVM_application.ViewModels.MainViewModels
         private void ExecuteExitCommand()
         {
             Application.Current.Shutdown();
-            //ExitWindowDialog exitWindowDialog = new ExitWindowDialog();
-            //exitWindowDialog.ShowDialog();
         }
 
         private void ExecuteLoginViewCommand()
@@ -72,7 +74,7 @@ namespace MVVM_application.ViewModels.MainViewModels
             }
             else
             {
-                MessageBox.Show("Prosze, podac prawidlowe haslo");
+                MessageBox.Show("Proszę uzupełnić prawidłowo dane");
             }
         }
     }

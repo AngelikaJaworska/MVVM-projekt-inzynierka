@@ -8,7 +8,8 @@
         x:Name="windowSearchdoctor" 
         x:Class="MVVM_application.Views.SearchDoctorWindowDialog"
         mc:Ignorable="d"
-        Title="SearchDoctorWindowDialog" Height="185" Width="300" DataContext="{DynamicResource Locator}">
+        Title="Wyszukaj lekarza"
+    Height="185" Width="300" DataContext="{DynamicResource Locator}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100" />
@@ -54,7 +55,7 @@
                   SelectedItem="{Binding Main.DoctorUCModel.SearchDoctorWDModel.Doctor}"
                   SelectedValuePath="Doctor"/>
 
-        <Button Grid.Column="0" Grid.Row ="2" Content="Pomin" 
+        <Button Grid.Column="0" Grid.Row ="2" Content="Pomiń" 
                 Command="{Binding Main.DoctorUCModel.SearchDoctorWDModel.SkipDoctorCommand}" 
                 CommandParameter="{Binding ElementName=windowSearchdoctor, Mode=OneWay}"/>
 

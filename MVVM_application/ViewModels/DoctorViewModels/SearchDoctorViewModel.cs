@@ -107,8 +107,20 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             _manager = manager;
             _searchDoctorModel = searchDoctorModel;
             _doctor = _manager.GetDoctor();
+            FillData();
+            InitialiseCommand();
+        }
 
-            if(_doctor != null)
+        private void InitialiseCommand()
+        {
+            VisitHoursCommand = new RelayCommand(ExecuteVisitHoursCommand);
+            DoctorEditDataCommand = new RelayCommand(ExecuteDoctorEditDataCommand);
+            DeleteDoctorCommand = new RelayCommand(ExecuteDeleteDoctorCommand);
+        }
+
+        public void FillData()
+        {
+            if (_doctor != null)
             {
                 _name = _searchDoctorModel.GetDoctorName();
                 _surname = _searchDoctorModel.GetDoctorSurame();
@@ -119,13 +131,9 @@ namespace MVVM_application.ViewModels.DoctorViewModels
                 _specialisation = _searchDoctorModel.GetDoctorSpecialisation();
 
             }
-
-            VisitHoursCommand = new RelayCommand(ExecuteVisitHoursCommand);
-            DoctorEditDataCommand = new RelayCommand(ExecuteDoctorEditDataCommand);
-            DeleteDoctorCommand = new RelayCommand(ExecuteDeleteDoctorCommand);
-
             _doctorVisitHoursWindowDialogModel = new DoctorVisitHoursWindowDialogModel(_manager);
             DoctorVisitHoursWDViewModel = new DoctorVisitHoursWindowDialogViewModel(_manager, _doctorVisitHoursWindowDialogModel);
+
         }
 
         private void ExecuteDeleteDoctorCommand()
@@ -136,7 +144,7 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             }
             else
             {
-                MessageBox.Show("Nieprawidlowe dane");
+                MessageBox.Show("Nieprawidłowe dane");
             }
         }
 

@@ -89,14 +89,14 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
 
         private void ExecuteSaveCommand(AddDoctorVisitHoursWindowDialog windowAddDoctorVisitHours)
         {
-            //if (_addDoctorVisitHoursWindowDialogModel.SaveData(_startHour, _endHour))
-            //{
-            //    windowAddDoctorVisitHours.DialogResult = true;
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Proszę uzupełnić odpowiednio dane");
-            //}
+            if (_addDoctorVisitHoursWindowDialogModel.SaveData(_startHour, _endHour))
+            {
+                windowAddDoctorVisitHours.DialogResult = true;
+            }
+            else
+            {
+                MessageBox.Show("Proszę uzupełnić odpowiednio dane");
+            }
         }
 
         private void ExecuteCloseCommand(AddDoctorVisitHoursWindowDialog windowAddDoctorVisitHours)

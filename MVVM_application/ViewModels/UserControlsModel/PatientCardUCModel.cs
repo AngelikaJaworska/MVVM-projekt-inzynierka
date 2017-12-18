@@ -14,15 +14,15 @@ namespace MVVM_application.ViewModels.UserControlsModel
     public class PatientCardUCModel :ViewModelBase
     {
         private readonly IManager _manager;
-        private readonly SearchPatientWindowDialogModel _searchPatientWindowDialogModel;
-        private readonly PatientListWindowDialogModel _patientListWindowDialogModel;
+        private SearchPatientWindowDialogModel _searchPatientWindowDialogModel;
+        private PatientListWindowDialogModel _patientListWindowDialogModel;
         public SearchPatientWindowDialogViewModel SearchPatientWDViewModel { get; private set; }
         public PatientListWindowDialogViewModel PatientListWDViewModel { get; private set; }
 
         #region ICommand
 
-        public ICommand SearchPatientCommand { get; private set; }
-        public ICommand PatientVisitCommand { get; private set; }
+        public RelayCommand SearchPatientCommand { get; private set; }
+        public RelayCommand PatientVisitCommand { get; private set; }
 
         #endregion ICommand
 
@@ -30,11 +30,7 @@ namespace MVVM_application.ViewModels.UserControlsModel
         public PatientCardUCModel(IManager manager)
         { 
             _manager = manager;
-            _searchPatientWindowDialogModel = new SearchPatientWindowDialogModel(_manager);
-            SearchPatientWDViewModel = new SearchPatientWindowDialogViewModel(_manager, _searchPatientWindowDialogModel);
-
-            _patientListWindowDialogModel = new PatientListWindowDialogModel(_manager);
-            PatientListWDViewModel = new PatientListWindowDialogViewModel(_manager, _patientListWindowDialogModel);
+            FillData();
             InitialiseCommand();
         }
 
@@ -42,6 +38,15 @@ namespace MVVM_application.ViewModels.UserControlsModel
         {
             SearchPatientCommand = new RelayCommand(ExecuteSearchPatientCommand);
             PatientVisitCommand = new RelayCommand(ExecutePatientVisitCommand);
+        }
+
+        public void FillData()
+        {
+            _searchPatientWindowDialogModel = new SearchPatientWindowDialogModel(_manager);
+            SearchPatientWDViewModel = new SearchPatientWindowDialogViewModel(_manager, _searchPatientWindowDialogModel);
+
+            _patientListWindowDialogModel = new PatientListWindowDialogModel(_manager);
+            PatientListWDViewModel = new PatientListWindowDialogViewModel(_manager, _patientListWindowDialogModel);
         }
 
         public void ExecuteSearchPatientCommand()

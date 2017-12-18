@@ -29,6 +29,17 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
             }
         }
 
+        private string _patientInfo;
+        public string PatientInfo
+        {
+            get { return _patientInfo; }
+            set
+            {
+                _patientInfo = value;
+                RaisePropertyChanged("PatientInfo");
+            }
+        }
+
         private VisitManager _visitManager;
         
         private VisitManager _visitManagerObject;
@@ -48,26 +59,75 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
 
         public RelayCommand ShowVisitCommand { get; private set; }
         public RelayCommand GoBackCommand { get; private set; }
+        public RelayCommand RefreshDateCommand { get; private set; }
 
         public ShowVisitWindowDialogViewModel ShowVisitWDViewModel { get; set; }
         private ShowVisitWindowDialogModel _showVisitWindowDialogModel;
+
+        private DateTime _date;
+        public DateTime Date
+        {
+            get { return _date; }
+            set
+            {
+                _date = value;
+                RaisePropertyChanged("Date");
+            }
+        }
+
+        private ObservableCollection<DateTime> _dateList;
+        public ObservableCollection<DateTime> DateList
+        {
+            get { return _dateList; }
+            set
+            {
+                _dateList = value;
+                RaisePropertyChanged("DateList");
+            }
+        }
 
         public PatientVisitViewModel(IManager manager, PatientVisitModel patientVisitModel)
         {
             _manager = manager;
             _patientVisitModel = patientVisitModel;
             _patient = _manager.GetPatient();
+            FillData();
+            InitialiseCommand();
+        }
 
-            if(_patient != null)
+        public void FillData()
+        {
+            var date = DateTime.Parse("0001-01-01 00:00:00");
+            
+            if (_patient != null)
             {
-                PatientVisitsList = new ObservableCollection<VisitManager>(_patientVisitModel.GetAllVisitsWithPatient(_patient));
+                if (_date != date)
+                {
+                    PatientVisitsList = new ObservableCollection<VisitManager>(_patientVisitModel.GetAllVisitsWithPatient(_patient, _date));
+                }
+                else
+                {
+                    PatientVisitsList = new ObservableCollection<VisitManager>(_patientVisitModel.GetAllVisitsWithPatient(_patient, DateTime.Today));
+                }
+                _patientInfo = _patientVisitModel.SetPatientInfo();
             }
 
-            ShowVisitCommand = new RelayCommand(ExecuteShowVisitCommand);
-            GoBackCommand = new RelayCommand(ExecuteGoBackCommand);
 
+            this.DateList = new ObservableCollection<DateTime>(_patientVisitModel.GetDate());
             _showVisitWindowDialogModel = new ShowVisitWindowDialogModel(_manager);
             ShowVisitWDViewModel = new ShowVisitWindowDialogViewModel(_manager, _showVisitWindowDialogModel);
+        }
+
+        private void InitialiseCommand()
+        {
+            ShowVisitCommand = new RelayCommand(ExecuteShowVisitCommand);
+            GoBackCommand = new RelayCommand(ExecuteGoBackCommand);
+            RefreshDateCommand = new RelayCommand(ExecuteRefreshDateCommand);
+        }
+
+        private void ExecuteRefreshDateCommand()
+        {
+            PatientVisitsList = new ObservableCollection<VisitManager>(_patientVisitModel.GetAllVisitsWithPatient(_patient, _date));
         }
 
         private void ExecuteGoBackCommand()
@@ -86,7 +146,7 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
             }
             else
             {
-                MessageBox.Show("Prosze wybrac wizyte zaznaczajac ja na liscie");
+                MessageBox.Show("Proszę wybrać wizytę zaznaczając ją na liście");
             }
 
         }

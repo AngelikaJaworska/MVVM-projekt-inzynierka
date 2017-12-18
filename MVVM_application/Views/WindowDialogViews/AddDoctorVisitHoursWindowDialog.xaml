@@ -7,7 +7,8 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" x:Class="MVVM_application.Views.AddDoctorVisitHoursWindowDialog"
         mc:Ignorable="d"
         x:Name="windowAddDoctorVisitHours"
-        Height="220" Width="330" 
+        Height="190" Width="330" 
+        Title="Ustalenie godzin pracy lekarza"
              DataContext="{Binding Main.CurrentViewModel.AddDoctorVisitHoursWDViewModel, Source={StaticResource Locator}}">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -15,24 +16,17 @@
             <ColumnDefinition Width="160" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
             <RowDefinition Height="50" />
             <RowDefinition Height="50" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="0"
-               Grid.ColumnSpan="2"
-               Grid.Row="0" 
-               Content="Ustalenie godzin pracy lekarza"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"/>
 
         <Label Grid.Column="0"
-               Grid.Row="1" Content="Godzina rozpoczęcia:"/>
+               Grid.Row="0" Content="Godzina rozpoczęcia:"/>
         <ComboBox x:Name="comboBox"
                   Grid.Column="1"
-                 Grid.Row="1"
+                 Grid.Row="0"
                   ItemsSource="{Binding StartHourList}"
                   SelectedItem="{Binding StartHour}">
             <i:Interaction.Triggers>
@@ -44,9 +38,9 @@
         </ComboBox>
 
         <Label Grid.Column="0"
-               Grid.Row="2" Content="Godzina zakonczenia:"/>
+               Grid.Row="1" Content="Godzina zakończenia:"/>
         <ComboBox Grid.Column="1"
-                 Grid.Row="2"
+                 Grid.Row="1"
                   ItemsSource="{Binding EndHourList}"
                  SelectedItem="{Binding EndHour}"/>
 

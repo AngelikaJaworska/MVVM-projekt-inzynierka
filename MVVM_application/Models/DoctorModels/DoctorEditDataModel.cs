@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace MVVM_application.Models.DoctorModels
@@ -65,70 +66,119 @@ namespace MVVM_application.Models.DoctorModels
             return specialisationList;
         }
 
-        internal void SetSpecialisation(string _specialisation)
+        public bool SetSpecialisation(string _specialisation)
         {
             if(_specialisation != null && _specialisation != "")
             {
-                _doctor.Specialisation.Name = _specialisation;
+                if(CheckIfStringContainsOnlyLetter(_specialisation))
+                {
+                    var specialisationId = _database.Specialisation
+                        .Where(s => s.Name.Equals(_specialisation))
+                        .Select(s => s.IDSpecialisation)
+                        .Single();
+
+                    _doctor.IDSpecialisation = specialisationId;
+                    _database.SaveChanges();
+                    return true;
+                }
+                else return false;
+            }
+            else 
+            {
+                var specialisationName = _database.Specialisation
+                    .Where(s => s.IDSpecialisation == _doctor.IDSpecialisation)
+                    .Select(s => s.Name)
+                    .Single();
+
+                _specialisation = specialisationName;
                 _database.SaveChanges();
+                return true;
             }
         }
 
-        internal void SetDoctorName(string _name)
+        public bool SetDoctorName(string _name)
         {
             if(_doctor != null && _name != null && _name != "")
             {
-                _doctor.First_Name = _name;
-                _database.SaveChanges();
+                if (CheckIfStringContainsOnlyLetter(_name))
+                {
+                    _doctor.First_Name = _name;
+                    _database.SaveChanges();
+                    return true;
+                }
+                else return false;
             }
+            return false;
         }
 
-        internal void SetDoctorSurame(string _surname)
+        public bool SetDoctorSurame(string _surname)
         {
             if (_doctor != null && _surname != null && _surname != "")
             {
-                _doctor.Last_Name = _surname;
-                _database.SaveChanges();
+                if (CheckIfStringContainsOnlyLetter(_surname))
+                {
+                    _doctor.Last_Name = _surname;
+                    _database.SaveChanges();
+                    return true;
+                }
+                else return false;
             }
+            return false;
         }
 
-        internal void SetDoctorStreet(string _street)
+        public bool SetDoctorStreet(string _street)
         {
             if (_doctor != null && _street != null && _street != "")
             {
                 _doctor.Street = _street;
                 _database.SaveChanges();
+                return true;
             }
+            return false;
         }
 
-        internal void SetDoctorHomeNr(string _homeNr)
+        public bool SetDoctorHomeNr(string _homeNr)
         {
             if (_doctor != null && _homeNr != null && _homeNr != "")
             {
                 _doctor.HomeNr = _homeNr;
                 _database.SaveChanges();
+                return true;
             }
+            return false;
         }
 
-        internal void SetDoctorCity(string _city)
+        public bool SetDoctorCity(string _city)
         {
             if (_doctor != null && _city != null && _city != "")
             {
-                _doctor.City = _city;
-                _database.SaveChanges();
+                if (CheckIfStringContainsOnlyLetter(_city))
+                {
+                    _doctor.City = _city;
+                    _database.SaveChanges();
+                    return true;
+                }
+                else return false;
             }
+            return false;
         }
 
-        internal void SetDoctorPhone(string _phone)
+        public bool SetDoctorPhone(string _phone)
         {
             if (_doctor != null && _phone != null && _phone != "")
             {
-                _doctor.Phone = _phone;
-                _database.SaveChanges();
+                if(CheckIfStringContainsPhoneNumber(_phone))
+                {
+                    _doctor.Phone = _phone;
+                    _database.SaveChanges();
+                    return true;
+                }
+                else return false;
             }
+            return false;
         }
 
-        internal void DeleteDoctor()
+        public void DeleteDoctor()
         {
             if(_doctor != null)
             {
@@ -146,5 +196,19 @@ namespace MVVM_application.Models.DoctorModels
                 _database.SaveChanges();
             }
         }
+
+        private bool CheckIfStringContainsOnlyLetter(string stringToCheck)
+        {
+            Match match = Regex.Match(stringToCheck, @"[\p{L} ]+$");
+            return match.Success;
+        }
+
+        private bool CheckIfStringContainsPhoneNumber(string stringToCheck)
+        {
+            Match match = Regex.Match(stringToCheck, @"\d{9}");
+            return match.Success;
+        }
+
+       
     }
 }

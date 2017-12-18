@@ -168,7 +168,6 @@
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="ViewModels\WindowDialogViewModels\AddDoctorVisitHoursWindowDialogViewModel.cs" />
     <Compile Include="ViewModels\WindowDialogViewModels\EditDoctorVisitHoursWindowDialogViewModel.cs" />
-    <Compile Include="ViewModels\WindowDialogViewModels\ExitWindowDialogViewModel.cs" />
     <Compile Include="ViewModels\WindowDialogViewModels\PatientListWindowDialogViewModel.cs" />
     <Compile Include="ViewModels\WindowDialogViewModels\SearchDoctorWindowDialogViewModel.cs" />
     <Compile Include="ViewModels\WindowDialogViewModels\DoctorVisitHoursWindowDialogViewModel.cs" />
@@ -189,9 +188,6 @@
     </Compile>
     <Compile Include="Views\DoctorViews\SearchDoctorView.xaml.cs">
       <DependentUpon>SearchDoctorView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\WindowDialogViews\ExitWindowDialog.xaml.cs">
-      <DependentUpon>ExitWindowDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PatientCardViews\PatientEditDataView.xaml.cs">
       <DependentUpon>PatientEditDataView.xaml</DependentUpon>
@@ -291,10 +287,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DoctorViews\SearchDoctorView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\WindowDialogViews\ExitWindowDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -50,6 +50,17 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             }
         }
 
+        private string _doctorInfo;
+        public string DoctorInfo
+        {
+            get { return _doctorInfo; }
+            set
+            {
+                _doctorInfo = value;
+                RaisePropertyChanged("DoctorInfo");
+            }
+        }
+
         private ObservableCollection<VisitManager> _doctorVisitsList;
         public ObservableCollection<VisitManager> DoctorVisitsList
         {
@@ -72,7 +83,6 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             }
         }
 
-
         public ShowVisitWindowDialogViewModel ShowVisitWDViewModel { get; set; }
         private ShowVisitWindowDialogModel _showVisitWindowDialogModel;
 
@@ -84,7 +94,12 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             _manager = manager;
             _doctorVisitModel = doctorVisitModel;
             _doctor = _manager.GetDoctor();
+            FillData();
+            InitialiseCommand();            
+        }
 
+        public void FillData()
+        {
             var date = DateTime.Parse("0001-01-01 00:00:00");
 
             if (_doctor != null)
@@ -97,15 +112,20 @@ namespace MVVM_application.ViewModels.DoctorViewModels
                 {
                     DoctorVisitsList = new ObservableCollection<VisitManager>(_doctorVisitModel.GetAllVisitsWithDoctor(_doctor, DateTime.Today));
                 }
+                _doctorInfo = _doctorVisitModel.SetDoctorInfo();
+
             }
 
             this.DateList = new ObservableCollection<DateTime>(_doctorVisitModel.GetDate());
 
-            ShowVisitCommand = new RelayCommand(ExecuteShowVisitCommand);
-            RefreshDateCommand = new RelayCommand(ExecuteRefreshDateCommand);
-
             _showVisitWindowDialogModel = new ShowVisitWindowDialogModel(_manager);
             ShowVisitWDViewModel = new ShowVisitWindowDialogViewModel(_manager, _showVisitWindowDialogModel);
+        }
+
+        public void InitialiseCommand()
+        {
+            ShowVisitCommand = new RelayCommand(ExecuteShowVisitCommand);
+            RefreshDateCommand = new RelayCommand(ExecuteRefreshDateCommand);
         }
 
         private void ExecuteRefreshDateCommand()
@@ -124,7 +144,7 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             }
             else
             {
-                MessageBox.Show("Prosze wybrac wizyte zaznaczajac ja na liscie");
+                MessageBox.Show("Proszę wybrać wizytę zaznaczając ją na liście");
             }
         }
     }

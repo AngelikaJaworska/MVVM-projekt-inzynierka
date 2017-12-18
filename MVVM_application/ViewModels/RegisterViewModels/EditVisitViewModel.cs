@@ -62,8 +62,8 @@ namespace MVVM_application.ViewModels.RegisterViewModels
         public ObservableCollection<DateTime> VisitDateList { get; set; }
         public ObservableCollection<DateTime> NewVisitDateList { get; set; }
         
-        public ICommand SaveCommand { get; private set; }
-        public ICommand CancelCommand { get; private set; }
+        public RelayCommand SaveCommand { get; private set; }
+        public RelayCommand CancelCommand { get; private set; }
         public RelayCommand<DateTime> RefreshNewVisitCommand { get; private set; }
         public RelayCommand DeleteVisitCommand { get; private set; }
 
@@ -99,18 +99,24 @@ namespace MVVM_application.ViewModels.RegisterViewModels
         {
             if(_visitDate != null)
             {
-                _editVisitModel.DeleteVisit(_visitDate);
-                MessageBox.Show("Wizyta odwolana");
-                this.VisitDateList.Remove(_visitDate);
-                if (VisitDateList.Count == 0)
+                if(_editVisitModel.DeleteVisit(_visitDate))
                 {
-                    MessageBox.Show("Brak kolejnych wizyt do edycji");
-                    _manager.ChangeView(TypesOfViews.PatientCardViewModel);
+                    MessageBox.Show("Wizyta odwołana");
+                    this.VisitDateList.Remove(_visitDate);
+                    if (VisitDateList.Count == 0)
+                    {
+                        MessageBox.Show("Brak kolejnych wizyt do edycji");
+                        _manager.RefreshAll(TypesOfViews.DailyViewModel);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Nie wybrano daty wizyty do usunięcia");
                 }
             }
             else
             {
-                MessageBox.Show("Prosze wybrac wizyte do odwolania");
+                MessageBox.Show("Proszę wybrać wizytę do odwołania");
             }
         }
 
@@ -130,28 +136,33 @@ namespace MVVM_application.ViewModels.RegisterViewModels
 
         private void ExecuteCancelCommand()
         {
-            MessageBox.Show("Anulowanie");
-            _manager.ChangeView(TypesOfViews.PatientCardViewModel);
+            _manager.ChangeView(TypesOfViews.DailyViewModel);
         }
 
         private void ExecuteSaveCommand()
         {
             if(_visitDate != null && _newVisitDate != null)
             {
-                _editVisitModel.ChangeVisitDate(_visitDate, _newVisitDate);
-                MessageBox.Show("Wizyta edytowana");
-                this.VisitDateList.Remove(_visitDate);
-                this.NewVisitDateList.Add(_newVisitDate);
-
-                if(VisitDateList.Count == 0)
+               if( _editVisitModel.ChangeVisitDate(_visitDate, _newVisitDate))
                 {
-                    MessageBox.Show("Brak kolejnych wizyt do edycji");
-                    _manager.ChangeView(TypesOfViews.PatientCardViewModel);
+                    MessageBox.Show("Wizyta edytowana");
+                    this.VisitDateList.Remove(_visitDate);
+                    this.NewVisitDateList.Add(_newVisitDate);
+
+                    if (VisitDateList.Count == 0)
+                    {
+                        MessageBox.Show("Brak kolejnych wizyt do edycji");
+                        _manager.RefreshAll(TypesOfViews.PatientVisitViewModel);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Nie wybrano dat do edycji");
                 }
             }
             else
             {
-                MessageBox.Show("Prosze uzupelnic dane");
+                MessageBox.Show("Proszę uzupełnic dane");
             }
         }
 

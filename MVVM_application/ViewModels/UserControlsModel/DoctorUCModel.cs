@@ -14,7 +14,7 @@ namespace MVVM_application.ViewModels.UserControlsModel
     public class DoctorUCModel : ViewModelBase
     {
         private readonly IManager _manager;
-        private readonly SearchDoctorWindowDialogModel _searchDoctorWindowDialogModel;
+        private SearchDoctorWindowDialogModel _searchDoctorWindowDialogModel;
 
         #region Command
 
@@ -29,16 +29,20 @@ namespace MVVM_application.ViewModels.UserControlsModel
         public DoctorUCModel(IManager manager)
         {
             _manager = manager;
-            _searchDoctorWindowDialogModel = new SearchDoctorWindowDialogModel(_manager);
-            SearchDoctorWDModel = new SearchDoctorWindowDialogViewModel(_manager, _searchDoctorWindowDialogModel);
-
             InitialiseCommand();
+            FillData();
         }
         public void InitialiseCommand()
         {
             SearchDoctorCommand = new RelayCommand(ExecuteSearchDoctorCommand);
             DoctorVisitCommand = new RelayCommand(ExecuteDoctorVisitCommand);
             AddNewDoctorCommand = new RelayCommand(ExecuteAddNewDoctorCommand);
+        }
+
+        public void FillData()
+        {
+            _searchDoctorWindowDialogModel = new SearchDoctorWindowDialogModel(_manager);
+            SearchDoctorWDModel = new SearchDoctorWindowDialogViewModel(_manager, _searchDoctorWindowDialogModel);
         }
 
         private void ExecuteAddNewDoctorCommand()
@@ -51,7 +55,7 @@ namespace MVVM_application.ViewModels.UserControlsModel
             SearchDoctorWindowDialog searchDoctorWindowDialog = new SearchDoctorWindowDialog();
             searchDoctorWindowDialog.ShowDialog();
             if (_manager.GetUnchangedView() == false)
-            {//ChangeView
+            {
                 _manager.RefreshAll(TypesOfViews.SearchDoctorViewModel);
             }
         }
