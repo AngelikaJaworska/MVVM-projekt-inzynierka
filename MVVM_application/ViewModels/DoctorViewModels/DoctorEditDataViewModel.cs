@@ -34,6 +34,7 @@ namespace MVVM_application.ViewModels.DoctorViewModels
         private string _homeNr;
         private string _city;
         private string _phone;
+        private string _dateOfBirth;
 
         public string Name
         {
@@ -98,6 +99,15 @@ namespace MVVM_application.ViewModels.DoctorViewModels
                 RaisePropertyChanged("Phone");
             }
         }
+        public string DateOfBirth
+        {
+            get { return _dateOfBirth; }
+            set
+            {
+                _dateOfBirth = value;
+                RaisePropertyChanged("DateOfBirth");
+            }
+        }
 
         public ObservableCollection<string> SpecialisationtList { get; set; }
 
@@ -134,6 +144,7 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             _homeNr = _doctorEditDataModel.GetDoctorHomeNr();
             _city = _doctorEditDataModel.GetDoctorCity();
             _phone = _doctorEditDataModel.GetDoctorPhone();
+            _dateOfBirth = _doctorEditDataModel.GetDoctorDateOfBirth();
 
             SpecialisationtList = new ObservableCollection<string>(_doctorEditDataModel.FillSpecialisationList());
 
@@ -149,6 +160,7 @@ namespace MVVM_application.ViewModels.DoctorViewModels
                  && _doctorEditDataModel.SetDoctorStreet(_street)
                  && _doctorEditDataModel.SetDoctorHomeNr(_homeNr)
                  && _doctorEditDataModel.SetDoctorCity(_city)
+                 && _doctorEditDataModel.SetDoctorDateOfBirth(_dateOfBirth)
                  && _doctorEditDataModel.SetDoctorPhone(_phone))
             {
                 return true;

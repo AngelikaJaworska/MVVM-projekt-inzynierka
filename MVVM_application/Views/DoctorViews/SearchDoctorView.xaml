@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVM_application.Views"
             xmlns:uc="clr-namespace:MVVM_application.Views.UserControls"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" 
              d:DesignHeight="340"
              d:DesignWidth="600"
              DataContext="{Binding Main.CurrentViewModel,
@@ -20,144 +21,196 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
             <RowDefinition Height="50" />
-            <RowDefinition Height="150" />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="170" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="40" />
         </Grid.RowDefinitions>
-        <uc:MainUserControl Grid.RowSpan="5" Grid.ColumnSpan="4" Grid.Row="0" />
 
+        <uc:MainUserControl Grid.RowSpan="5" Grid.ColumnSpan="4" />
+        <uc:DoctorUserControl Grid.Row="1" Grid.ColumnSpan="4" />
+        
         <Grid Grid.Row="2" Grid.ColumnSpan="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="300"/>
                 <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="37.5" />
-                <RowDefinition Height="37.5" />
-                <RowDefinition Height="37.5" />
-                <RowDefinition Height="37.5" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
             </Grid.RowDefinitions>
+
             <Label Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="14" Content="Podgląd danych lekarza"
+                   FontWeight="Bold">
+                <Label.Effect>
+                    <DropShadowEffect Color="#FF6BC9D3"/>
+                </Label.Effect>
+            </Label>
+
+            <Label Grid.Row="1"
                    Grid.Column="0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
-                   FontSize="14">
-                Imie
+                   FontSize="14"
+                   FontWeight="Bold">
+                Imię
             </Label>
-            <TextBox Grid.Row="0"
+            <TextBox Grid.Row="1"
                      Grid.Column="0"
                      Width="190"
                      HorizontalAlignment="Right" 
                      IsEnabled="False"
                      Text="{Binding Name}"/>
 
-            <Label Grid.Row="1"
+            <Label Grid.Row="2"
                    Grid.Column="0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
-                   FontSize="14">
+                   FontSize="14"
+                   FontWeight="Bold">
                 Nazwisko
             </Label>
-            <TextBox Grid.Row="1"
+            <TextBox Grid.Row="2"
                      Grid.Column="0"
                      Width="190"
                      HorizontalAlignment="Right" 
                      IsEnabled="False"
                      Text="{Binding Surname}"/>
 
-            <Label Grid.Row="2"
+            <Label Grid.Row="3"
                    Grid.Column="0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
-                   FontSize="14">
+                   FontSize="14"
+                   FontWeight="Bold">
                 Ulica
             </Label>
-            <TextBox Grid.Row="2"
+            <TextBox Grid.Row="3"
                      Grid.Column="0"
                      Width="190"
                      HorizontalAlignment="Right" 
                      IsEnabled="False"
                      Text="{Binding Street}" />
 
-            <Label Grid.Row="3"
+            <Label Grid.Row="4"
                    Grid.Column="0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
-                   FontSize="14">
+                   FontSize="14"
+                   FontWeight="Bold">
                 Numer domu
             </Label>
-            <TextBox Grid.Row="3"
+            <TextBox Grid.Row="4"
                      Grid.Column="0"
                      Width="190"
                      HorizontalAlignment="Right"  
                      IsEnabled="False"
                      Text="{Binding HomeNr}"/>
 
-            <Label Grid.Row="0"
+            <Label Grid.Row="1"
                    Grid.Column="1"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
-                   FontSize="14">
-                Miejscowosc
+                   FontSize="14"
+                   FontWeight="Bold">
+                Miejscowość
             </Label>
-            <TextBox Grid.Row="0"
+            <TextBox Grid.Row="1"
                      Grid.Column="1"
                      Width="190"
                      HorizontalAlignment="Right"  
                      IsEnabled="False"
                      Text="{Binding City}"/>
 
-            <Label Grid.Row="1"
+            <Label Grid.Row="2"
                    Grid.Column="1"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
-                   FontSize="14">
+                   FontSize="14"
+                   FontWeight="Bold">
                 Telefon
             </Label>
-            <TextBox Grid.Row="1"
+            <TextBox Grid.Row="2"
                      Grid.Column="1"
                      Width="190"
                      HorizontalAlignment="Right" 
                      IsEnabled="False"
                      Text="{Binding Phone}" />
 
-            <Label Grid.Row="2"
+            <Label Grid.Row="3"
                    Grid.Column="1"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
-                   FontSize="14">
-                Specjalnosc
+                   FontSize="14"
+                   FontWeight="Bold">
+                Specjalność
             </Label>
-            <TextBox Grid.Row="2"
+            <TextBox Grid.Row="3"
                       Grid.Column="1"
                       Width="190"
                       HorizontalAlignment="Right" 
                      IsEnabled="False"
                      Text="{Binding Specialisation}"/>
-            <Button
-                Grid.Column="1"
-                Grid.Row="3"
-                Command="{Binding VisitHoursCommand}">
-                Godziny przyjec
-            </Button>
+
+            <Label Grid.Row="4"
+                   Grid.Column="1"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   FontSize="14"
+                   FontWeight="Bold">
+                Data urodzenia
+            </Label>
+            <TextBox Grid.Row="4"
+                     Grid.Column="1"
+                     Width="190"
+                     HorizontalAlignment="Right"
+                     Text="{Binding DateOfBirth}"/>
+
 
         </Grid>
-        <Button Grid.Row="3"
-                Grid.Column="0"
-                Command="{Binding DoctorEditDataCommand}">
-            <WrapPanel>
-                <TextBlock Text="Aktualizuj dane" />
-            </WrapPanel>
-        </Button>
 
-        <Button Grid.Row="3"
-                Grid.Column="4"
-                Command="{Binding DeleteDoctorCommand}">
-            <WrapPanel>
-                <TextBlock Text="Usun" />
-            </WrapPanel>
-        </Button>
+        <Grid 
+            Grid.Row="3" 
+            Grid.ColumnSpan="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <Button Grid.Column="0"
+                    Style="{StaticResource AccentedSquareButtonStyle}"
+                    Command="{Binding DoctorEditDataCommand}">
+                <WrapPanel>
+                    <TextBlock Text="Przejdź do edycji" />
+                </WrapPanel>
+            </Button>
 
-        <uc:DoctorUserControl Grid.RowSpan="4" Grid.ColumnSpan="4" Grid.Row="1"/>
+            <Button Grid.Column="1"
+                    Style="{StaticResource AccentedSquareButtonStyle}"
+                    Command="{Binding VisitHoursCommand}">
+                <WrapPanel>
+                    <TextBlock Text="Podgląd godzin przyjęć" />
+                </WrapPanel>
+            </Button>
+
+            <Button Grid.Column="2"
+                    Style="{StaticResource AccentedSquareButtonStyle}"
+                    Command="{Binding DeleteDoctorCommand}">
+                <WrapPanel>
+                    <TextBlock Text="Usuń" />
+                </WrapPanel>
+            </Button>
+        </Grid>
+
     </Grid>
 </UserControl>

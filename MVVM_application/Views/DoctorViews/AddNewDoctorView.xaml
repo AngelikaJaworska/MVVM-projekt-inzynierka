@@ -2,7 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" 
              xmlns:local="clr-namespace:MVVM_application.Views"
             xmlns:uc="clr-namespace:MVVM_application.Views.UserControls"
              mc:Ignorable="d" 
@@ -19,8 +20,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
             <RowDefinition Height="50" />
-            <RowDefinition Height="150" />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="170" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="40" />
         </Grid.RowDefinitions>
 
@@ -33,134 +34,183 @@
                 <ColumnDefinition Width="300" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="37.5" />
-                <RowDefinition Height="37.5" />
-                <RowDefinition Height="37.5" />
-                <RowDefinition Height="37.5" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
             </Grid.RowDefinitions>
+
             <Label Grid.Row="0"
                    Grid.Column="0"
-                   HorizontalAlignment="Left"
+                   Grid.ColumnSpan="2"
+                   HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   FontSize="14">
-                Imie
+                   FontSize="14" Content="Rejestracja nowego lekarza"
+                   FontWeight="Bold">
+                <Label.Effect>
+                    <DropShadowEffect Color="#FF6BC9D3"/>
+                </Label.Effect>
             </Label>
-            <TextBox Grid.Row="0"
-                     Grid.Column="0"
-                     Width="190"
-                     HorizontalAlignment="Right"
-                     Text="{Binding Name}" />
 
             <Label Grid.Row="1"
                    Grid.Column="0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
-                   FontSize="14">
-                Nazwisko
+                   FontSize="14"
+                   FontWeight="Bold">
+                Imię
             </Label>
             <TextBox Grid.Row="1"
                      Grid.Column="0"
                      Width="190"
-                     HorizontalAlignment="Right" 
-                     Text="{Binding Surname}"/>
+                 Controls:TextBoxHelper.Watermark="Imię lekarza"
+                     HorizontalAlignment="Right"
+                     Text="{Binding Name}" />
 
             <Label Grid.Row="2"
                    Grid.Column="0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
-                   FontSize="14">
-                Ulica
+                   FontSize="14"
+                   FontWeight="Bold">
+                Nazwisko
             </Label>
             <TextBox Grid.Row="2"
                      Grid.Column="0"
                      Width="190"
+                 Controls:TextBoxHelper.Watermark="Nazwisko lekarza"
                      HorizontalAlignment="Right" 
-                     Text="{Binding Street}"/>
+                     Text="{Binding Surname}"/>
 
             <Label Grid.Row="3"
                    Grid.Column="0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
-                   FontSize="14">
-                Numer domu
+                   FontSize="14"
+                   FontWeight="Bold">
+                Ulica
             </Label>
             <TextBox Grid.Row="3"
                      Grid.Column="0"
                      Width="190"
+                     Controls:TextBoxHelper.Watermark="Ulica"
                      HorizontalAlignment="Right" 
-                     Text="{Binding HomeNr}"/>
+                     Text="{Binding Street}"/>
 
-            <Label Grid.Row="0"
-                   Grid.Column="1"
+            <Label Grid.Row="4"
+                   Grid.Column="0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
-                   FontSize="14">
-                Miejscowosc
+                   FontSize="14"
+                   FontWeight="Bold">
+                Numer domu
             </Label>
-            <TextBox Grid.Row="0"
-                     Grid.Column="1"
+            <TextBox Grid.Row="4"
+                     Grid.Column="0"
                      Width="190"
+                     Controls:TextBoxHelper.Watermark="Numer domu"
                      HorizontalAlignment="Right" 
-                     Text="{Binding City}"/>
+                     Text="{Binding HomeNr}"/>
 
             <Label Grid.Row="1"
                    Grid.Column="1"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
-                   FontSize="14">
-                Telefon
+                   FontSize="14"
+                   FontWeight="Bold">
+                Miejscowość
             </Label>
             <TextBox Grid.Row="1"
                      Grid.Column="1"
                      Width="190"
-                     HorizontalAlignment="Right"
-                     Text="{Binding Phone}"/>
+                     Controls:TextBoxHelper.Watermark="Miejsce zamieszkania"
+                     HorizontalAlignment="Right" 
+                     Text="{Binding City}"/>
 
             <Label Grid.Row="2"
                    Grid.Column="1"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
-                   FontSize="14">
-                Specjalnosc
+                   FontSize="14"
+                   FontWeight="Bold">
+                Telefon
             </Label>
-            <ComboBox Grid.Row="2"
+            <TextBox Grid.Row="2"
+                     Grid.Column="1"
+                     Width="190"
+                     Controls:TextBoxHelper.Watermark="Telefon kontaktowy"
+                     HorizontalAlignment="Right"
+                     Text="{Binding Phone}"/>
+
+            <Label Grid.Row="3"
+                   Grid.Column="1"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   FontSize="14"
+                   FontWeight="Bold">
+                Specjalność
+            </Label>
+            <ComboBox Grid.Row="3"
                       Grid.Column="1"
                       Width="190"
+                  Controls:TextBoxHelper.Watermark="Wybierz specjalizację"
                       HorizontalAlignment="Right" 
                       ItemsSource="{Binding SpecialisationtList}"
                       SelectedItem="{Binding Specialisation}"
                       SelectedValuePath="Specialisation" />
 
-            <Label Grid.Row="3"
+            <Label Grid.Row="4"
                    Grid.Column="1"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
-                   FontSize="14">
+                   FontSize="14"
+                   FontWeight="Bold">
                 Data urodzenia
             </Label>
-            <TextBox Grid.Row="3"
+            <TextBox Grid.Row="4"
                      Grid.Column="1"
                      Width="190"
+                     Controls:TextBoxHelper.Watermark="Data urodzenia (yyyy-mm-dd)"
                      HorizontalAlignment="Right"
                      Text="{Binding DateOfBirth}"/>
 
         </Grid>
-        <Button Grid.Row="3"
-                Grid.Column="0"
-                Command="{Binding SaveCommand}">
-            Zapisz
-        </Button>
-        <Button Grid.Row="3"
-                Grid.Column="3"
-                Command="{Binding CancelCommand}">
-            Anuluj
-        </Button>
-        <Button
-                Grid.Column="4"
-                Grid.Row="4"
-                Command="{Binding VisitHoursCommand}">
-            Godziny przyjec
-        </Button>
 
+        <Grid 
+            Grid.Row="3" 
+            Grid.ColumnSpan="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <Button Grid.Column="0"
+                    Style="{StaticResource AccentedSquareButtonStyle}"
+                    Command="{Binding SaveCommand}">
+                <WrapPanel>
+                    <TextBlock Text="Zapisz zmiany" />
+                </WrapPanel>
+            </Button>
+
+            <Button Grid.Column="1"
+                    Style="{StaticResource AccentedSquareButtonStyle}"
+                    Command="{Binding VisitHoursCommand}">
+                <WrapPanel>
+                    <TextBlock Text="Ustal godziny przyjęć" />
+                </WrapPanel>
+            </Button>
+
+            <Button Grid.Column="2"
+                    Style="{StaticResource AccentedSquareButtonStyle}"
+                    Command="{Binding CancelCommand}">
+                <WrapPanel>
+                    <TextBlock Text="Anuluj" />
+                </WrapPanel>
+            </Button>
+        </Grid>
     </Grid>
 </UserControl>

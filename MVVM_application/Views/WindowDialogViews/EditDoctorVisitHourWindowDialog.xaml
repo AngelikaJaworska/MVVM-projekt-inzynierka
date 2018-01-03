@@ -1,4 +1,4 @@
-﻿<Window
+﻿<Controls:MetroWindow
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,10 +6,14 @@
         xmlns:local="clr-namespace:MVVM_application.Views"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
         x:Class="MVVM_application.Views.EditDoctorVisitHourWindowDialog"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
         x:Name="windowEditDoctorVisitHours"
         Height="240" Width="330" 
-        Title="Edycja godzin pracy lekarza"
+        Title="Edycja godzin pracy"
+        ResizeMode="CanMinimize"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="2"
         DataContext="{Binding Main.CurrentViewModel.EditDoctorVisitHoursWDViewModel, Source={StaticResource Locator}}">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -25,30 +29,31 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Column="0"
-               Grid.Row="0"
-            Content="Godzina rozpoczęcia pracy:"/>
+               Grid.Row="0" FontWeight="Bold" 
+            Content="Godzina rozpoczęcia"/>
 
         <Label Grid.Column="1"
                Grid.Row="0"
-               Content="Godzina zakończenie pracy:"/>
+               Content="Godzina zakończenia" FontWeight="Bold" />
 
         <TextBox Grid.Column="0"
                Grid.Row="1"
                  IsEnabled="False"
-                 VerticalAlignment="Center"
+                 VerticalAlignment="Center" FontWeight="Bold" 
             Text="{Binding StartHour}" />
 
         <TextBox Grid.Column="1"
                Grid.Row="1"
                  IsEnabled="False"
                  VerticalAlignment="Center"
+                 FontWeight="Bold" 
             Text="{Binding EndHour}" />
 
-        <Label Grid.Column="0"
-               Grid.Row="2" Content="Nowa godzina rozpoczęcia:"/>
         <ComboBox x:Name="comboBox"
-                  Grid.Column="1"
+                  Grid.Column="0"
                  Grid.Row="2"
+                  Grid.ColumnSpan="2"
+                  Controls:TextBoxHelper.Watermark="Nowa godzina rozpoczęcia"
                   ItemsSource="{Binding StartHourList}"
                   SelectedItem="{Binding StartHour}">
             <i:Interaction.Triggers>
@@ -59,22 +64,32 @@
             </i:Interaction.Triggers>
         </ComboBox>
 
-        <Label Grid.Column="0"
-               Grid.Row="3" Content="Nowa godzina zakończenia:"/>
-        <ComboBox Grid.Column="1"
+        <ComboBox Grid.Column="0"
                  Grid.Row="3"
+                  Grid.ColumnSpan="2"
+                  Controls:TextBoxHelper.Watermark="Nowa godzina zakończenia"
                   ItemsSource="{Binding EndHourList}"
                  SelectedItem="{Binding EndHour}"/>
         <Button Grid.Row="5"
                 Grid.Column="1"
-                Content="Zamknij"
                 Command="{Binding CloseCommand}"
-                CommandParameter="{Binding ElementName=windowEditDoctorVisitHours, Mode=OneWay}"/>
+                CommandParameter="{Binding ElementName=windowEditDoctorVisitHours, Mode=OneWay}"
+                Style="{StaticResource AccentedSquareButtonStyle}">
+            <WrapPanel>
+                <TextBlock Text="Zamknij" />
+            </WrapPanel>
+        </Button>
+                
+                
         <Button Grid.Row="5"
                 Grid.Column="0"
-                Content="Zapisz"
                 Command="{Binding SaveCommand}"
-                CommandParameter="{Binding ElementName=windowEditDoctorVisitHours, Mode=OneWay}"/>
+                CommandParameter="{Binding ElementName=windowEditDoctorVisitHours, Mode=OneWay}"
+                Style="{StaticResource AccentedSquareButtonStyle}">
+                <WrapPanel>
+                    <TextBlock Text="Zapisz" />
+                </WrapPanel>
+         </Button>
     </Grid>
-</Window>
+</Controls:MetroWindow>
 

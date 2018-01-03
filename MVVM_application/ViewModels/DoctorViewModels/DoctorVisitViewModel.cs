@@ -88,6 +88,7 @@ namespace MVVM_application.ViewModels.DoctorViewModels
 
         public RelayCommand RefreshDateCommand { get; private set; }
         public RelayCommand ShowVisitCommand { get; private set; }
+        public RelayCommand GoBackCommand { get; private set; }
 
         public DoctorVisitViewModel(IManager manager, DoctorVisitModel doctorVisitModel)
         {
@@ -126,6 +127,12 @@ namespace MVVM_application.ViewModels.DoctorViewModels
         {
             ShowVisitCommand = new RelayCommand(ExecuteShowVisitCommand);
             RefreshDateCommand = new RelayCommand(ExecuteRefreshDateCommand);
+            GoBackCommand = new RelayCommand(ExecuteGoBackCommand);
+        }
+
+        private void ExecuteGoBackCommand()
+        {
+            _manager.ChangeView(TypesOfViews.SearchDoctorViewModel);
         }
 
         private void ExecuteRefreshDateCommand()

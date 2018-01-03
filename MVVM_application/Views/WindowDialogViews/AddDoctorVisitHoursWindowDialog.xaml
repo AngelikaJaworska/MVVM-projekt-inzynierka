@@ -10,13 +10,16 @@
         mc:Ignorable="d"
         x:Name="windowAddDoctorVisitHours"
         Height="190" 
-        Width="330" 
-        Title="Ustalenie godzin pracy lekarza"
+        Width="310" 
+        ResizeMode="CanMinimize"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="2"
+        Title="Ustalenie godzin pracy"
              DataContext="{Binding Main.CurrentViewModel.AddDoctorVisitHoursWDViewModel, Source={StaticResource Locator}}">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="160" />
-            <ColumnDefinition Width="160" />
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="150" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
@@ -24,12 +27,11 @@
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
-
-        <Label Grid.Column="0"
-               Grid.Row="0" Content="Godzina rozpoczęcia:"/>
         <ComboBox x:Name="comboBox"
-                  Grid.Column="1"
+                  Grid.Column="0"
                  Grid.Row="0"
+                  Grid.ColumnSpan="2"
+                  Controls:TextBoxHelper.Watermark="Godzina rozpoczęcia"
                   ItemsSource="{Binding StartHourList}"
                   SelectedItem="{Binding StartHour}">
             <i:Interaction.Triggers>
@@ -40,22 +42,30 @@
             </i:Interaction.Triggers>
         </ComboBox>
 
-        <Label Grid.Column="0"
-               Grid.Row="1" Content="Godzina zakończenia:"/>
-        <ComboBox Grid.Column="1"
+        <ComboBox Grid.Column="0"
                  Grid.Row="1"
+                  Grid.ColumnSpan="2"
+                  Controls:TextBoxHelper.Watermark="Godzina zakończenia"
                   ItemsSource="{Binding EndHourList}"
                  SelectedItem="{Binding EndHour}"/>
 
         <Button Grid.Row="3"
                 Grid.Column="1"
-                Content="Zamknij"
+                Style="{StaticResource AccentedSquareButtonStyle}"
                 Command="{Binding CloseCommand}"
-                CommandParameter="{Binding ElementName=windowAddDoctorVisitHours, Mode=OneWay}"/>
+                CommandParameter="{Binding ElementName=windowAddDoctorVisitHours, Mode=OneWay}">
+            <WrapPanel>
+                <TextBlock Text="Zamknij" />
+            </WrapPanel>
+        </Button>
         <Button Grid.Row="3"
                 Grid.Column="0"
-                Content="Zapisz"
+                Style="{StaticResource AccentedSquareButtonStyle}"
                 Command="{Binding SaveCommand}"
-                CommandParameter="{Binding ElementName=windowAddDoctorVisitHours, Mode=OneWay}"/>
+                CommandParameter="{Binding ElementName=windowAddDoctorVisitHours, Mode=OneWay}">
+            <WrapPanel>
+                <TextBlock Text="Zapisz" />
+            </WrapPanel>
+        </Button>
     </Grid>
 </Controls:MetroWindow>

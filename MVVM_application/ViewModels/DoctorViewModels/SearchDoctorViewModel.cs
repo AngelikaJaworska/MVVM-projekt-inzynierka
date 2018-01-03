@@ -32,6 +32,7 @@ namespace MVVM_application.ViewModels.DoctorViewModels
         private string _homeNr;
         private string _city;
         private string _phone;
+        private string _dateOfBirth;
         private string _specialisation;
 
         public string Name
@@ -97,6 +98,15 @@ namespace MVVM_application.ViewModels.DoctorViewModels
                 RaisePropertyChanged("Specialisation");
             }
         }
+        public string DateOfBirth
+        {
+            get { return _dateOfBirth; }
+            set
+            {
+                _dateOfBirth = value;
+                RaisePropertyChanged("DateOfBirth");
+            }
+        }
 
         public RelayCommand VisitHoursCommand { get; private set; }
         public RelayCommand DoctorEditDataCommand { get; private set; }
@@ -128,6 +138,7 @@ namespace MVVM_application.ViewModels.DoctorViewModels
                 _homeNr = _searchDoctorModel.GetDoctorHomeNr();
                 _city = _searchDoctorModel.GetDoctorCity();
                 _phone = _searchDoctorModel.GetDoctorPhone();
+                _dateOfBirth = _searchDoctorModel.GetDoctorDateOfBirth();
                 _specialisation = _searchDoctorModel.GetDoctorSpecialisation();
 
             }

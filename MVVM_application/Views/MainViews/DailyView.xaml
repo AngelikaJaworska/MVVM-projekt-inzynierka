@@ -25,14 +25,14 @@
             <RowDefinition Height="170" />
             <RowDefinition Height="40" />
         </Grid.RowDefinitions>
-        
+
         <Label
             Grid.Row="1"
             Grid.Column="0"
             Grid.ColumnSpan="4"
             VerticalAlignment="Top"
             HorizontalAlignment="Center"
-            Content="Okno podglądu zapisanych wizyt" FontSize="24" FontWeight="Bold">
+            Content="Okno podglądu zapisanych wizyt" FontSize="19" FontWeight="Bold">
             <Label.Effect>
                 <DropShadowEffect Color="#FF6BC9D3"/>
             </Label.Effect>
@@ -62,8 +62,8 @@
                   VerticalAlignment="Bottom"
                   ItemsSource="{Binding TodayVisitsList}" 
                   SelectedItem="{Binding VisitManagerObject, Mode=TwoWay}"
-                  BorderBrush="Black"
-                  >
+                  BorderThickness="2"
+                  BorderBrush="Black">
 
             <ListView.View>
                 <GridView>

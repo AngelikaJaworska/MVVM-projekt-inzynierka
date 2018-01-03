@@ -5,7 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVM_application.Views"
              xmlns:uc="clr-namespace:MVVM_application.Views.UserControls"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" x:Class="MVVM_application.Views.PatientNewVisitView"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             x:Class="MVVM_application.Views.PatientNewVisitView"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              d:DesignHeight="340"
              d:DesignWidth="600"
              DataContext="{Binding Main.CurrentViewModel, Source={StaticResource Locator}}"
@@ -40,11 +42,24 @@
 
             <Label Grid.Row="0"
                    Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="14" 
+                   FontWeight="Bold"
+                   Content="Rejestracja nowej wizyty">
+                <Label.Effect>
+                    <DropShadowEffect Color="#FF6BC9D3"/>
+                </Label.Effect>
+            </Label>
+
+            <Label Grid.Row="1"
+                   Grid.Column="0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
                    FontSize="14" Content="Pacjent"/>
 
-            <TextBox Grid.Row="0"
+            <TextBox Grid.Row="1"
                      Grid.Column="0"
                      Width="200"
                      HorizontalAlignment="Right"
@@ -52,15 +67,16 @@
                      Text="{Binding PatientName}"/>
 
 
-            <Label Grid.Row="1"
+            <Label Grid.Row="2"
                    Grid.Column="0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
-                   FontSize="14" Content="Specjalnosc"/>
-            <ComboBox Grid.Row="1"
+                   FontSize="14" Content="Specjalność"/>
+            <ComboBox Grid.Row="2"
                       Grid.Column="0"
                       Width="200"
                       HorizontalAlignment="Right" 
+                      Controls:TextBoxHelper.Watermark="Wybierz specjalizację"
                       ItemsSource="{Binding SpecialisationtNameList}"
                       SelectedItem="{Binding SpecialisationName}"
                       SelectedValuePath="SpecialisationName" >
@@ -72,15 +88,16 @@
                 </i:Interaction.Triggers>
             </ComboBox>
 
-            <Label Grid.Row="2"
-                   Grid.Column="0"
+            <Label Grid.Row="1"
+                   Grid.Column="1"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
                    FontSize="14" Content="Lekarz"/>
-            <ComboBox Grid.Row="3"
-                     Grid.Column="0"
-                     Width="200"
+            <ComboBox Grid.Row="1"
+                     Grid.Column="1"
+                     Width="160"
                      HorizontalAlignment="Right" 
+                      Controls:TextBoxHelper.Watermark="Wybierz lekarza"
                       ItemsSource="{Binding DoctorNameList}"
                       SelectedItem="{Binding DoctorName}"
                       SelectedValuePath="DoctorName" >
@@ -92,23 +109,37 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </ComboBox>
-            <Label Grid.Row="0"
+            <Label Grid.Row="2"
                    Grid.Column="1"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
                    FontSize="14" Content="Data i godzina wizyty" />
-            <ComboBox Grid.Row="1"
+            <ComboBox Grid.Row="2"
                       Grid.Column="1"
+                      Width="160"
+                      HorizontalAlignment="Right"
+                      Controls:TextBoxHelper.Watermark="Wybierz termin wizyty"
                       ItemsSource="{Binding VisitDateList}"
                       SelectedItem="{Binding VisitDate}"
                       SelectedValuePath="VisitDate" />
         </Grid>
         <Button Grid.Row="3"
                 Grid.Column="0"
-                Command="{Binding SaveCommand}" Content="Zapisz"/>
-        <Button Grid.Row="3"
-                Grid.Column="3"
-                Command="{Binding CancelCommand}" Content="Anuluj"/>
+                Grid.ColumnSpan="2"
+                Command="{Binding SaveCommand}" 
+                Style="{StaticResource AccentedSquareButtonStyle}">
+            <WrapPanel>
+                <TextBlock Text="Zapisz nowego pacjenta" />
+            </WrapPanel>
+        </Button>
+            <Button Grid.Row="3"
+                Grid.Column="2"
+                Grid.ColumnSpan="2"
+                Command="{Binding CancelCommand}"  Style="{StaticResource AccentedSquareButtonStyle}">
+            <WrapPanel>
+                <TextBlock Text="Anuluj" />
+            </WrapPanel>
+        </Button>
     </Grid>
 </UserControl>
 

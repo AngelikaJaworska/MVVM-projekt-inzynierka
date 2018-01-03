@@ -5,7 +5,9 @@
              xmlns:local="clr-namespace:MVVM_application.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:uc="clr-namespace:MVVM_application.Views.UserControls"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" x:Class="MVVM_application.Views.EditVisitView"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             x:Class="MVVM_application.Views.EditVisitView"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              DataContext="{Binding Main.CurrentViewModel, Source={StaticResource Locator}}"
              mc:Ignorable="d"
              d:DesignHeight="340">
@@ -23,8 +25,9 @@
             <RowDefinition Height="50" />
             <RowDefinition Height="40" />
         </Grid.RowDefinitions>
-        <uc:MainUserControl Grid.RowSpan="5" Grid.ColumnSpan="4" />
 
+        <uc:MainUserControl Grid.RowSpan="5" Grid.ColumnSpan="4" />
+        <uc:RegisterUserControl Grid.Row="1" Grid.ColumnSpan="4" />
 
         <Grid Grid.Row="2" Grid.ColumnSpan="4">
             <Grid.ColumnDefinitions>
@@ -39,11 +42,24 @@
 
             <Label Grid.Row="0"
                    Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="14" Content="Edycja lub odwołanie zapisanej wizyty"
+                   FontWeight="Bold">
+                <Label.Effect>
+                    <DropShadowEffect Color="#FF6BC9D3"/>
+                </Label.Effect>
+            </Label>
+
+            <Label Grid.Row="1"
+                   Grid.Column="0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
-                   FontSize="14" Content="Pacjent"/>
+                   FontSize="14" Content="Pacjent"
+                   FontWeight="Bold"/>
 
-            <TextBox Grid.Row="0"
+            <TextBox Grid.Row="1"
                      Grid.Column="0"
                      Width="170"
                      HorizontalAlignment="Right"
@@ -51,27 +67,32 @@
                      Text="{Binding Patient}"/>
 
 
-            <Label Grid.Row="1"
+            <Label Grid.Row="2"
                    Grid.Column="0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
-                   FontSize="14" Content="Lekarz"/>
-            <TextBox Grid.Row="1"
+                   FontSize="14" Content="Lekarz"
+                   FontWeight="Bold"/>
+            
+            <TextBox Grid.Row="2"
                      Grid.Column="0"
                      Width="170"
                      HorizontalAlignment="Right" 
                      Text="{Binding Doctor}"
                      IsEnabled="False"/>
 
-            <Label Grid.Row="0"
+            <Label Grid.Row="1"
                    Grid.Column="1"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
-                   FontSize="14" Content="Termin wizyty"/>
-            <ComboBox Grid.Row="0"
+                   FontSize="14" Content="Zapisany termin"
+                   FontWeight="Bold"/>
+            
+            <ComboBox Grid.Row="1"
                       Grid.Column="1" 
                       HorizontalAlignment="Right"
                       Width="170"
+                      Controls:TextBoxHelper.Watermark="Wybierz termin do edycji"
                       ItemsSource="{Binding VisitDateList}"
                       SelectedItem="{Binding VisitDate}">
                 <i:Interaction.Triggers>
@@ -82,31 +103,56 @@
                 </i:Interaction.Triggers>
             </ComboBox>
 
-            <Label Grid.Row="1"
+            <Label Grid.Row="2"
                    Grid.Column="1"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
-                   FontSize="14" Content="Nowy termin wizyty"/>
-            <ComboBox Grid.Row="1"
+                   FontSize="14" Content="Nowy termin"
+                   FontWeight="Bold"/>
+            
+            <ComboBox Grid.Row="2"
                       Grid.Column="1" 
                       HorizontalAlignment="Right"
                       Width="170"
+                      Controls:TextBoxHelper.Watermark="Ustal nowy termin wizyty"
                       ItemsSource="{Binding NewVisitDateList}"
                       SelectedItem="{Binding NewVisitDate}"/>
+        </Grid>
 
+        <Grid 
+            Grid.Row="3" 
+            Grid.ColumnSpan="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <Button Grid.Column="0"
+                    Style="{StaticResource AccentedSquareButtonStyle}"
+                    Command="{Binding SaveCommand}">
+                <WrapPanel>
+                    <TextBlock Text="Zapisz zmiany" />
+                </WrapPanel>
+            </Button>
 
             <Button Grid.Column="1"
-                    Grid.Row="2"
-                    Command="{Binding DeleteVisitCommand}" Content="Odwolaj"/>
+                    Style="{StaticResource AccentedSquareButtonStyle}"
+                    Command="{Binding DeleteVisitCommand}">
+                <WrapPanel>
+                    <TextBlock Text="Odwołaj wizytę" />
+                </WrapPanel>
+            </Button>
+
+            <Button Grid.Column="2"
+                    Style="{StaticResource AccentedSquareButtonStyle}"
+                    Command="{Binding CancelCommand}">
+                <WrapPanel>
+                    <TextBlock Text="Anuluj" />
+                </WrapPanel>
+            </Button>
         </Grid>
-        <Button Grid.Row="3"
-                Grid.Column="0"
-                Command="{Binding SaveCommand}" Content="Zapisz"/>
-        <Button Grid.Row="3"
-                Grid.Column="3"
-                Command="{Binding CancelCommand}" Content="Anuluj"/>
-
-
-        <uc:RegisterUserControl Grid.Row="1" Grid.ColumnSpan="4" />
     </Grid>
 </UserControl>

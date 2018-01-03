@@ -91,5 +91,12 @@ namespace MVVM_application.Models.DoctorModels
             }
             
         }
+
+        public string GetDoctorDateOfBirth()
+        {
+            var dateOfBirth = _doctor.DateOfBith
+               .ToString("yyyy-MM-dd");
+            return dateOfBirth;
+        }
     }
 }

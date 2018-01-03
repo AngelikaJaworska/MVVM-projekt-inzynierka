@@ -5,7 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVM_application.Views"
              xmlns:uc="clr-namespace:MVVM_application.Views.UserControls"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" x:Class="MVVM_application.Views.DoctorVisitView"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             x:Class="MVVM_application.Views.DoctorVisitView"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              d:DesignHeight="340"
              d:DesignWidth="600"
              DataContext="{Binding Main.CurrentViewModel, Source={StaticResource Locator}}"
@@ -21,27 +23,27 @@
             <RowDefinition Height="50" />
             <RowDefinition Height="50" />
             <RowDefinition Height="50" />
-            <RowDefinition Height="100" />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="150" />
             <RowDefinition Height="40" />
         </Grid.RowDefinitions>
 
-        <uc:MainUserControl Grid.RowSpan="6" Grid.ColumnSpan="4" />
-        <uc:DoctorUserControl Grid.RowSpan="4" Grid.ColumnSpan="4" Grid.Row="1"/>
-
-        <Label Grid.Column="1"
-               Grid.ColumnSpan="2"
+        <uc:MainUserControl Grid.RowSpan="5" Grid.ColumnSpan="4" />
+        <uc:DoctorUserControl Grid.Row="1" Grid.ColumnSpan="4" />
+                
+    
+        <Label Grid.Column="0"
+               Grid.ColumnSpan="4"
+               VerticalAlignment="Top"
+               HorizontalAlignment="Center"
             Grid.Row="2"
-            Content="{Binding DoctorInfo}"/>
-
-        <Label  Grid.Row="2"
-                  Grid.Column="0"
-            Content="Wybierz datę wyświetlonych wizyt"
-            />
+            Content="{Binding DoctorInfo}"
+               FontWeight="Bold"/>
 
         <ComboBox Grid.Row="2"
                   Grid.Column="0"
+                  Grid.ColumnSpan="2"
                   VerticalAlignment="Bottom"
+                  Controls:TextBoxHelper.Watermark="Wybierz datę wizyt do wyświetlenia"
                   ItemsSource="{Binding DateList}"
                   SelectedItem="{Binding Date}"
                   SelectedValuePath="Date"  >
@@ -59,24 +61,48 @@
                   Grid.Column="0"
                   Grid.ColumnSpan="4"
                   Width="600"
-                  Height="100"
+                  Height="150"
                   VerticalAlignment="Bottom"
                   ItemsSource="{Binding DoctorVisitsList}"
-                  SelectedItem="{Binding VisitManagerObject, Mode=TwoWay}">
+                  SelectedItem="{Binding VisitManagerObject, Mode=TwoWay}" 
+                  BorderThickness="2"
+                  BorderBrush="Black">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding Patient}" Header="Pacjent"/>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding VisitDate}" Header="Data i godzina wizyty"/>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding Comment}" Header="Uwagi"/>
+
+                    <GridView.ColumnHeaderContainerStyle>
+                        <Style TargetType="{x:Type GridViewColumnHeader}">
+                            <Setter Property="IsEnabled" Value="False"/>
+                            <Setter Property="BorderBrush" Value="Black"/>
+                            <Setter Property="BorderThickness" Value="2,2,2,2"/>
+                        </Style>
+                    </GridView.ColumnHeaderContainerStyle>
+                    
+                    <GridViewColumn Width="300" DisplayMemberBinding="{Binding Patient}" Header="Pacjent"/>
+                    <GridViewColumn Width="300" DisplayMemberBinding="{Binding VisitDate}" Header="Data i godzina wizyty"/>
                 </GridView>
             </ListView.View>
-           
         </ListView>
 
-
-        <Button Grid.Row="4"
-                Grid.Column="0"
-                Command="{Binding ShowVisitCommand}" Content="Podglad"/>
+        <Button Grid.Row="2"
+                Grid.Column="2"
+                VerticalAlignment="Bottom"
+                Command="{Binding ShowVisitCommand}"  
+                Style="{StaticResource AccentedSquareButtonStyle}">
+            <WrapPanel>
+                <TextBlock Text="Podgląd wizyty" />
+            </WrapPanel>
+        </Button>
+        <Button Grid.Row="2"
+                Grid.Column="3"
+                VerticalAlignment="Bottom"
+                Command="{Binding GoBackCommand}"  
+                Style="{StaticResource AccentedSquareButtonStyle}">
+            <WrapPanel>
+                <TextBlock Text="Wstecz" />
+            </WrapPanel>
+        </Button>
+        
     </Grid>
 </UserControl>
 

@@ -14,11 +14,19 @@ namespace MVVM_application.Models.DoctorModels
         private Clinic _database;
         private Doctor _doctor;
 
+        private int _year;
+        private int _month;
+        private int _day;
+
         public DoctorEditDataModel(IManager manager)
         {
             _manager = manager;
             _database = _manager.GetDatabase();
             _doctor = _manager.GetDoctor();
+
+            _year = 0;
+            _month = 0;
+            _day = 0;
         }
 
         public string GetDoctorName()
@@ -55,6 +63,13 @@ namespace MVVM_application.Models.DoctorModels
         {
             var _phone = _doctor.Phone;
             return _phone;
+        }
+
+        public string GetDoctorDateOfBirth()
+        {
+            var dateOfBirth = _doctor.DateOfBith
+               .ToString("yyyy-MM-dd");
+            return dateOfBirth;
         }
 
         public List<string> FillSpecialisationList()
@@ -163,6 +178,7 @@ namespace MVVM_application.Models.DoctorModels
             return false;
         }
 
+
         public bool SetDoctorPhone(string _phone)
         {
             if (_doctor != null && _phone != null && _phone != "")
@@ -197,6 +213,21 @@ namespace MVVM_application.Models.DoctorModels
             }
         }
 
+        internal bool SetDoctorDateOfBirth(string _dateOfBirth)
+        {
+            if (_doctor != null && _dateOfBirth != null && _dateOfBirth != "")
+            {
+                if (CheckIfStringContainsDate(_dateOfBirth))
+                {
+                    _doctor.DateOfBith = new DateTime(_year, _month, _day);
+                    _database.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+
         private bool CheckIfStringContainsOnlyLetter(string stringToCheck)
         {
             Match match = Regex.Match(stringToCheck, @"[\p{L} ]+$");
@@ -208,7 +239,30 @@ namespace MVVM_application.Models.DoctorModels
             Match match = Regex.Match(stringToCheck, @"\d{9}");
             return match.Success;
         }
+        private bool CheckIfStringContainsDate(string stringToCheck)
+        {
+            try
+            {
+                var date = Regex.Split(stringToCheck, @"\W+");// @      special verbatim string syntax
+                                                              // \W+    one or more non-word characters together
+                _year = Int32.Parse(date[0]);
+                _month = Int32.Parse(date[1]);
+                _day = Int32.Parse(date[2]);
 
-       
+                if (_year != 0 && _month != 0 && _day != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 }
