@@ -30,7 +30,7 @@
                   Grid.Row="0"
                   Grid.Column="0"
                   Grid.ColumnSpan="2"
-                  Width="400"
+                  Width="390"
                   Height="170"
                   VerticalAlignment="Top"
                   ItemsSource="{Binding Main.PatientCardUCModel.PatientListWDViewModel.PatientList}" 
@@ -47,8 +47,8 @@
                             <Setter Property="BorderThickness" Value="2,2,2,2"/>
                         </Style>
                     </GridView.ColumnHeaderContainerStyle>
-                    <GridViewColumn Width="199" DisplayMemberBinding="{Binding Patient}">Imię i nazwisko pacjenta</GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding Pesel}">Pesel</GridViewColumn>
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding Patient}">Imię i nazwisko pacjenta</GridViewColumn>
+                    <GridViewColumn Width="185" DisplayMemberBinding="{Binding Pesel}">Pesel</GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

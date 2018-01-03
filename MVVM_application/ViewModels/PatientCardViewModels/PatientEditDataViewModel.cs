@@ -125,26 +125,29 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
             _manager.ChangeView(TypesOfViews.SearchPatientViewModel);
         }
 
-        private void ExecuteDeleteCommand()
+        private async void ExecuteDeleteCommand()
         {
             if(_patient != null)
             {
                 _patientEditDataModel.DeletePatient();
-                MessageBox.Show("Pacjent został wyrejestrowany");
+                //MessageBox.Show("Pacjent został wyrejestrowany");
+                var message = await MetroMessageBoxManager.ShowMessageAsync("", "Pacjent został wyrejestrowany");
                 _manager.RefreshAll(TypesOfViews.PatientCardViewModel);
             }
         }
 
-        private void ExecuteSaveCommand()
+        private async void ExecuteSaveCommand()
         {
             if(SetData())
             {
-                MessageBox.Show("Dane prawidłowo zmienione");
+                //MessageBox.Show("Dane prawidłowo zmienione");
+                var message = await MetroMessageBoxManager.ShowMessageAsync("Prawidłowe dane", "Pacjet został edytowany");
                 _manager.RefreshAll(TypesOfViews.SearchPatientViewModel);
             }
             else
             {
-                MessageBox.Show("Niepoprawne dane");
+                //MessageBox.Show("Niepoprawne dane");
+                var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Proszę uzupełnić prawidłowo wszystkie dane");
             }
         }
 

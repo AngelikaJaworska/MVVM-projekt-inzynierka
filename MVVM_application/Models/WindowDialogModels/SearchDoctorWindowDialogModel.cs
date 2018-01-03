@@ -56,7 +56,8 @@ namespace MVVM_application.Models.WindowDialogModels
             }
             else
             {
-                MessageBox.Show("Proszę wybrać specjalność");
+                //MessageBox.Show("Proszę wybrać specjalność");
+                return null;
             }
 
             return _doctorNameList;

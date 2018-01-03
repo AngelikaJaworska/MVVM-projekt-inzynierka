@@ -111,16 +111,18 @@ namespace MVVM_application.ViewModels.RegisterViewModels
             CancelCommand = new RelayCommand(ExecuteCancelCommand);
         }
 
-        private void ExecuteSaveCommand()
+        private async void ExecuteSaveCommand()
         {
            if(_addNewPatientModel.CreatePatientCard(_name, _surname, _dateOfBirth, _street, _homeNr, _city, _phone, _pesel))
             {
-                MessageBox.Show("Pacjent zapisany");
+                //MessageBox.Show("Pacjent zapisany");
+                var message = await MetroMessageBoxManager.ShowMessageAsync("Poprawne dane", "Pacjent został zapisany");
                 _manager.RefreshAll(TypesOfViews.PatientCardViewModel);
             }
             else
             {
-                MessageBox.Show("Proszę uzupelnię dane");
+                //MessageBox.Show("Proszę uzupelnię dane");
+                var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Proszę uzupelnię poprawnie wszystkie dane");
             }
         }
 

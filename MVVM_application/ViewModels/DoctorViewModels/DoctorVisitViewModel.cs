@@ -137,10 +137,13 @@ namespace MVVM_application.ViewModels.DoctorViewModels
 
         private void ExecuteRefreshDateCommand()
         {
-            this.DoctorVisitsList = new ObservableCollection<VisitManager> (_doctorVisitModel.GetAllVisitsWithDoctor(_doctor, _date));
+            if(_doctor != null)
+            {
+                this.DoctorVisitsList = new ObservableCollection<VisitManager>(_doctorVisitModel.GetAllVisitsWithDoctor(_doctor, _date));
+            }
         }
 
-        private void ExecuteShowVisitCommand()
+        private async void ExecuteShowVisitCommand()
         {
             if (_visitManager != null)
             {
@@ -151,7 +154,8 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             }
             else
             {
-                MessageBox.Show("Proszę wybrać wizytę zaznaczając ją na liście");
+                //MessageBox.Show("Proszę wybrać wizytę zaznaczając ją na liście");
+                var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Proszę wybrać wizytę zaznaczając ją na liście");
             }
         }
     }

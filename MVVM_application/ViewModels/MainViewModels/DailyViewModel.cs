@@ -115,7 +115,7 @@ namespace MVVM_application.ViewModels.MainViewModels
              this.TodayVisitsList = new ObservableCollection<VisitManager>(_dailyModel.GetAllVisitsWithReceptionist(_receptionist.IDReceptionist, _date));
         }
 
-        private void ExecuteShowVisitCommand()
+        private async void ExecuteShowVisitCommand()
         {
             if(_visitManager != null)
             {
@@ -126,7 +126,8 @@ namespace MVVM_application.ViewModels.MainViewModels
             }
             else
             {
-                MessageBox.Show("Proszę wybrać wizytę zaznaczając ją na liście");
+                //MessageBox.Show("Proszę wybrać wizytę zaznaczając ją na liście");
+                var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Proszę wybrać wizytę zaznaczając ją na liście");
             }
         }
     }

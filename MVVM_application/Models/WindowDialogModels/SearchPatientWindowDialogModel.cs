@@ -37,7 +37,7 @@ namespace MVVM_application.Models.WindowDialogModels
                 }
                 catch
                 {
-                    MessageBox.Show("Szukany pacjent nie istnieje");
+                    return null;
                 }
             }
             return null;
@@ -57,7 +57,7 @@ namespace MVVM_application.Models.WindowDialogModels
                 }
                 catch
                 {
-                    MessageBox.Show("Szukany pacjent z wpisanym numerem pesel nie istnieje");
+                    return null;
                 }
             }
             return null;

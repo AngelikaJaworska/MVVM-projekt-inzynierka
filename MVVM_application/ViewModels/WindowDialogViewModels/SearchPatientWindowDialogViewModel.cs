@@ -63,7 +63,7 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
             _manager.SetUnchangedView(true);
         }
 
-        private void ExecuteSearchPatientCommand(SearchPatientWindowDialog windowSearchPatient)
+        private async void ExecuteSearchPatientCommand(SearchPatientWindowDialog windowSearchPatient)
         {
             if(_pesel != null && _pesel != ""
                 && _patient != null && _patient != "")
@@ -77,7 +77,8 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
                 }
                 else
                 {
-                    MessageBox.Show("Proszę uzupełnić poprawnie wszystkie dane");
+                    //MessageBox.Show("Proszę uzupełnić poprawnie wszystkie dane");
+                    var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Szukany pacjent nie istnieje");
                 }
             }
             else if(_pesel != null && _pesel != "")
@@ -91,7 +92,8 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
                 }
                 else
                 {
-                    MessageBox.Show("Proszę uzupełnić poprawnie dane");
+                    //MessageBox.Show("Proszę uzupełnić poprawnie dane");
+                    var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Pacjent o podanym numerze pesel nie istnije");
                 }
             }
             else if(_patient != null && _patient != "")
@@ -105,12 +107,14 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
                 }
                 else
                 {
-                    MessageBox.Show("Proszę uzupełnić poprawnie dane");
+                    //MessageBox.Show("Proszę uzupełnić poprawnie dane");
+                    var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Proszę uzupełnić prawidłowo wszystkie dane");
                 }
             }
             else
             {
-                MessageBox.Show("Proszę uzupelnić poprawnie wszystkie dane");
+                //MessageBox.Show("Proszę uzupelnić poprawnie wszystkie dane");
+                var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Proszę uzupełnić prawidłowo wszystkie dane");
             }
 
         }

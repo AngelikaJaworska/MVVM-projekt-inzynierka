@@ -147,7 +147,7 @@ namespace MVVM_application.ViewModels.DoctorViewModels
 
         }
 
-        private void ExecuteDeleteDoctorCommand()
+        private async void ExecuteDeleteDoctorCommand()
         {
             if( _searchDoctorModel.DeleteDoctor())
             {
@@ -155,7 +155,8 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             }
             else
             {
-                MessageBox.Show("Nieprawidłowe dane");
+                //MessageBox.Show("Nieprawidłowe dane");
+                var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Nie udało się usunąć lekarza");
             }
         }
 
@@ -165,7 +166,7 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             doctorVisitHoursWindowDialog.ShowDialog();
         }
 
-        public void ExecuteDoctorEditDataCommand()
+        public async void ExecuteDoctorEditDataCommand()
         {
             if (_manager.GetDoctor() != null)
             {
@@ -173,7 +174,8 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             }
             else
             {
-                MessageBox.Show("Nie wybrano lekarza do edycji");
+                //MessageBox.Show("Nie wybrano lekarza do edycji");
+                var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Nie wybrano lekarza do edycji");
             }
         }
     }

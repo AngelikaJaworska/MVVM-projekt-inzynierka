@@ -129,7 +129,7 @@
                 Command="{Binding SaveCommand}" 
                 Style="{StaticResource AccentedSquareButtonStyle}">
             <WrapPanel>
-                <TextBlock Text="Zapisz nowego pacjenta" />
+                <TextBlock Text="Zapisz nową wizytę" />
             </WrapPanel>
         </Button>
             <Button Grid.Row="3"

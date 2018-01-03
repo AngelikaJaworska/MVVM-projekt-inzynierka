@@ -10,7 +10,7 @@
         mc:Ignorable="d"
         x:Name="windowAddDoctorVisitHours"
         Height="190" 
-        Width="310" 
+        Width="300" 
         ResizeMode="CanMinimize"
         GlowBrush="{DynamicResource AccentColorBrush}"
                       BorderThickness="2"

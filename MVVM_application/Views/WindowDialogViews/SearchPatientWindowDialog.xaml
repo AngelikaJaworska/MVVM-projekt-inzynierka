@@ -13,7 +13,7 @@
         ResizeMode="CanMinimize"
         GlowBrush="{DynamicResource AccentColorBrush}"
                       BorderThickness="2"
-    Height="180" Width="410" DataContext="{DynamicResource Locator}">
+    Height="180" Width="400" DataContext="{DynamicResource Locator}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200" />

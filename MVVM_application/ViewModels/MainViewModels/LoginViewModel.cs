@@ -6,8 +6,6 @@ using System.Collections.ObjectModel;
 
 using MVVM_application.Manager;
 using MVVM_application.Models.MainModels;
-using MVVM_application.Views;
-using MVVM_application.ViewModels.WindowDialogViewModels;
 
 namespace MVVM_application.ViewModels.MainViewModels
 {
@@ -63,7 +61,7 @@ namespace MVVM_application.ViewModels.MainViewModels
             Application.Current.Shutdown();
         }
 
-        private void ExecuteLoginViewCommand()
+        private async void ExecuteLoginViewCommand()
         {
             var reception = _loginModel.Login(_login, _password);
             if (reception != null)
@@ -74,7 +72,7 @@ namespace MVVM_application.ViewModels.MainViewModels
             }
             else
             {
-                MessageBox.Show("Proszę uzupełnić prawidłowo dane");
+                var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Proszę uzupełnić prawidłowo dane");
             }
         }
     }

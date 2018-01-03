@@ -74,7 +74,7 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
             RefreshDoctorCommand = new RelayCommand<string>(RefreshDoctorsInfo); 
         }
         
-        private void ExecuteSearchDoctorCommand(SearchDoctorWindowDialog windowSearchdoctor)
+        private async void ExecuteSearchDoctorCommand(SearchDoctorWindowDialog windowSearchdoctor)
         {
             var doctor = _addDoctorWindowDialogModel.SearchDoctor(_specialisation, _doctor);
             if (doctor != null)
@@ -85,7 +85,8 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
             }
             else
             {
-                MessageBox.Show("Proszę wybrać odpowiednie dane");
+                //MessageBox.Show("Proszę wybrać odpowiednie dane");
+                var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Proszę wybrać odpowiednie dane");
             }
 
         }
@@ -96,7 +97,7 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
             _manager.SetUnchangedView(true);
         }
 
-        private void ExecuteSkipDoctorCommand(SearchDoctorWindowDialog windowSearchdoctor)
+        private async void ExecuteSkipDoctorCommand(SearchDoctorWindowDialog windowSearchdoctor)
         {
             if(_manager.GetDoctor() != null)
             {
@@ -105,7 +106,8 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
             }
             else
             {
-                MessageBox.Show("Proszę wybrać najpierw lekarza");
+               // MessageBox.Show("Proszę wybrać najpierw lekarza");
+                var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Proszę wybrać najpierw lekarza");
             }
         }
 
@@ -115,10 +117,13 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
             {
                 _doctorNameList.Clear();
                 _doctorNameList = _addDoctorWindowDialogModel.FillDoctorList(specialisation);
-                this.DoctorList.Clear();
-                for (int i = 0; i < _doctorNameList.Count; i++)
+                if(_doctorNameList != null)
                 {
-                    this.DoctorList.Add(_doctorNameList[i]);
+                    this.DoctorList.Clear();
+                    for (int i = 0; i < _doctorNameList.Count; i++)
+                    {
+                        this.DoctorList.Add(_doctorNameList[i]);
+                    }
                 }
             }
         }

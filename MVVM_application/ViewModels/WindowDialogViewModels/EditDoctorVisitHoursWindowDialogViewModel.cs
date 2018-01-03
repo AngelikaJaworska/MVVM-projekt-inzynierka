@@ -75,10 +75,13 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
             {
                 _endHourList.Clear();
                 _endHourList = _editDoctorVisitHoursWindowDialogModel.FillEndHoursList(startHour);
-                this.EndHourList.Clear();
-                for (int i = 0; i < _endHourList.Count; i++)
+                if(_endHourList != null)
                 {
-                    this.EndHourList.Add(_endHourList[i]);
+                    this.EndHourList.Clear();
+                    for (int i = 0; i < _endHourList.Count; i++)
+                    {
+                        this.EndHourList.Add(_endHourList[i]);
+                    }
                 }
             }
         }
@@ -98,7 +101,7 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
             windowEditDoctorVisitHours.DialogResult = true;
         }
 
-        private void ExecuteSaveCommand(EditDoctorVisitHourWindowDialog windowEditDoctorVisitHours)
+        private async void ExecuteSaveCommand(EditDoctorVisitHourWindowDialog windowEditDoctorVisitHours)
         {
             if (_editDoctorVisitHoursWindowDialogModel.SaveData(_startHour, _endHour))
             {
@@ -106,7 +109,8 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
             }
             else
             {
-                MessageBox.Show("Proszę uzupełnić odpowiednio dane");
+                //MessageBox.Show("Proszę uzupełnić odpowiednio dane");
+                var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Proszę uzupełnić prawidłowo wszystkie dane");
             }
         }
 

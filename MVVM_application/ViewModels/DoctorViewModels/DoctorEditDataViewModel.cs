@@ -173,26 +173,29 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             _manager.ChangeView(TypesOfViews.SearchDoctorViewModel);
         }
 
-        private void ExecuteDeleteCommand()
+        private async void ExecuteDeleteCommand()
         {
             if(_doctor != null)
             {
                 _doctorEditDataModel.DeleteDoctor();
-                MessageBox.Show("Lekarz został usunięty");
+                //MessageBox.Show("Lekarz został usunięty");
+                var message = await MetroMessageBoxManager.ShowMessageAsync("", "Lekarz został usunięty");
                 _manager.RefreshAll(TypesOfViews.DoctorViewModel);
             }
         }
 
-        private void ExecuteSaveCommand()
+        private async void ExecuteSaveCommand()
         {
             if(SetData())
             {
-                MessageBox.Show("Dane prawidłowo zmienione");
+                //MessageBox.Show("Dane prawidłowo zmienione");
+                var message = await MetroMessageBoxManager.ShowMessageAsync("Poprawne dane", "Lekarz został edytowany");
                 _manager.RefreshAll(TypesOfViews.SearchDoctorViewModel);
             }
             else
             {
-                MessageBox.Show("Nieprawidłowe dane");
+                //MessageBox.Show("Nieprawidłowe dane");
+                var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Proszę uzupelnić prawidłowo wszystkie dane");
             }
         }
 

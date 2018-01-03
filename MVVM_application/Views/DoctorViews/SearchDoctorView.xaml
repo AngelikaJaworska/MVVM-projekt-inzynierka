@@ -207,7 +207,7 @@
                     Style="{StaticResource AccentedSquareButtonStyle}"
                     Command="{Binding DeleteDoctorCommand}">
                 <WrapPanel>
-                    <TextBlock Text="Usuń" />
+                    <TextBlock Text="Usuń lekarza" />
                 </WrapPanel>
             </Button>
         </Grid>

@@ -109,16 +109,18 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
             RefreshVisitDateCommand = new RelayCommand(ExecuteRefreshVisitDateCommand);
         }
         
-        private void ExecuteSaveCommand()
+        private async void ExecuteSaveCommand()
         {
             if (_patientNewVisitModel.CreateVisitWithData(_patientName, _specialisationName, _doctorName, _visitDate, _comments))
             {
-                MessageBox.Show("Wizyta poprawnie zapisana");
+                // MessageBox.Show("Wizyta poprawnie zapisana");
+                var message = await MetroMessageBoxManager.ShowMessageAsync("Prawidłowe dane", "Wizyta została poprawnie zapisana");
                 _manager.RefreshAll(TypesOfViews.PatientCardViewModel);
             }
                 else
             {
-                MessageBox.Show("Proszę uzupełnic dane");
+                //MessageBox.Show("Proszę uzupełnic dane");
+                var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Proszę uzupełnić prawidłowo wszystkie dane");
             }
         }
         
@@ -133,10 +135,13 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
             {
                 _doctorNameList.Clear();
                 _doctorNameList = _patientNewVisitModel.FillDoctorNameList(_specialisationName);
-                this.DoctorNameList.Clear();
-                for (int i = 0; i < _doctorNameList.Count; i++)
+                if(_doctorNameList != null)
                 {
-                    this.DoctorNameList.Add(_doctorNameList[i]);
+                    this.DoctorNameList.Clear();
+                    for (int i = 0; i < _doctorNameList.Count; i++)
+                    {
+                        this.DoctorNameList.Add(_doctorNameList[i]);
+                    }
                 }
             }
         }
@@ -147,10 +152,13 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
             {
                 _visitDateList.Clear();
                 _visitDateList = _patientNewVisitModel.FillVisitDateList(_doctorName, _specialisationName);
-                this.VisitDateList.Clear();
-                for (int i = 0; i < _visitDateList.Count; i++)
+                if(_visitDateList != null)
                 {
-                    this.VisitDateList.Add(_visitDateList[i]);
+                    this.VisitDateList.Clear();
+                    for (int i = 0; i < _visitDateList.Count; i++)
+                    {
+                        this.VisitDateList.Add(_visitDateList[i]);
+                    }
                 }
             }
         }

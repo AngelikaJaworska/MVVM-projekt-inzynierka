@@ -81,12 +81,18 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
             DeleteVisitCommand = new RelayCommand<ShowVisitWindowDialog>(ExecuteDeleteVisitCommand);
         }
 
-        private void ExecuteDeleteVisitCommand(ShowVisitWindowDialog windowShowVisit)
+        private async void ExecuteDeleteVisitCommand(ShowVisitWindowDialog windowShowVisit)
         {
             if (_showVisitWindowDialogModel.DeleteVisit())
             {
-                MessageBox.Show("Wizyta odwołana");
+                //MessageBox.Show("Wizyta odwołana");
+                var message = await MetroMessageBoxManager.ShowMessageAsync("", "Wizyta została odwołana");
                 _manager.RefreshAll(TypesOfViews.DailyViewModel);
+            }
+            else
+            {
+                //MessageBox.Show("Nie można odwołać wizyty z przeszłości");
+                var message = await MetroMessageBoxManager.ShowMessageAsync("", "Nie można odwołać wizyty z przeszłości");
             }
             windowShowVisit.Close();
         }

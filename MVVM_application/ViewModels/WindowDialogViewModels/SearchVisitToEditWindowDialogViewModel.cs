@@ -90,10 +90,13 @@ namespace MVVM_application.ViewModels
             {
                 _doctorNameList.Clear();
                 _doctorNameList = _searchVisitToEditWindowDialogModel.FillDoctorList(specialisation);
-                this.DoctorList.Clear();
-                for (int i = 0; i < _doctorNameList.Count; i++)
+                if(_doctorNameList != null)
                 {
-                    this.DoctorList.Add(_doctorNameList[i]);
+                    this.DoctorList.Clear();
+                    for (int i = 0; i < _doctorNameList.Count; i++)
+                    {
+                        this.DoctorList.Add(_doctorNameList[i]);
+                    }
                 }
             }
         }
@@ -104,7 +107,7 @@ namespace MVVM_application.ViewModels
             _manager.SetUnchangedView(true);
         }
         
-        private void ExecuteSearchVisitCommand(SearchVisitToEditWindowDialog windowEditVisit)
+        private async void ExecuteSearchVisitCommand(SearchVisitToEditWindowDialog windowEditVisit)
         {
             var doctor = _searchVisitToEditWindowDialogModel.SearchDoctor(_specialisation, _doctor);
 
@@ -117,12 +120,14 @@ namespace MVVM_application.ViewModels
                 }
                 else
                 {
-                    MessageBox.Show("Brak wizyt dla wybranych danych");
+                    //MessageBox.Show("Brak wizyt dla wybranych danych");
+                    var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Brak wizyt dla wybranych danych");
                 }
             }
             else
             {
-                MessageBox.Show("Proszę wybrać odpowiednie dane"); 
+                //MessageBox.Show("Proszę wybrać odpowiednie dane"); 
+                var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Proszę uzupełnić prawidłowo wszystkie dane");
             }
             
         }

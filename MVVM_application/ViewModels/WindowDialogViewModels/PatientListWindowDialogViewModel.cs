@@ -67,7 +67,7 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
             _manager.SetUnchangedView(true);
         }
 
-        private void ExecuteGetPatientFromListCommand(PatientListWindowDialog windowPatientList)
+        private async void ExecuteGetPatientFromListCommand(PatientListWindowDialog windowPatientList)
         {
             if(_patient != null)
             {
@@ -77,7 +77,8 @@ namespace MVVM_application.ViewModels.WindowDialogViewModels
             }
             else
             {
-                MessageBox.Show("Proszę zaznaczyć pacjenta klikając na liste");
+                //MessageBox.Show("Proszę zaznaczyć pacjenta klikając na liste");
+                var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Proszę zaznaczyć pacjenta klikając na liste");
             }
         }
     }

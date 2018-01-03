@@ -36,7 +36,7 @@ namespace MVVM_application.Models.WindowDialogModels
                 }
                 else
                 {
-                    MessageBox.Show("Nie można odwołać wizyty z przeszłości");
+                    //MessageBox.Show("Nie można odwołać wizyty z przeszłości");
                     return false;
                 }
             }

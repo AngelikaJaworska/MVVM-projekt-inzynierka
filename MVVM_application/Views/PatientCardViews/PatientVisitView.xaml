@@ -36,10 +36,6 @@
             Content="{Binding PatientInfo}"
                FontWeight="Bold"/>
 
-        <Label  Grid.Row="2"
-                  Grid.Column="0"
-            Content="Wybierz datę wyświetlonych wizyt"
-            />
         <ComboBox Grid.Row="2"
                   Grid.Column="0"
                   Grid.ColumnSpan="2"

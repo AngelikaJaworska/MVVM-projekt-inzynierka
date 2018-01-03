@@ -95,28 +95,32 @@ namespace MVVM_application.ViewModels.RegisterViewModels
             DeleteVisitCommand = new RelayCommand(ExecuteDeleteVisitCommand);
         }
 
-        private void ExecuteDeleteVisitCommand()
+        private async void ExecuteDeleteVisitCommand()
         {
             if(_visitDate != null)
             {
                 if(_editVisitModel.DeleteVisit(_visitDate))
                 {
-                    MessageBox.Show("Wizyta odwołana");
+                    //MessageBox.Show("Wizyta odwołana");
+                    var message1 = await MetroMessageBoxManager.ShowMessageAsync("", "Wizyta została odwołana");
                     this.VisitDateList.Remove(_visitDate);
                     if (VisitDateList.Count == 0)
                     {
-                        MessageBox.Show("Brak kolejnych wizyt do edycji");
+                        //MessageBox.Show("Brak kolejnych wizyt do edycji");
+                        var message2 = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Brak kolejnych wizyt do edycji");
                         _manager.RefreshAll(TypesOfViews.DailyViewModel);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Nie wybrano daty wizyty do usunięcia");
+                    // MessageBox.Show("Nie wybrano daty wizyty do usunięcia");
+                    var message3 = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Nie wybrano daty wizyty do usunięcia");
                 }
             }
             else
             {
-                MessageBox.Show("Proszę wybrać wizytę do odwołania");
+                //MessageBox.Show("Proszę wybrać wizytę do odwołania");
+                var message4 = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Proszę wybrać wizytę do odwołania");
             }
         }
 
@@ -139,30 +143,34 @@ namespace MVVM_application.ViewModels.RegisterViewModels
             _manager.ChangeView(TypesOfViews.DailyViewModel);
         }
 
-        private void ExecuteSaveCommand()
+        private async void ExecuteSaveCommand()
         {
             if(_visitDate != null && _newVisitDate != null)
             {
                if( _editVisitModel.ChangeVisitDate(_visitDate, _newVisitDate))
                 {
-                    MessageBox.Show("Wizyta edytowana");
+                    //MessageBox.Show("Wizyta edytowana");
+                    var message1 = await MetroMessageBoxManager.ShowMessageAsync("", "Wizyta została edytowana");
                     this.VisitDateList.Remove(_visitDate);
                     this.NewVisitDateList.Add(_newVisitDate);
 
                     if (VisitDateList.Count == 0)
                     {
-                        MessageBox.Show("Brak kolejnych wizyt do edycji");
+                        //MessageBox.Show("Brak kolejnych wizyt do edycji");
+                        var message2 = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Brak kolejnych wizyt do edycji");
                         _manager.RefreshAll(TypesOfViews.PatientVisitViewModel);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Nie wybrano dat do edycji");
+                    //MessageBox.Show("Nie wybrano dat do edycji");
+                    var message3 = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Nie wybrano daty wizyty do edycji");
                 }
             }
             else
             {
-                MessageBox.Show("Proszę uzupełnic dane");
+                //MessageBox.Show("Proszę uzupełnic dane");
+                var message4 = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Proszę uzupełnić prawidłowo wszystkie dane");
             }
         }
 

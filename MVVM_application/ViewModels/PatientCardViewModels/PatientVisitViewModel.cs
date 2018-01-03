@@ -135,7 +135,7 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
             _manager.ChangeView(TypesOfViews.SearchPatientViewModel);
         }
 
-        private void ExecuteShowVisitCommand()
+        private async void ExecuteShowVisitCommand()
         {
             if (_visitManager != null)
             {
@@ -146,7 +146,8 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
             }
             else
             {
-                MessageBox.Show("Proszę wybrać wizytę zaznaczając ją na liście");
+             //   MessageBox.Show("Proszę wybrać wizytę zaznaczając ją na liście");
+                var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Proszę wybrać wizytę zaznaczając ją na liście");
             }
 
         }

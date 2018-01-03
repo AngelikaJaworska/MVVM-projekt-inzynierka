@@ -56,7 +56,8 @@ namespace MVVM_application.Models
             }
             else
             {
-                MessageBox.Show("Proszę wybrać specjalność");
+                //MessageBox.Show("Proszę wybrać specjalność");
+                return null;
             }
 
             return _doctorNameList;
@@ -110,7 +111,7 @@ namespace MVVM_application.Models
             }
             catch
             {
-                MessageBox.Show("Szukany pacjent z wpisanym numerem pesel nie istnieje");
+                return false;
             }
             return false;
 
