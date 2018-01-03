@@ -8,7 +8,7 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" x:Class="MVVM_application.Views.EditVisitView"
              DataContext="{Binding Main.CurrentViewModel, Source={StaticResource Locator}}"
              mc:Ignorable="d"
-             d:DesignHeight="330">
+             d:DesignHeight="340">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150" />
@@ -21,7 +21,7 @@
             <RowDefinition Height="50" />
             <RowDefinition Height="150" />
             <RowDefinition Height="50" />
-            <RowDefinition Height="30" />
+            <RowDefinition Height="40" />
         </Grid.RowDefinitions>
         <uc:MainUserControl Grid.RowSpan="5" Grid.ColumnSpan="4" />
 

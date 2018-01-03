@@ -4,7 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:MVVM_application.Views.UserControls"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DesignHeight="330"
+             d:DesignHeight="340"
              d:DesignWidth="600"
              DataContext="{Binding Main.MainUcModel,
                                    Source={StaticResource Locator}}"
@@ -21,53 +21,66 @@
             <RowDefinition Height="50" />
             <RowDefinition Height="150" />
             <RowDefinition Height="50" />
-            <RowDefinition Height="30" />
+            <RowDefinition Height="40" />
         </Grid.RowDefinitions>
 
-        <Button Grid.Column="0" Command="{Binding DailyCommand}">
+        <Button Grid.Column="0" Command="{Binding DailyCommand}"
+                Style="{StaticResource AccentedSquareButtonStyle}">
             <WrapPanel>
                 <TextBlock Text="Wizyty" />
             </WrapPanel>
         </Button>
 
-        <Button Grid.Column="1" Command="{Binding RegisterCommand}">
+        <Button Grid.Column="1" Command="{Binding RegisterCommand}"
+                Style="{StaticResource AccentedSquareButtonStyle}">
             <WrapPanel>
                 <TextBlock Text="Rejestracja" />
             </WrapPanel>
         </Button>
 
-        <Button Grid.Column="2" Command="{Binding PatientCardCommand}">
+        <Button Grid.Column="2" Command="{Binding PatientCardCommand}"
+                Style="{StaticResource AccentedSquareButtonStyle}">
             <WrapPanel>
                 <TextBlock Text="Karta Pacjenta" />
             </WrapPanel>
         </Button>
 
-        <Button Grid.Column="3" Command="{Binding DoctorCommand}">
+        <Button Grid.Column="3" Command="{Binding DoctorCommand}"
+                Style="{StaticResource AccentedSquareButtonStyle}">
             <WrapPanel>
                 <TextBlock Text="Pracownicy" />
             </WrapPanel>
         </Button>
 
-        <Button Grid.Row="3"
-                Grid.Column="1"
-                Command="{Binding LogoutCommand}">
+        <Button Grid.Row="4"
+                Grid.Column="2"
+                VerticalAlignment="Top"
+                Command="{Binding LogoutCommand}"
+                Style="{StaticResource AccentedSquareButtonStyle}">
             <WrapPanel>
                 <TextBlock Text="Wyloguj" />
             </WrapPanel>
         </Button>
 
-        <Button Grid.Row="3"
-                Grid.Column="2"
-                Command="{Binding ExitCommand}">
+        <Button Grid.Row="4"
+                Grid.Column="3"
+                VerticalAlignment="Top"
+                Command="{Binding ExitCommand}"
+                Style="{StaticResource AccentedSquareButtonStyle}">
             <WrapPanel>
-                <TextBlock Text="Zakoncz program" />
+                <TextBlock Text="Zakończ program" />
             </WrapPanel>
         </Button>
+        
         <Label Grid.Column="0"
-               Grid.ColumnSpan="4"
+               Grid.ColumnSpan="2"
             Grid.Row="4"
-            Content="{Binding Recepcionist}"
-            />
+            Content="{Binding Recepcionist}" FontWeight="Bold"
+            >
+            <Label.Effect>
+                <DropShadowEffect Color="#FFB2E8E3"/>
+            </Label.Effect>
+        </Label>
 
     </Grid>
 </UserControl>

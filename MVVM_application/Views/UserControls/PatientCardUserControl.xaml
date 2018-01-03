@@ -18,9 +18,10 @@
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
-        
 
-        <Button Grid.Column="2" Command="{Binding PatientVisitCommand}">
+
+        <Button Grid.Column="2" Command="{Binding PatientVisitCommand}"
+                Style="{StaticResource AccentedSquareButtonStyle}">
             <WrapPanel>
                 <TextBlock Text="Wizyty" />
             </WrapPanel>
@@ -28,8 +29,11 @@
 
         <Button Grid.Row="1"
                   Grid.Column="0"
-                Command="{Binding SearchPatientCommand}">
-            Wyszukaj pacjenta
+                Command="{Binding SearchPatientCommand}"
+                Style="{StaticResource AccentedSquareButtonStyle}">
+            <WrapPanel>
+                <TextBlock Text="Wyszukaj pacjenta" />
+            </WrapPanel>
         </Button>
     </Grid>
 </UserControl>

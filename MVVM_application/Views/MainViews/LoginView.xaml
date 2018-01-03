@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DesignHeight="300"
-             d:DesignWidth="450"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             d:DesignHeight="350"
+             d:DesignWidth="300"
              DataContext="{Binding Main.CurrentViewModel,
                                    Source={StaticResource Locator}}"
              mc:Ignorable="d">
@@ -12,56 +13,90 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150" />
             <ColumnDefinition Width="150" />
-            <ColumnDefinition Width="150" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="100" />
             <RowDefinition Height="100" />
             <RowDefinition Height="100" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0"
-                   Grid.Column="0"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Text="Login:" />
-        <ComboBox Grid.Row="0"
-                  Grid.Column="1"
-                  Width="150"
-                  Margin="0,39"
+
+        <Ellipse Height="90" Width="90"
+            Grid.Row="0"
+            Grid.ColumnSpan="2" >
+            <Ellipse.Fill>
+                <ImageBrush ImageSource="/MVVM_application;component/Images/login.png"/>
+            </Ellipse.Fill>
+        </Ellipse>
+
+        <Label
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Center"
+            Content="Logowanie" FontSize="24" FontWeight="Bold">
+            <Label.Effect>
+                <DropShadowEffect Color="#FF6BC9D3"/>
+            </Label.Effect>
+        </Label>
+
+        <Label
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Content="Witamy w przychodni" FontSize="14"/>
+
+
+        <ComboBox Grid.Row="1"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="2"
                   HorizontalAlignment="Center"
-                  VerticalAlignment="Center"
-                  DisplayMemberPath="Login"
+                  VerticalAlignment="Bottom"
+                  Width="200"
+                  Controls:TextBoxHelper.Watermark="Wybierz login"
+                  DisplayMemberPath="Login"               
                   ItemsSource="{Binding ReceptionistList}"
                   SelectedValue="{Binding Login}"
                   SelectedValuePath="Login" />
-        <TextBlock Grid.Row="1"
-                   Grid.Column="0"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Text="Haslo:" />
-        <TextBox Grid.Row="1"
-                 Grid.Column="1"
-                 Width="140"
-                 Margin="0,41,10,41"
+        
+        <TextBox Grid.Row="2"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="2"
+                 Width="200"
+                 Controls:TextBoxHelper.Watermark="Wpisz hasło"
+                 Controls:TextBoxHelper.ClearTextButton="True"
                  HorizontalAlignment="Center"
                  VerticalAlignment="Center"
-                 Text="{Binding Password}" />
-        <Button Grid.Row="2"
+                 Text="{Binding Password}"/>
+        <Button             
+            Grid.Row="3"
+                Grid.Column="0"
                 Width="100"
-                Margin="97,39,103,41"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center"
+                VerticalAlignment="Top"
+                Style="{StaticResource AccentedSquareButtonStyle}"
                 Command="{Binding LoginCommand,
-                                  Mode=OneWay}" Grid.ColumnSpan="2">
-            Sprawdz
+                                  Mode=OneWay}">
+            <WrapPanel>
+                <TextBlock Text="Zaloguj się" />
+            </WrapPanel>
         </Button>
-        <Button Grid.Row="2"
-            Width="100"
-            Margin="126,39,74,41"
+                
+
+        <Button Grid.Row="3"
+                Grid.Column="1"
+            Width="100" 
+            Style="{StaticResource AccentedSquareButtonStyle}"
             HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Command="{Binding ExitCommand, Mode=OneWay}" 
-            Grid.ColumnSpan="2" Content="Zakoncz" Grid.Column="1"/>
+            VerticalAlignment="Top"
+            Command="{Binding ExitCommand, Mode=OneWay}">
+            <WrapPanel>
+                <TextBlock Text="Zakończ" />
+            </WrapPanel>
+        </Button>
     </Grid>
 
 </UserControl>

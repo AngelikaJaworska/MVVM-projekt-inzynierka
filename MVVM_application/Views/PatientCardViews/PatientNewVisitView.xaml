@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:MVVM_application.Views"
              xmlns:uc="clr-namespace:MVVM_application.Views.UserControls"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" x:Class="MVVM_application.Views.PatientNewVisitView"
-             d:DesignHeight="330"
+             d:DesignHeight="340"
              d:DesignWidth="600"
              DataContext="{Binding Main.CurrentViewModel, Source={StaticResource Locator}}"
              mc:Ignorable="d">
@@ -22,7 +22,7 @@
             <RowDefinition Height="50" />
             <RowDefinition Height="150" />
             <RowDefinition Height="50" />
-            <RowDefinition Height="30" />
+            <RowDefinition Height="40" />
         </Grid.RowDefinitions>
         <uc:MainUserControl Grid.RowSpan="5" Grid.ColumnSpan="4" />
         <uc:RegisterUserControl Grid.Row="1" Grid.ColumnSpan="4" />

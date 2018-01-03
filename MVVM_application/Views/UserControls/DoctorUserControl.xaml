@@ -21,21 +21,26 @@
 
         <Button Grid.Row="0"
                   Grid.Column="0"
-                Command="{Binding SearchDoctorCommand, Mode=OneWay}" >
-            Wyszukaj lekarza
+                Command="{Binding SearchDoctorCommand, Mode=OneWay}" 
+                Style="{StaticResource AccentedSquareButtonStyle}">
+            <WrapPanel>
+                <TextBlock Text="Wyszukaj lekarza" />
+            </WrapPanel>
         </Button>
                 
 
         <Button Grid.Row="0"
                 Grid.Column="1"
-                Command="{Binding DoctorVisitCommand}">
+                Command="{Binding DoctorVisitCommand}"
+                Style="{StaticResource AccentedSquareButtonStyle}">
             <WrapPanel>
                 <TextBlock Text="Wizyty" />
             </WrapPanel>
         </Button>
         <Button Grid.Row="0"
                 Grid.Column="2"
-                Command="{Binding AddNewDoctorCommand}">
+                Command="{Binding AddNewDoctorCommand}"
+                Style="{StaticResource AccentedSquareButtonStyle}">
             <WrapPanel>
                 <TextBlock Text="Dodanie nowego lekarza" />
             </WrapPanel>

@@ -1,0 +1,69 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:viewModels="clr-namespace:MVVM_application.ViewModels"
+                    xmlns:mainViewModels="clr-namespace:MVVM_application.ViewModels.MainViewModels"
+                    xmlns:views="clr-namespace:MVVM_application.Views"
+                    xmlns:userControlsModel="clr-namespace:MVVM_application.ViewModels.UserControlsModel"
+                    xmlns:userControls="clr-namespace:MVVM_application.Views.UserControls"
+                    xmlns:registerViewModels="clr-namespace:MVVM_application.ViewModels.RegisterViewModels"
+                    xmlns:patientCardViewModels="clr-namespace:MVVM_application.ViewModels.PatientCardViewModels"
+                    xmlns:doctorViewModels="clr-namespace:MVVM_application.ViewModels.DoctorViewModels">
+    <viewModels:ViewModelLocator x:Key="Locator" />
+    <DataTemplate DataType="{x:Type mainViewModels:LoginViewModel}">
+        <views:LoginView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type mainViewModels:DailyViewModel}">
+        <views:DailyView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type mainViewModels:RegisterViewModel}">
+        <views:RegisterView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type mainViewModels:PatientCardViewModel}">
+        <views:PatientCardView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type mainViewModels:DoctorViewModel}">
+        <views:DoctorView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type userControlsModel:MainUCModel}">
+        <userControls:MainUserControl />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type userControlsModel:RegisterUCModel}">
+        <userControls:RegisterUserControl />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type userControlsModel:PatientCardUCModel}">
+        <userControls:PatientCardUserControl />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type userControlsModel:DoctorUCModel}">
+        <userControls:DoctorUserControl />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type registerViewModels:EditVisitViewModel}">
+        <views:EditVisitView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type registerViewModels:AddNewPatientViewModel}">
+        <views:AddNewPatientView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type patientCardViewModels:SearchPatientViewModel}">
+        <views:SearchPatientView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type patientCardViewModels:PatientVisitViewModel}">
+        <views:PatientVisitView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type patientCardViewModels:PatientNewVisitViewModel}">
+        <views:PatientNewVisitView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type patientCardViewModels:PatientEditDataViewModel}">
+        <views:PatientEditDataView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type doctorViewModels:SearchDoctorViewModel}">
+        <views:SearchDoctorView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type doctorViewModels:DoctorEditDataViewModel}">
+        <views:DoctorEditDataView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type doctorViewModels:DoctorVisitViewModel}">
+        <views:DoctorVisitView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type doctorViewModels:AddNewDoctorViewModel}">
+        <views:AddNewDoctorView />
+    </DataTemplate>
+</ResourceDictionary>

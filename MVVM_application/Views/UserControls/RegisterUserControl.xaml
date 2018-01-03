@@ -19,19 +19,22 @@
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
-        <Button Grid.Column="0" Command="{Binding AddVisitCommand}">
+        <Button Grid.Column="0" Command="{Binding AddVisitCommand}"
+                Style="{StaticResource AccentedSquareButtonStyle}">
             <WrapPanel>
                 <TextBlock Text="Kreator nowej wizyty" />
             </WrapPanel>
         </Button>
 
-        <Button Grid.Column="1" Command="{Binding EditVisitCommand}">
+        <Button Grid.Column="1" Command="{Binding EditVisitCommand}"
+                Style="{StaticResource AccentedSquareButtonStyle}">
             <WrapPanel>
                 <TextBlock Text="Edycja istniejacej wizyty" />
             </WrapPanel>
         </Button>
 
-        <Button Grid.Column="2" Command="{Binding AddNewPatientCommand}">
+        <Button Grid.Column="2" Command="{Binding AddNewPatientCommand}"
+                Style="{StaticResource AccentedSquareButtonStyle}">
             <WrapPanel>
                 <TextBlock Text="Rejestracja nowego pacjenta" />
             </WrapPanel>
