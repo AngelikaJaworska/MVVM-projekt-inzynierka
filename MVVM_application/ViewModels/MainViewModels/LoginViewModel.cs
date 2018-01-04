@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 
 using MVVM_application.Manager;
 using MVVM_application.Models.MainModels;
+using System.Windows.Controls;
 
 namespace MVVM_application.ViewModels.MainViewModels
 {
@@ -38,8 +39,8 @@ namespace MVVM_application.ViewModels.MainViewModels
         public ObservableCollection<Receptionist> ReceptionistList { get; set; }
         
 
-        public ICommand LoginCommand { get; private set; }
-        public ICommand ExitCommand { get; private set; }
+        public RelayCommand<object> LoginCommand { get; private set; }
+        public RelayCommand ExitCommand { get; private set; }
 
         public LoginViewModel(IManager manager, LoginModel loginModel)
         {
@@ -52,7 +53,7 @@ namespace MVVM_application.ViewModels.MainViewModels
 
         public void InitialiseCommand()
         {
-            LoginCommand = new RelayCommand(ExecuteLoginViewCommand);
+            LoginCommand = new RelayCommand<object>(ExecuteLoginViewCommand);
             ExitCommand = new RelayCommand(ExecuteExitCommand);
         }
 
@@ -61,8 +62,10 @@ namespace MVVM_application.ViewModels.MainViewModels
             Application.Current.Shutdown();
         }
 
-        private async void ExecuteLoginViewCommand()
+        private async void ExecuteLoginViewCommand(object pbPassword)
         {
+            var passwordBox = pbPassword as PasswordBox;
+            _password = passwordBox.Password;
             var reception = _loginModel.Login(_login, _password);
             if (reception != null)
             {

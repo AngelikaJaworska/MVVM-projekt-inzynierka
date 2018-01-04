@@ -146,7 +146,6 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
             }
             else
             {
-             //   MessageBox.Show("Proszę wybrać wizytę zaznaczając ją na liście");
                 var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Proszę wybrać wizytę zaznaczając ją na liście");
             }
 

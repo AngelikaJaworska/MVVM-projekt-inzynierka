@@ -113,13 +113,11 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
         {
             if (_patientNewVisitModel.CreateVisitWithData(_patientName, _specialisationName, _doctorName, _visitDate, _comments))
             {
-                // MessageBox.Show("Wizyta poprawnie zapisana");
                 var message = await MetroMessageBoxManager.ShowMessageAsync("Prawidłowe dane", "Wizyta została poprawnie zapisana");
                 _manager.RefreshAll(TypesOfViews.PatientCardViewModel);
             }
                 else
             {
-                //MessageBox.Show("Proszę uzupełnic dane");
                 var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Proszę uzupełnić prawidłowo wszystkie dane");
             }
         }

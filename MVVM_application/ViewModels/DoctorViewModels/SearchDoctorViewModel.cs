@@ -155,7 +155,6 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             }
             else
             {
-                //MessageBox.Show("Nieprawidłowe dane");
                 var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Nie udało się usunąć lekarza");
             }
         }
@@ -174,7 +173,6 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             }
             else
             {
-                //MessageBox.Show("Nie wybrano lekarza do edycji");
                 var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Nie wybrano lekarza do edycji");
             }
         }

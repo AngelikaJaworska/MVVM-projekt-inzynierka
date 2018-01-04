@@ -148,13 +148,11 @@ namespace MVVM_application.ViewModels.DoctorViewModels
         {
             if(_addNewDoctorModel.CreateDoctor(_name, _surname, _specialisation, _street, _homeNr, _city, _phone, _dateOfBirth))
             {
-                //MessageBox.Show("Lekarz zapisany");
                 var message = await MetroMessageBoxManager.ShowMessageAsync("Poprawne dane", "Lekarz został zapisany");
                 _manager.RefreshAll(TypesOfViews.SearchDoctorViewModel);
             }
             else
             {
-                //MessageBox.Show("Proszę uzupelnić dane, w tym godziny pracy lekarza");
                 var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Proszę uzupelnić dane, w tym godziny pracy lekarza");
             }
         }

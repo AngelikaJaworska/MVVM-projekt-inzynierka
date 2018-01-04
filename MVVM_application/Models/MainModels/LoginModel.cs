@@ -35,21 +35,24 @@ namespace MVVM_application.Models.MainModels
         public Receptionist Login(string _login, string _password)
         {
             _validator = false;
-            if (CalculateMD5Hash(_password))
+            if(_login != null && _password != null)
             {
-                _reception = _database.Receptionist
-               .Select(r => r)
-               .Where(l => l.Login.Equals(_login))
-               .Single();
-
-                if (_hashPassword.Equals(_reception.Password))
+                if (CalculateMD5Hash(_password))
                 {
-                    _validator = true;
-                }
+                    _reception = _database.Receptionist
+                   .Select(r => r)
+                   .Where(l => l.Login.Equals(_login))
+                   .Single();
 
-                if (_validator)
-                {
-                    return _reception;
+                    if (_hashPassword.Equals(_reception.Password))
+                    {
+                        _validator = true;
+                    }
+
+                    if (_validator)
+                    {
+                        return _reception;
+                    }
                 }
             }
 

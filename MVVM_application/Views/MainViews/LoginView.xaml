@@ -61,16 +61,18 @@
                   ItemsSource="{Binding ReceptionistList}"
                   SelectedValue="{Binding Login}"
                   SelectedValuePath="Login" />
-        
-        <TextBox Grid.Row="2"
+
+        <PasswordBox Name="pbPassword"
+                 Grid.Row="2"
                  Grid.Column="0"
                  Grid.ColumnSpan="2"
                  Width="200"
                  Controls:TextBoxHelper.Watermark="Wpisz hasło"
                  Controls:TextBoxHelper.ClearTextButton="True"
                  HorizontalAlignment="Center"
-                 VerticalAlignment="Center"
-                 Text="{Binding Password}"/>
+                 VerticalAlignment="Center">
+            
+        </PasswordBox>
         <Button             
             Grid.Row="3"
                 Grid.Column="0"
@@ -78,6 +80,7 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 Style="{StaticResource AccentedSquareButtonStyle}"
+                CommandParameter="{Binding ElementName=pbPassword}"
                 Command="{Binding LoginCommand,
                                   Mode=OneWay}">
             <WrapPanel>

@@ -22,8 +22,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
             <RowDefinition Height="50" />
-            <RowDefinition Height="50" />
-            <RowDefinition Height="150" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="140" />
             <RowDefinition Height="40" />
         </Grid.RowDefinitions>
 
@@ -36,8 +36,7 @@
                VerticalAlignment="Top"
                HorizontalAlignment="Center"
             Grid.Row="2"
-            Content="{Binding DoctorInfo}"
-               FontWeight="Bold"/>
+            Content="{Binding DoctorInfo}"/>
 
         <ComboBox Grid.Row="2"
                   Grid.Column="0"
@@ -61,7 +60,7 @@
                   Grid.Column="0"
                   Grid.ColumnSpan="4"
                   Width="600"
-                  Height="150"
+                  Height="140"
                   VerticalAlignment="Bottom"
                   ItemsSource="{Binding DoctorVisitsList}"
                   SelectedItem="{Binding VisitManagerObject, Mode=TwoWay}" 

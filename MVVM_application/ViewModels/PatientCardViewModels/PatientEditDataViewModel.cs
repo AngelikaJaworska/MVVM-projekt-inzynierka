@@ -130,7 +130,6 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
             if(_patient != null)
             {
                 _patientEditDataModel.DeletePatient();
-                //MessageBox.Show("Pacjent został wyrejestrowany");
                 var message = await MetroMessageBoxManager.ShowMessageAsync("", "Pacjent został wyrejestrowany");
                 _manager.RefreshAll(TypesOfViews.PatientCardViewModel);
             }
@@ -140,13 +139,11 @@ namespace MVVM_application.ViewModels.PatientCardViewModels
         {
             if(SetData())
             {
-                //MessageBox.Show("Dane prawidłowo zmienione");
                 var message = await MetroMessageBoxManager.ShowMessageAsync("Prawidłowe dane", "Pacjet został edytowany");
                 _manager.RefreshAll(TypesOfViews.SearchPatientViewModel);
             }
             else
             {
-                //MessageBox.Show("Niepoprawne dane");
                 var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Proszę uzupełnić prawidłowo wszystkie dane");
             }
         }

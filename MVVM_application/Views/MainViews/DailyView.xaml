@@ -74,10 +74,10 @@
                             <Setter Property="BorderThickness" Value="2,2,2,2"/>
                         </Style>
                     </GridView.ColumnHeaderContainerStyle>
-                    <GridViewColumn Width="152" DisplayMemberBinding="{Binding Patient}" Header="Pacjent" />
+                    <GridViewColumn Width="155" DisplayMemberBinding="{Binding Patient}" Header="Pacjent" />
                     <GridViewColumn Width="150" DisplayMemberBinding="{Binding Specialisation}" Header="Specjalista"/>
-                    <GridViewColumn Width="145" DisplayMemberBinding="{Binding Doctor}" Header="Lekarz"/>
-                    <GridViewColumn Width="150" DisplayMemberBinding="{Binding VisitDate}" Header="Data i godzina wizyty"/>
+                    <GridViewColumn Width="140" DisplayMemberBinding="{Binding Doctor}" Header="Lekarz"/>
+                    <GridViewColumn Width="145" DisplayMemberBinding="{Binding VisitDate}" Header="Data i godzina wizyty"/>
                 </GridView>
             </ListView.View>
         </ListView>

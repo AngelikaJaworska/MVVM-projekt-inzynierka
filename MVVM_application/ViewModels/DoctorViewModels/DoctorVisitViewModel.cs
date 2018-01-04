@@ -154,7 +154,6 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             }
             else
             {
-                //MessageBox.Show("Proszę wybrać wizytę zaznaczając ją na liście");
                 var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Proszę wybrać wizytę zaznaczając ją na liście");
             }
         }

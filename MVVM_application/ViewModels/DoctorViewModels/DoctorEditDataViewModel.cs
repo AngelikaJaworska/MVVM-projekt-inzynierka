@@ -178,7 +178,6 @@ namespace MVVM_application.ViewModels.DoctorViewModels
             if(_doctor != null)
             {
                 _doctorEditDataModel.DeleteDoctor();
-                //MessageBox.Show("Lekarz został usunięty");
                 var message = await MetroMessageBoxManager.ShowMessageAsync("", "Lekarz został usunięty");
                 _manager.RefreshAll(TypesOfViews.DoctorViewModel);
             }
@@ -188,13 +187,11 @@ namespace MVVM_application.ViewModels.DoctorViewModels
         {
             if(SetData())
             {
-                //MessageBox.Show("Dane prawidłowo zmienione");
                 var message = await MetroMessageBoxManager.ShowMessageAsync("Poprawne dane", "Lekarz został edytowany");
                 _manager.RefreshAll(TypesOfViews.SearchDoctorViewModel);
             }
             else
             {
-                //MessageBox.Show("Nieprawidłowe dane");
                 var message = await MetroMessageBoxManager.ShowMessageAsync("Błąd", "Proszę uzupelnić prawidłowo wszystkie dane");
             }
         }

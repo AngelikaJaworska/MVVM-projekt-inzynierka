@@ -60,10 +60,6 @@ namespace MVVM_application.ViewModels.UserControlsModel
             {
                 _manager.ChangeView(TypesOfViews.PatientVisitViewModel);
             }
-            else
-            {
-                MessageBox.Show("Nie wybrano pacjenta");
-            }
         }
         
         
